@@ -10,16 +10,19 @@ import UIKit
 
 class FirstViewController: UIViewController {
 
+    @IBOutlet weak var WelcomeLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        WelcomeLabel.text = "Hi, " + User.me.first + "!"
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
 }
 
