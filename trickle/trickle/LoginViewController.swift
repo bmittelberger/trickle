@@ -31,7 +31,7 @@ class LoginViewController: UIViewController {
             if let password = PasswordField.text {
                 API.authenticate(email, password: password, handler: {(error, json) -> Void in
                     if !error {
-                        let next = self.storyboard?.instantiateViewControllerWithIdentifier("FirstViewController") as! FirstViewController
+                        let next = self.storyboard?.instantiateViewControllerWithIdentifier("MainTabBarController") as! UITabBarController
                         self.presentViewController(next, animated: true, completion: nil)
                     } else {
                         Error.showFromRequest(json, location: self)

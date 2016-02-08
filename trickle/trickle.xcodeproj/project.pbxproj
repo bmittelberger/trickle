@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A5199E91C66DA1F00A39B69 /* MyGroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5199E81C66DA1F00A39B69 /* MyGroupsViewController.swift */; };
+		0A5199EB1C66DC5A00A39B69 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5199EA1C66DC5A00A39B69 /* Group.swift */; };
+		0A5199ED1C671FB200A39B69 /* Credit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5199EC1C671FB200A39B69 /* Credit.swift */; };
+		0A5199F31C67224500A39B69 /* GroupTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5199F21C67224500A39B69 /* GroupTableViewController.swift */; };
 		0AE1B43E1C5EC86400CCCC81 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AE1B43C1C5EC86400CCCC81 /* Alamofire.framework */; };
 		0AE1B43F1C5EC86400CCCC81 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AE1B43D1C5EC86400CCCC81 /* SwiftyJSON.framework */; };
 		0AE1B4401C5EC87000CCCC81 /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0AE1B43C1C5EC86400CCCC81 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -15,6 +19,9 @@
 		0AE1B4451C5EE9E200CCCC81 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE1B4441C5EE9E200CCCC81 /* Error.swift */; };
 		0AE1B4471C5FEF4500CCCC81 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE1B4461C5FEF4500CCCC81 /* LoginViewController.swift */; };
 		0AE1B4491C5FF36800CCCC81 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE1B4481C5FF36800CCCC81 /* User.swift */; };
+		0AE1B4531C64004600CCCC81 /* GroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE1B4521C64004600CCCC81 /* GroupViewController.swift */; };
+		0AE1B4551C6406B900CCCC81 /* GroupsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE1B4541C6406B900CCCC81 /* GroupsNavigationController.swift */; };
+		0AE1B4571C64115F00CCCC81 /* ReimbursementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE1B4561C64115F00CCCC81 /* ReimbursementViewController.swift */; };
 		C147F3E11C4C546800D670A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C147F3E01C4C546800D670A8 /* AppDelegate.swift */; };
 		C147F3E31C4C546800D670A8 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C147F3E21C4C546800D670A8 /* FirstViewController.swift */; };
 		C147F3E51C4C546800D670A8 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C147F3E41C4C546800D670A8 /* SecondViewController.swift */; };
@@ -57,12 +64,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0A5199E81C66DA1F00A39B69 /* MyGroupsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyGroupsViewController.swift; path = ../MyGroupsViewController.swift; sourceTree = "<group>"; };
+		0A5199EA1C66DC5A00A39B69 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		0A5199EC1C671FB200A39B69 /* Credit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Credit.swift; sourceTree = "<group>"; };
+		0A5199F21C67224500A39B69 /* GroupTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupTableViewController.swift; sourceTree = "<group>"; };
 		0AE1B43C1C5EC86400CCCC81 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		0AE1B43D1C5EC86400CCCC81 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		0AE1B4421C5EC8A700CCCC81 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		0AE1B4441C5EE9E200CCCC81 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		0AE1B4461C5FEF4500CCCC81 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		0AE1B4481C5FF36800CCCC81 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		0AE1B4521C64004600CCCC81 /* GroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupViewController.swift; sourceTree = "<group>"; };
+		0AE1B4541C6406B900CCCC81 /* GroupsNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsNavigationController.swift; sourceTree = "<group>"; };
+		0AE1B4561C64115F00CCCC81 /* ReimbursementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReimbursementViewController.swift; sourceTree = "<group>"; };
 		C147F3DD1C4C546800D670A8 /* trickle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = trickle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C147F3E01C4C546800D670A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C147F3E21C4C546800D670A8 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +157,7 @@
 				C147F3E21C4C546800D670A8 /* FirstViewController.swift */,
 				C147F3E41C4C546800D670A8 /* SecondViewController.swift */,
 				C147F3E61C4C546800D670A8 /* Main.storyboard */,
+				0AE1B4541C6406B900CCCC81 /* GroupsNavigationController.swift */,
 				C147F3E91C4C546800D670A8 /* Assets.xcassets */,
 				C147F3EB1C4C546800D670A8 /* LaunchScreen.storyboard */,
 				C147F3EE1C4C546800D670A8 /* Info.plist */,
@@ -150,6 +165,12 @@
 				0AE1B4441C5EE9E200CCCC81 /* Error.swift */,
 				0AE1B4461C5FEF4500CCCC81 /* LoginViewController.swift */,
 				0AE1B4481C5FF36800CCCC81 /* User.swift */,
+				0A5199E81C66DA1F00A39B69 /* MyGroupsViewController.swift */,
+				0AE1B4521C64004600CCCC81 /* GroupViewController.swift */,
+				0AE1B4561C64115F00CCCC81 /* ReimbursementViewController.swift */,
+				0A5199EA1C66DC5A00A39B69 /* Group.swift */,
+				0A5199EC1C671FB200A39B69 /* Credit.swift */,
+				0A5199F21C67224500A39B69 /* GroupTableViewController.swift */,
 			);
 			path = trickle;
 			sourceTree = "<group>";
@@ -241,6 +262,7 @@
 				TargetAttributes = {
 					C147F3DC1C4C546800D670A8 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = 9ZLK8RSRVN;
 					};
 					C147F3F21C4C546900D670A8 = {
 						CreatedOnToolsVersion = 7.2;
@@ -304,11 +326,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AE1B4531C64004600CCCC81 /* GroupViewController.swift in Sources */,
+				0A5199E91C66DA1F00A39B69 /* MyGroupsViewController.swift in Sources */,
 				0AE1B4471C5FEF4500CCCC81 /* LoginViewController.swift in Sources */,
+				0A5199EB1C66DC5A00A39B69 /* Group.swift in Sources */,
+				0AE1B4551C6406B900CCCC81 /* GroupsNavigationController.swift in Sources */,
 				C147F3E51C4C546800D670A8 /* SecondViewController.swift in Sources */,
 				C147F3E11C4C546800D670A8 /* AppDelegate.swift in Sources */,
+				0A5199F31C67224500A39B69 /* GroupTableViewController.swift in Sources */,
+				0AE1B4571C64115F00CCCC81 /* ReimbursementViewController.swift in Sources */,
 				0AE1B4431C5EC8A700CCCC81 /* API.swift in Sources */,
 				0AE1B4451C5EE9E200CCCC81 /* Error.swift in Sources */,
+				0A5199ED1C671FB200A39B69 /* Credit.swift in Sources */,
 				C147F3E31C4C546800D670A8 /* FirstViewController.swift in Sources */,
 				0AE1B4491C5FF36800CCCC81 /* User.swift in Sources */,
 			);
@@ -450,6 +479,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
@@ -459,6 +490,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kab.trickle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -466,6 +498,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
@@ -475,6 +509,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kab.trickle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
