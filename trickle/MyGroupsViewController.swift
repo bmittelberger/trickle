@@ -12,11 +12,20 @@ class MyGroupsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBOutlet weak var MyGroupsTableView: UITableView!
     
+    @IBOutlet weak var NewGroupButton: UIBarButtonItem!
+    
     var groups: [Group] = []
 
     override func viewDidLoad() {
-        super.viewDidLoad()
-
+        super.viewDidLoad()    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.loadGroups()
+    }
+    
+    func loadGroups() {
         // Attempt to load groups
         API.request(path: "users/me/groups") { (err, json) in
             if err {

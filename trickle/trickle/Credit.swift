@@ -16,6 +16,7 @@ class Credit {
     var balance = 0.0
     var description = ""
     var groupId = 0
+    var parentCreditId = 0
     
     class func fromJSON(json: JSON) -> Credit {
         let c = Credit()
@@ -24,6 +25,7 @@ class Credit {
         c.balance = json["balance"].doubleValue
         c.description = json["description"].stringValue
         c.groupId = json["GroupId"].intValue
+        c.parentCreditId = json["ParentCreditId"].intValue
         return c
     }
 }
