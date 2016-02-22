@@ -15,6 +15,9 @@
 		0A5199F71C69EFF100A39B69 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5199F61C69EFF100A39B69 /* Transaction.swift */; };
 		0A5199F91C69FE4300A39B69 /* sunset.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A5199F81C69FE4300A39B69 /* sunset.jpg */; };
 		0A5199FB1C6A105D00A39B69 /* receipt.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A5199FA1C6A105D00A39B69 /* receipt.jpg */; };
+		0A829E731C7AAE2B00AAAF06 /* trickle-groups-button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A829E721C7AAE2B00AAAF06 /* trickle-groups-button@3x.png */; };
+		0A829E751C7AAEE700AAAF06 /* trickle-dick.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A829E741C7AAEE700AAAF06 /* trickle-dick.png */; };
+		0A90199E1C729A1600FBE2D2 /* CreditLineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A90199D1C729A1600FBE2D2 /* CreditLineTableViewCell.swift */; };
 		0AE1B43E1C5EC86400CCCC81 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AE1B43C1C5EC86400CCCC81 /* Alamofire.framework */; };
 		0AE1B43F1C5EC86400CCCC81 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AE1B43D1C5EC86400CCCC81 /* SwiftyJSON.framework */; };
 		0AE1B4401C5EC87000CCCC81 /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0AE1B43C1C5EC86400CCCC81 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -76,6 +79,9 @@
 		0A5199F61C69EFF100A39B69 /* Transaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		0A5199F81C69FE4300A39B69 /* sunset.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sunset.jpg; sourceTree = "<group>"; };
 		0A5199FA1C6A105D00A39B69 /* receipt.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = receipt.jpg; sourceTree = "<group>"; };
+		0A829E721C7AAE2B00AAAF06 /* trickle-groups-button@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trickle-groups-button@3x.png"; sourceTree = "<group>"; };
+		0A829E741C7AAEE700AAAF06 /* trickle-dick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trickle-dick.png"; sourceTree = "<group>"; };
+		0A90199D1C729A1600FBE2D2 /* CreditLineTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditLineTableViewCell.swift; sourceTree = "<group>"; };
 		0AE1B43C1C5EC86400CCCC81 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		0AE1B43D1C5EC86400CCCC81 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		0AE1B4421C5EC8A700CCCC81 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -160,6 +166,8 @@
 		C147F3DF1C4C546800D670A8 /* trickle */ = {
 			isa = PBXGroup;
 			children = (
+				0A829E741C7AAEE700AAAF06 /* trickle-dick.png */,
+				0A829E721C7AAE2B00AAAF06 /* trickle-groups-button@3x.png */,
 				0A5199FA1C6A105D00A39B69 /* receipt.jpg */,
 				0A5199F81C69FE4300A39B69 /* sunset.jpg */,
 				0A2DF2521C5D958A004E36A8 /* lib */,
@@ -183,6 +191,7 @@
 				0A5199F21C67224500A39B69 /* GroupTableViewController.swift */,
 				0A5199F41C69EDF400A39B69 /* CreditTransactionsTableViewController.swift */,
 				0A5199F61C69EFF100A39B69 /* Transaction.swift */,
+				0A90199D1C729A1600FBE2D2 /* CreditLineTableViewCell.swift */,
 			);
 			path = trickle;
 			sourceTree = "<group>";
@@ -311,11 +320,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A829E731C7AAE2B00AAAF06 /* trickle-groups-button@3x.png in Resources */,
 				C147F3ED1C4C546800D670A8 /* LaunchScreen.storyboard in Resources */,
 				0A5199FB1C6A105D00A39B69 /* receipt.jpg in Resources */,
 				C147F3EA1C4C546800D670A8 /* Assets.xcassets in Resources */,
 				C147F3E81C4C546800D670A8 /* Main.storyboard in Resources */,
 				0A5199F91C69FE4300A39B69 /* sunset.jpg in Resources */,
+				0A829E751C7AAEE700AAAF06 /* trickle-dick.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +353,7 @@
 			files = (
 				0A5199F51C69EDF400A39B69 /* CreditTransactionsTableViewController.swift in Sources */,
 				0AE1B4531C64004600CCCC81 /* GroupViewController.swift in Sources */,
+				0A90199E1C729A1600FBE2D2 /* CreditLineTableViewCell.swift in Sources */,
 				0A5199F71C69EFF100A39B69 /* Transaction.swift in Sources */,
 				0A5199E91C66DA1F00A39B69 /* MyGroupsViewController.swift in Sources */,
 				0AE1B4471C5FEF4500CCCC81 /* LoginViewController.swift in Sources */,

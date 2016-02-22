@@ -6,6 +6,7 @@
 //  Copyright © 2016 KAB. All rights reserved.
 //
 
+import UIKit
 import Foundation
 import SwiftyJSON
 
@@ -17,6 +18,11 @@ class Credit {
     var description = ""
     var groupId = 0
     var parentCreditId = 0
+    var color = UIColor()
+    
+    func balancePercentage() -> Double {
+        return balance / amount
+    }
     
     class func fromJSON(json: JSON) -> Credit {
         let c = Credit()
