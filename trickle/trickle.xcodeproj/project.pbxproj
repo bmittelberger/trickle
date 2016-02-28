@@ -17,6 +17,8 @@
 		0A5199FB1C6A105D00A39B69 /* receipt.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0A5199FA1C6A105D00A39B69 /* receipt.jpg */; };
 		0A829E731C7AAE2B00AAAF06 /* trickle-groups-button@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A829E721C7AAE2B00AAAF06 /* trickle-groups-button@3x.png */; };
 		0A829E751C7AAEE700AAAF06 /* trickle-dick.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A829E741C7AAEE700AAAF06 /* trickle-dick.png */; };
+		0A829E771C7AB1D200AAAF06 /* ReimbursementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A829E761C7AB1D200AAAF06 /* ReimbursementsViewController.swift */; };
+		0A829E791C7AB8A300AAAF06 /* Approval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A829E781C7AB8A300AAAF06 /* Approval.swift */; };
 		0A90199E1C729A1600FBE2D2 /* CreditLineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A90199D1C729A1600FBE2D2 /* CreditLineTableViewCell.swift */; };
 		0AE1B43E1C5EC86400CCCC81 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AE1B43C1C5EC86400CCCC81 /* Alamofire.framework */; };
 		0AE1B43F1C5EC86400CCCC81 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AE1B43D1C5EC86400CCCC81 /* SwiftyJSON.framework */; };
@@ -81,6 +83,8 @@
 		0A5199FA1C6A105D00A39B69 /* receipt.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = receipt.jpg; sourceTree = "<group>"; };
 		0A829E721C7AAE2B00AAAF06 /* trickle-groups-button@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trickle-groups-button@3x.png"; sourceTree = "<group>"; };
 		0A829E741C7AAEE700AAAF06 /* trickle-dick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trickle-dick.png"; sourceTree = "<group>"; };
+		0A829E761C7AB1D200AAAF06 /* ReimbursementsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReimbursementsViewController.swift; sourceTree = "<group>"; };
+		0A829E781C7AB8A300AAAF06 /* Approval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Approval.swift; sourceTree = "<group>"; };
 		0A90199D1C729A1600FBE2D2 /* CreditLineTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditLineTableViewCell.swift; sourceTree = "<group>"; };
 		0AE1B43C1C5EC86400CCCC81 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		0AE1B43D1C5EC86400CCCC81 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
@@ -192,6 +196,8 @@
 				0A5199F41C69EDF400A39B69 /* CreditTransactionsTableViewController.swift */,
 				0A5199F61C69EFF100A39B69 /* Transaction.swift */,
 				0A90199D1C729A1600FBE2D2 /* CreditLineTableViewCell.swift */,
+				0A829E761C7AB1D200AAAF06 /* ReimbursementsViewController.swift */,
+				0A829E781C7AB8A300AAAF06 /* Approval.swift */,
 			);
 			path = trickle;
 			sourceTree = "<group>";
@@ -358,6 +364,7 @@
 				0A5199E91C66DA1F00A39B69 /* MyGroupsViewController.swift in Sources */,
 				0AE1B4471C5FEF4500CCCC81 /* LoginViewController.swift in Sources */,
 				0A5199EB1C66DC5A00A39B69 /* Group.swift in Sources */,
+				0A829E791C7AB8A300AAAF06 /* Approval.swift in Sources */,
 				0AE1B4551C6406B900CCCC81 /* GroupsNavigationController.swift in Sources */,
 				C147F3E51C4C546800D670A8 /* SecondViewController.swift in Sources */,
 				C147F3E11C4C546800D670A8 /* AppDelegate.swift in Sources */,
@@ -366,6 +373,7 @@
 				0AE1B4431C5EC8A700CCCC81 /* API.swift in Sources */,
 				0AE1B4451C5EE9E200CCCC81 /* Error.swift in Sources */,
 				0A5199ED1C671FB200A39B69 /* Credit.swift in Sources */,
+				0A829E771C7AB1D200AAAF06 /* ReimbursementsViewController.swift in Sources */,
 				C147F3E31C4C546800D670A8 /* FirstViewController.swift in Sources */,
 				0AE1B4491C5FF36800CCCC81 /* User.swift in Sources */,
 			);
