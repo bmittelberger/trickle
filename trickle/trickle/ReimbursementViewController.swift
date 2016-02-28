@@ -12,7 +12,9 @@ class ReimbursementViewController: UIViewController {
     
     @IBOutlet weak var PurchaseTitleTextField: UITextField!
     @IBOutlet weak var AmountTextField: UITextField!
-    
+    @IBOutlet weak var CategoryTextField: UITextField!
+    @IBOutlet weak var StoreTextField: UITextField!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
