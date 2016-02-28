@@ -15,6 +15,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var EmailField: UITextField!
     @IBOutlet weak var PasswordField: UITextField!
 
+    @IBOutlet weak var createAccountButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -45,6 +47,10 @@ class LoginViewController: UIViewController {
         }
     }
 
+    @IBAction func moveToAccountCreationView(sender: UIButton) {
+        let next = self.storyboard?.instantiateViewControllerWithIdentifier("UserCreateViewController") as UIViewController!
+        self.presentViewController(next, animated: true, completion: nil)
+    }
     /*
     // MARK: - Navigation
 

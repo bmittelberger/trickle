@@ -20,7 +20,6 @@ class Approval {
     }
     
     var id = 0
-    var message = ""
     var status = Status.Active
     var transaction = Transaction()
     var userId = 0
@@ -44,7 +43,6 @@ class Approval {
     class func fromJSON(json: JSON) -> Approval {
         let a = Approval()
         a.id = json["id"].intValue
-        a.message = json["message"].stringValue
         a.status = Status(rawValue: json["status"].stringValue)!
         a.transaction = Transaction.fromJSON(json["Transaction"])
         a.userId = json["UserId"].intValue
