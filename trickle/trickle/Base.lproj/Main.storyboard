@@ -125,7 +125,7 @@
                                     <constraint firstAttribute="width" constant="84" id="NEU-yy-cUD"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="NEU-yy-cUD"/>
@@ -162,8 +162,7 @@
                                 <rect key="frame" x="277" y="394" width="46" height="30"/>
                                 <state key="normal" title="Create"/>
                                 <connections>
-                                    <action selector="doCreate:" destination="YGX-uX-aYe" eventType="touchUpInside" id="JwX-0s-ujl"/>
-                                    <segue destination="bQ5-em-Tyx" kind="show" id="1Tn-Vx-4HF"/>
+                                    <segue destination="bQ5-em-Tyx" kind="show" identifier="SelectOrganizationSegue" id="1Tn-Vx-4HF"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Venmo Phone #" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XjE-QQ-KKV">
