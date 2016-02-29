@@ -87,7 +87,7 @@ class CreditTransactionsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("TransactionRow", forIndexPath: indexPath)
         let transaction = transactions[indexPath.item]
         
-        cell.textLabel?.text = transaction.description
+        cell.textLabel?.text = transaction.title
         cell.textLabel?.textColor = transaction.colorForStatus()
         
         let formatter = NSNumberFormatter()

@@ -12,7 +12,9 @@ class ReimbursementViewController: UIViewController {
     
     @IBOutlet weak var PurchaseTitleTextField: UITextField!
     @IBOutlet weak var AmountTextField: UITextField!
-    
+    @IBOutlet weak var CategoryTextField: UITextField!
+    @IBOutlet weak var StoreTextField: UITextField!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -40,7 +42,7 @@ class ReimbursementViewController: UIViewController {
                 if let amount = Double.init(amountString) {
                     API.request(.POST, path: "transactions", parameters: [
                         "amount": amount,
-                        "description": title,
+                        "title": title,
                         "GroupId": GroupTableViewController.group.id,
                         "CreditId": CreditTransactionsTableViewController.credit.id
                     ]) { (err, json) in

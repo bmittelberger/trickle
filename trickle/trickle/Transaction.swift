@@ -20,8 +20,9 @@ class Transaction {
     
     var id = 0
     var amount = 0.0
-    var description = ""
-    var message = ""
+    var title = ""
+    var location = ""
+    var category = ""
     var status = Status.Pending
     var user = User()
     var groupId = 0
@@ -44,8 +45,9 @@ class Transaction {
         let t = Transaction()
         t.id = json["id"].intValue
         t.amount = json["amount"].doubleValue
-        t.description = json["description"].stringValue
-        t.message = json["message"].stringValue
+        t.title = json["title"].stringValue
+        t.location = json["location"].stringValue
+        t.category = json["category"].stringValue
         t.status = Status(rawValue: json["status"].stringValue)!
         if json["User"].isExists() {
             t.user = User.fromJSON(json["User"])
