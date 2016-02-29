@@ -17,6 +17,11 @@ class User {
     var first = ""
     var last = ""
     var email = ""
+    var organizations: [Organization] = []
+    
+    func currentOrganization() -> Organization {
+        return self.organizations[0]
+    }
     
     class func fromJSON(json: JSON) -> User {
         let u = User()
@@ -24,6 +29,11 @@ class User {
         u.first = json["first"].stringValue
         u.last = json["last"].stringValue
         u.email = json["email"].stringValue
+        if json["Organizations"].isExists() {
+            u.organizations = json["Organizations"].map({ (i, organization) in
+                return Organization.fromJSON(organization)
+            })
+        }
         return u
     }
 }

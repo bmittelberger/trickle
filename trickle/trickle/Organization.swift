@@ -1,0 +1,27 @@
+//
+//  Organization.swift
+//  trickle
+//
+//  Created by Kevin Moody on 2/28/16.
+//  Copyright © 2016 KAB. All rights reserved.
+//
+
+import Foundation
+import SwiftyJSON
+
+class Organization {
+    
+    var id = 0
+    var name = ""
+    var description = ""
+    var isAdmin = false
+    
+    class func fromJSON(json: JSON) -> Organization {
+        let o = Organization()
+        o.id = json["id"].intValue
+        o.name = json["name"].stringValue
+        o.description = json["description"].stringValue
+        o.isAdmin = json["UserOrganization"]["isAdmin"].boolValue
+        return o
+    }
+}

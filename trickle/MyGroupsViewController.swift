@@ -13,11 +13,15 @@ class MyGroupsViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var MyGroupsTableView: UITableView!
     
     @IBOutlet weak var NewGroupButton: UIBarButtonItem!
-    
     var groups: [Group] = []
 
     override func viewDidLoad() {
-        super.viewDidLoad()    }
+        super.viewDidLoad()
+    
+        if !User.me.currentOrganization().isAdmin {
+            self.navigationItem.rightBarButtonItem = nil
+        }
+    }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -44,6 +48,49 @@ class MyGroupsViewController: UIViewController, UITableViewDataSource, UITableVi
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func NewGroupPressed(sender: AnyObject) {
+        let alert = UIAlertController(title: "Create a Group", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
+            textField.placeholder = "Group Name"
+            textField.secureTextEntry = false
+        })
+        alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
+            textField.placeholder = "Description"
+            textField.secureTextEntry = false
+        })
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Create", style: .Default, handler: { (alertAction:UIAlertAction!) in
+            let nameTextField = alert.textFields![0] as UITextField
+            let descriptionTextField = alert.textFields![1] as UITextField
+            let name = nameTextField.text!
+            let description = descriptionTextField.text!
+            
+            if name != "" && description != "" {
+                API.request(.POST, path: "groups", parameters: [
+                    "name": name,
+                    "description": description,
+                    "OrganizationId": User.me.currentOrganization().id
+                ], handler: { (error, json) in
+                    if error {
+                        Error.showFromRequest(json, location: self)
+                        return
+                    }
+                    
+                    self.groups.insert(Group.fromJSON(json["group"]), atIndex: 0)
+                    
+                    self.MyGroupsTableView.reloadSections(NSIndexSet.init(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
+                    
+//                    self.MyGroupsTableView.reloadData()
+                })
+            } else {
+                alert.message = "Please provide a group name and description."
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+            
+        }))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

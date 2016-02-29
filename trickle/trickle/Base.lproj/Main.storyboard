@@ -163,6 +163,7 @@
                                 <state key="normal" title="Create"/>
                                 <connections>
                                     <action selector="doCreate:" destination="YGX-uX-aYe" eventType="touchUpInside" id="JwX-0s-ujl"/>
+                                    <segue destination="bQ5-em-Tyx" kind="show" id="1Tn-Vx-4HF"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Venmo Phone #" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XjE-QQ-KKV">
@@ -212,6 +213,55 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dxB-7e-WCL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3201" y="1033"/>
+        </scene>
+        <!--Select an Organization-->
+        <scene sceneID="dp8-Hh-nfJ">
+            <objects>
+                <viewController storyboardIdentifier="SelectOrganizationViewController" id="bQ5-em-Tyx" customClass="SelectOrganizationViewController" customModule="trickle" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="baF-dd-JSn"/>
+                        <viewControllerLayoutGuide type="bottom" id="OZZ-yy-W5z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Y3X-vp-ghh">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search by Organization Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x1F-cs-bs4">
+                                <rect key="frame" x="20" y="80" width="560" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="OrganizationSearchChanged:" destination="bQ5-em-Tyx" eventType="editingChanged" id="yok-XF-qNE"/>
+                                </connections>
+                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="k24-Qo-WyI">
+                                <rect key="frame" x="0.0" y="126" width="600" height="474"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="bQ5-em-Tyx" id="rWe-Th-PhY"/>
+                                    <outlet property="delegate" destination="bQ5-em-Tyx" id="m5a-FN-7Y2"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="k24-Qo-WyI" firstAttribute="centerX" secondItem="Y3X-vp-ghh" secondAttribute="centerX" id="Ed1-yy-Y68"/>
+                            <constraint firstItem="k24-Qo-WyI" firstAttribute="width" secondItem="Y3X-vp-ghh" secondAttribute="width" id="Eow-fJ-f5y"/>
+                            <constraint firstItem="k24-Qo-WyI" firstAttribute="top" secondItem="x1F-cs-bs4" secondAttribute="bottom" constant="16" id="HkX-WR-4xE"/>
+                            <constraint firstItem="OZZ-yy-W5z" firstAttribute="top" secondItem="k24-Qo-WyI" secondAttribute="bottom" id="daC-XK-ayH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="x1F-cs-bs4" secondAttribute="trailing" id="jWX-dP-b0T"/>
+                            <constraint firstItem="x1F-cs-bs4" firstAttribute="top" secondItem="baF-dd-JSn" secondAttribute="bottom" constant="16" id="thu-fG-4Bu"/>
+                            <constraint firstItem="x1F-cs-bs4" firstAttribute="leading" secondItem="Y3X-vp-ghh" secondAttribute="leadingMargin" id="yc7-da-Doe"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Select an Organization" id="25u-0K-q10"/>
+                    <connections>
+                        <outlet property="OrganizationSearchTextField" destination="x1F-cs-bs4" id="vPY-6A-AqW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fba-pn-WnS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3929" y="1033"/>
         </scene>
         <!--Item 2-->
         <scene sceneID="aS7-v7-pWC">
@@ -439,9 +489,16 @@
                             <constraint firstItem="wMy-5c-LWx" firstAttribute="top" secondItem="HhQ-iJ-5zg" secondAttribute="bottom" id="nHS-dD-90B"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="My Groups" id="eic-sM-ad0"/>
+                    <navigationItem key="navigationItem" title="My Groups" id="eic-sM-ad0">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="dJ2-pF-kcH">
+                            <connections>
+                                <action selector="NewGroupPressed:" destination="14u-K8-2FW" id="aPo-eO-m0K"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="MyGroupsTableView" destination="HhQ-iJ-5zg" id="6aB-Pz-8gR"/>
+                        <outlet property="NewGroupButton" destination="dJ2-pF-kcH" id="bUp-Sl-jvW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k7q-f3-vqU" userLabel="First Responder" sceneMemberID="firstResponder"/>
