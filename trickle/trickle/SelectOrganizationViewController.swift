@@ -12,6 +12,9 @@ import UIKit
 class SelectOrganizationViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var OrganizationSearchTextField: UITextField!
+    @IBOutlet weak var OrganizationsSearchTableView: UITableView!
+    
+    var organizations: [Organization] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,15 +33,42 @@ class SelectOrganizationViewController: UIViewController, UITableViewDataSource,
     }
     
     @IBAction func OrganizationSearchChanged(sender: AnyObject) {
+        let query = OrganizationSearchTextField.text!
         
+        if !query.isEmpty {
+            API.request(path: "organizations?query=\(query)") { (error, json) in
+                if error {
+                    Error.showFromRequest(json, location: self)
+                    return
+                }
+                
+                self.organizations = json["organizations"].map({ (i, organization) in
+                    return Organization.fromJSON(organization)
+                })
+                self.OrganizationsSearchTableView.reloadData()
+            }
+        } else {
+            self.organizations = []
+            self.OrganizationsSearchTableView.reloadData()
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return organizations.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCellWithIdentifier("OrganizationRow", forIndexPath: indexPath)
+        cell.textLabel?.text = organizations[indexPath.item].name
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        let organization = organizations[indexPath.item]
+                
+        // deal with creating the user & adding them to the organization
     }
 
     /*
