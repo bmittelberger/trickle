@@ -78,11 +78,8 @@ class MyGroupsViewController: UIViewController, UITableViewDataSource, UITableVi
                         return
                     }
                     
-                    self.groups.insert(Group.fromJSON(json["group"]), atIndex: 0)
-                    
-                    self.MyGroupsTableView.reloadSections(NSIndexSet.init(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
-                    
-//                    self.MyGroupsTableView.reloadData()
+                    self.groups.append(Group.fromJSON(json["group"]))
+                    self.MyGroupsTableView.reloadData()
                 })
             } else {
                 alert.message = "Please provide a group name and description."
