@@ -46,7 +46,11 @@ class Approval {
         a.id = json["id"].intValue
         a.message = json["message"].stringValue
         a.status = Status(rawValue: json["status"].stringValue)!
-        a.transaction = Transaction.fromJSON(json["Transaction"])
+        if json["Transaction"].isExists() {
+            a.transaction = Transaction.fromJSON(json["Transaction"])
+        } else {
+            a.transaction.id = json["TransactionId"].intValue
+        }
         a.userId = json["UserId"].intValue
         a.creditId = json["CreditId"].intValue
         return a

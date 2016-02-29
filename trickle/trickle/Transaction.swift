@@ -23,7 +23,7 @@ class Transaction {
     var description = ""
     var message = ""
     var status = Status.Pending
-    var userId = 0
+    var user = User()
     var groupId = 0
     var creditId = 0
     
@@ -47,7 +47,11 @@ class Transaction {
         t.description = json["description"].stringValue
         t.message = json["message"].stringValue
         t.status = Status(rawValue: json["status"].stringValue)!
-        t.userId = json["UserId"].intValue
+        if json["User"].isExists() {
+            t.user = User.fromJSON(json["User"])
+        } else {
+            t.user.id = json["UserId"].intValue
+        }
         t.groupId = json["GroupId"].intValue
         t.creditId = json["CreditId"].intValue
         return t

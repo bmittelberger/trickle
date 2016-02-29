@@ -21,6 +21,9 @@ class ReimbursementsViewController: UIViewController, UITableViewDataSource, UIT
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        self.ReimbursementsTableView.estimatedRowHeight = 100.0;
+        self.ReimbursementsTableView.rowHeight = UITableViewAutomaticDimension;
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -46,7 +49,7 @@ class ReimbursementsViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func loadApprovals() {
-        API.request(path: "users/me/approvals") { (err, json) in
+        API.request(path: "users/me/approvals?statuses=ACTIVE") { (err, json) in
             if err {
                 Error.showFromRequest(json, location: self)
                 return
@@ -99,7 +102,18 @@ class ReimbursementsViewController: UIViewController, UITableViewDataSource, UIT
             
             return cell
         } else {
-            return UITableViewCell()
+            let cell = tableView.dequeueReusableCellWithIdentifier("ApprovalRow", forIndexPath: indexPath)
+            let approval = approvals[indexPath.item]
+            
+            let formatter = NSNumberFormatter()
+            formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+            formatter.locale = NSLocale(localeIdentifier: "en_US")
+            let amountString = formatter.stringFromNumber(approval.transaction.amount)!
+            
+            cell.textLabel?.text = "\(approval.transaction.user.first) \(approval.transaction.user.last) spent \(amountString). - \(approval.transaction.description)"
+            cell.textLabel?.numberOfLines = 0
+            
+            return cell
         }
     }
     
