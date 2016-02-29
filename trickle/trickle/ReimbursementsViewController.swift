@@ -110,7 +110,7 @@ class ReimbursementsViewController: UIViewController, UITableViewDataSource, UIT
             formatter.locale = NSLocale(localeIdentifier: "en_US")
             let amountString = formatter.stringFromNumber(approval.transaction.amount)!
             
-            cell.textLabel?.text = "\(approval.transaction.user.first) \(approval.transaction.user.last) spent \(amountString). - \(approval.transaction.description)"
+            cell.textLabel?.text = "\(approval.transaction.user.first) \(approval.transaction.user.last) spent \(amountString). - \(approval.transaction.title)"
             cell.textLabel?.numberOfLines = 0
             
             return cell
