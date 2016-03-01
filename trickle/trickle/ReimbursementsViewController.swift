@@ -102,7 +102,7 @@ class ReimbursementsViewController: UIViewController, UITableViewDataSource, UIT
             
             return cell
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("ApprovalRow", forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCellWithIdentifier("ApprovalRow", forIndexPath: indexPath) as! ApprovalTableViewCell
             let approval = approvals[indexPath.item]
             
             let formatter = NSNumberFormatter()
@@ -110,11 +110,59 @@ class ReimbursementsViewController: UIViewController, UITableViewDataSource, UIT
             formatter.locale = NSLocale(localeIdentifier: "en_US")
             let amountString = formatter.stringFromNumber(approval.transaction.amount)!
             
-            cell.textLabel?.text = "\(approval.transaction.user.first) \(approval.transaction.user.last) spent \(amountString). - \(approval.transaction.title)"
-            cell.textLabel?.numberOfLines = 0
+            cell.ApprovalMessageLabel.text = "\(approval.transaction.user.first) \(approval.transaction.user.last) spent \(amountString). - \(approval.transaction.title)"
+            cell.ApprovalMessageLabel.numberOfLines = 0
+            
+            cell.ApproveButton.addTarget(self, action: "approveApproval:", forControlEvents: UIControlEvents.TouchUpInside)
+            cell.ApproveButton.tag = indexPath.item
+            
+            cell.DeclineButton.addTarget(self, action: "declineApproval:", forControlEvents: UIControlEvents.TouchUpInside)
+            cell.DeclineButton.tag = indexPath.item
             
             return cell
         }
+    }
+    
+    func approveApproval(sender: AnyObject!) {
+        let buttonPosition = sender.convertPoint(CGPointZero, toView: self.ReimbursementsTableView)
+        let indexPath = self.ReimbursementsTableView.indexPathForRowAtPoint(buttonPosition)!
+        var approval = approvals[indexPath.item]
+        
+        API.request(.PUT, path: "/approvals/\(approval.id)", parameters: ["status": "APPROVED"]) { (error, json) in
+            if error {
+                Error.showFromRequest(json, location: self)
+                return
+            }
+            
+            approval = Approval.fromJSON(json["approval"])
+            
+            self.approvals.removeAtIndex(indexPath.item)
+            
+            self.ReimbursementsTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Left)
+        }
+    }
+    
+    func declineApproval(sender: AnyObject!) {
+        let buttonPosition = sender.convertPoint(CGPointZero, toView: self.ReimbursementsTableView)
+        let indexPath = self.ReimbursementsTableView.indexPathForRowAtPoint(buttonPosition)!
+        var approval = approvals[indexPath.item]
+        
+        API.request(.PUT, path: "/approvals/\(approval.id)", parameters: ["status": "DECLINED"]) { (error, json) in
+            if error {
+                Error.showFromRequest(json, location: self)
+                return
+            }
+            
+            approval = Approval.fromJSON(json["approval"])
+            
+            self.approvals.removeAtIndex(indexPath.item)
+            
+            self.ReimbursementsTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Right)
+        }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
 

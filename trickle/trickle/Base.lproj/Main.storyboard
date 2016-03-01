@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="sJN-uw-3n5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="sJN-uw-3n5">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -149,7 +149,6 @@
                                 <rect key="frame" x="277" y="394" width="46" height="30"/>
                                 <state key="normal" title="Create"/>
                                 <connections>
-                                    <action selector="doCreate:" destination="YGX-uX-aYe" eventType="touchUpInside" id="JwX-0s-ujl"/>
                                     <segue destination="bQ5-em-Tyx" kind="show" id="1Tn-Vx-4HF"/>
                                 </connections>
                             </button>
@@ -586,22 +585,53 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ApprovalRow" textLabel="t8I-h6-b6u" style="IBUITableViewCellStyleDefault" id="dk9-28-P9d">
-                                        <rect key="frame" x="0.0" y="72" width="600" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ApprovalTableViewCell" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ApprovalRow" rowHeight="115" id="dk9-28-P9d" customClass="ApprovalTableViewCell" customModule="trickle" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="72" width="600" height="115"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dk9-28-P9d" id="c8I-Xq-75F">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="114.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="t8I-h6-b6u">
-                                                    <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9YE-XH-oaq">
+                                                    <rect key="frame" x="8" y="58.5" width="292" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="rVU-9s-KSg"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Approve"/>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gng-S4-o4C">
+                                                    <rect key="frame" x="16" y="16" width="568" height="26.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hxm-Fv-GNs">
+                                                    <rect key="frame" x="300" y="59" width="292" height="32"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                                    <state key="normal" title="Decline">
+                                                        <color key="titleColor" red="1" green="0.1345987622" blue="0.15179816139999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                </button>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="9YE-XH-oaq" firstAttribute="leading" secondItem="c8I-Xq-75F" secondAttribute="leadingMargin" id="3iT-LU-oxU"/>
+                                                <constraint firstItem="gng-S4-o4C" firstAttribute="top" secondItem="c8I-Xq-75F" secondAttribute="topMargin" constant="8" id="Bvp-aH-afx"/>
+                                                <constraint firstItem="hxm-Fv-GNs" firstAttribute="height" secondItem="9YE-XH-oaq" secondAttribute="height" id="Ufd-vS-pRK"/>
+                                                <constraint firstItem="hxm-Fv-GNs" firstAttribute="leading" secondItem="9YE-XH-oaq" secondAttribute="trailing" id="XZ3-ym-Pxa"/>
+                                                <constraint firstItem="9YE-XH-oaq" firstAttribute="width" secondItem="hxm-Fv-GNs" secondAttribute="width" id="mig-Uq-0bP"/>
+                                                <constraint firstItem="gng-S4-o4C" firstAttribute="leading" secondItem="c8I-Xq-75F" secondAttribute="leadingMargin" constant="8" id="peW-PU-f8c"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="gng-S4-o4C" secondAttribute="trailing" constant="8" id="rwy-CG-E7B"/>
+                                                <constraint firstItem="9YE-XH-oaq" firstAttribute="top" secondItem="gng-S4-o4C" secondAttribute="bottom" constant="16" id="stb-lP-dOZ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="hxm-Fv-GNs" secondAttribute="trailing" id="u0H-ms-Pv6"/>
+                                                <constraint firstItem="hxm-Fv-GNs" firstAttribute="baseline" secondItem="9YE-XH-oaq" secondAttribute="baseline" id="xBj-A0-YY2"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="9YE-XH-oaq" secondAttribute="bottom" constant="16" id="zRW-e9-ZJY"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="ApprovalMessageLabel" destination="gng-S4-o4C" id="DRQ-4f-Uew"/>
+                                            <outlet property="ApproveButton" destination="9YE-XH-oaq" id="LmG-gq-e6n"/>
+                                            <outlet property="DeclineButton" destination="hxm-Fv-GNs" id="Sg8-bP-8p4"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

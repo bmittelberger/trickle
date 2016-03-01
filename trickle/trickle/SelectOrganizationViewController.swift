@@ -67,7 +67,7 @@ class SelectOrganizationViewController: UIViewController, UITableViewDataSource,
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         let organization = organizations[indexPath.item]
-                
+        
         // deal with creating the user & adding them to the organization
     }
 
