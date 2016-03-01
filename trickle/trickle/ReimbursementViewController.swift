@@ -8,13 +8,17 @@
 
 import UIKit
 
-class ReimbursementViewController: UIViewController {
+class ReimbursementViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var PurchaseTitleTextField: UITextField!
     @IBOutlet weak var AmountTextField: UITextField!
     @IBOutlet weak var CategoryTextField: UITextField!
     @IBOutlet weak var StoreTextField: UITextField!
 
+    @IBOutlet weak var CameraButton: UIButton!
+    @IBOutlet weak var DisplayImage: UIImageView!
+ 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -80,5 +84,27 @@ class ReimbursementViewController: UIViewController {
             creditTransactions.loadTransactions()
         }
     }
+    
+    @IBAction func BringUpCamera(sender: UIButton) {
+        
+        let picker = UIImagePickerController()
+        
+        picker.delegate = self
+        
+        picker.sourceType = .Camera
+        
+        presentViewController(picker, animated: true, completion: nil)
+        
+    }
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        
+        DisplayImage.image = info[UIImagePickerControllerOriginalImage] as? UIImage; dismissViewControllerAnimated(true, completion: nil)
+        
+        
+    }
+    
+    
+    
 
 }
