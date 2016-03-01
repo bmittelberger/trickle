@@ -19,6 +19,7 @@
 		0A829E791C7AB8A300AAAF06 /* Approval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A829E781C7AB8A300AAAF06 /* Approval.swift */; };
 		0A829E7B1C83ECE600AAAF06 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A829E7A1C83ECE600AAAF06 /* Organization.swift */; };
 		0A829E7D1C83F32300AAAF06 /* SelectOrganizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A829E7C1C83F32300AAAF06 /* SelectOrganizationViewController.swift */; };
+		0A829E7F1C84499500AAAF06 /* ApprovalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A829E7E1C84499500AAAF06 /* ApprovalTableViewCell.swift */; };
 		0A90199E1C729A1600FBE2D2 /* CreditLineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A90199D1C729A1600FBE2D2 /* CreditLineTableViewCell.swift */; };
 		0AE1B43E1C5EC86400CCCC81 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AE1B43C1C5EC86400CCCC81 /* Alamofire.framework */; };
 		0AE1B43F1C5EC86400CCCC81 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AE1B43D1C5EC86400CCCC81 /* SwiftyJSON.framework */; };
@@ -86,6 +87,7 @@
 		0A829E781C7AB8A300AAAF06 /* Approval.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Approval.swift; sourceTree = "<group>"; };
 		0A829E7A1C83ECE600AAAF06 /* Organization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
 		0A829E7C1C83F32300AAAF06 /* SelectOrganizationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectOrganizationViewController.swift; sourceTree = "<group>"; };
+		0A829E7E1C84499500AAAF06 /* ApprovalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApprovalTableViewCell.swift; sourceTree = "<group>"; };
 		0A90199D1C729A1600FBE2D2 /* CreditLineTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditLineTableViewCell.swift; sourceTree = "<group>"; };
 		0AE1B43C1C5EC86400CCCC81 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		0AE1B43D1C5EC86400CCCC81 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				0A829E781C7AB8A300AAAF06 /* Approval.swift */,
 				0A829E7A1C83ECE600AAAF06 /* Organization.swift */,
 				0A829E7C1C83F32300AAAF06 /* SelectOrganizationViewController.swift */,
+				0A829E7E1C84499500AAAF06 /* ApprovalTableViewCell.swift */,
 			);
 			path = trickle;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 			files = (
 				0A5199F51C69EDF400A39B69 /* CreditTransactionsTableViewController.swift in Sources */,
 				0AE1B4531C64004600CCCC81 /* GroupViewController.swift in Sources */,
+				0A829E7F1C84499500AAAF06 /* ApprovalTableViewCell.swift in Sources */,
 				0A90199E1C729A1600FBE2D2 /* CreditLineTableViewCell.swift in Sources */,
 				0A5199F71C69EFF100A39B69 /* Transaction.swift in Sources */,
 				0A829E7B1C83ECE600AAAF06 /* Organization.swift in Sources */,

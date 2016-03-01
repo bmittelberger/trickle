@@ -97,8 +97,6 @@ class SelectOrganizationViewController: UIViewController, UITableViewDataSource,
                     })
                 }
         }
-                
-        // deal with creating the user & adding them to the organization
     }
 
     /*
