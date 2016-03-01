@@ -68,7 +68,35 @@ class SelectOrganizationViewController: UIViewController, UITableViewDataSource,
         
         let organization = organizations[indexPath.item]
         
-        // deal with creating the user & adding them to the organization
+        API.request(.POST, path: "users", parameters: [
+            "email": User.me.email,
+            "password": UserCreateViewController.currentPassword,
+            "first": User.me.first,
+            "last": User.me.last
+            ]) { (err, json) in
+                if err {
+                    Error.showFromRequest(json, location: self)
+                    return
+                } else {
+                    API.authenticate(User.me.email, password: UserCreateViewController.currentPassword, handler: {(error, json) -> Void in
+                        if !error {
+                            UserCreateViewController.currentPassword = ""
+                            API.request(.POST, path: "organizations/\(organization.id)/users", parameters: ["UserId" : User.me.id,
+                                "isAdmin" : "false"]){ (err, json) in
+                                    if !error {
+                                    User.me.organizations.append(organization)
+                                    let next = self.storyboard?.instantiateViewControllerWithIdentifier("MainTabBarController") as! UITabBarController
+                                        self.presentViewController(next, animated: true, completion: nil)
+                                    } else {
+                                        Error.showFromRequest(json, location: self)
+                                    }
+                            }
+                        } else {
+                            Error.showFromRequest(json, location: self)
+                        }
+                    })
+                }
+        }
     }
 
     /*

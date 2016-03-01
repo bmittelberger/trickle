@@ -41,6 +41,16 @@ class MyGroupsViewController: UIViewController, UITableViewDataSource, UITableVi
             self.groups = json["groups"].map { (i, group) in
                 return Group.fromJSON(group)
             }
+            if self.groups.count == 0 {
+                let refreshAlert = UIAlertController(title: "Important", message: "You are not in any groups yet. Please contact your organization administrator to be added to groups.", preferredStyle: UIAlertControllerStyle.Alert)
+                
+                refreshAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
+                }))
+                
+                
+                self.presentViewController(refreshAlert, animated: true, completion: nil)
+                //Error.show("You are not in any groups yet. Please contact your organization administrator to be added to groups.", location: self)
+            }
             self.MyGroupsTableView.reloadData()
         }
     }

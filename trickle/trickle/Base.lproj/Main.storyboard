@@ -119,6 +119,19 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gTd-1B-1Lx">
+                                <rect key="frame" x="150" y="154" width="300" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="84" id="NEU-yy-cUD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="NEU-yy-cUD"/>
+                                    </mask>
+                                </variation>
+                            </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kHI-sw-bRl">
                                 <rect key="frame" x="150" y="214" width="300" height="30"/>
                                 <constraints>
@@ -149,7 +162,7 @@
                                 <rect key="frame" x="277" y="394" width="46" height="30"/>
                                 <state key="normal" title="Create"/>
                                 <connections>
-                                    <segue destination="bQ5-em-Tyx" kind="show" id="1Tn-Vx-4HF"/>
+                                    <segue destination="bQ5-em-Tyx" kind="show" identifier="SelectOrganizationSegue" id="1Tn-Vx-4HF"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Venmo Phone #" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XjE-QQ-KKV">
@@ -162,19 +175,6 @@
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="4FD-A6-vyL"/>
-                                    </mask>
-                                </variation>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gTd-1B-1Lx">
-                                <rect key="frame" x="150" y="154" width="300" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="84" id="NEU-yy-cUD"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="NEU-yy-cUD"/>
                                     </mask>
                                 </variation>
                             </textField>
