@@ -12,7 +12,11 @@ class CreditTransactionsTableViewController: UITableViewController {
     
     static var credit: Credit = Credit()
     
+    @IBOutlet var CreaditTableView: UITableView!
+    
+    @IBOutlet weak var CreditSegmentedControl: UISegmentedControl!
     var transactions: [Transaction] = []
+    var rules : [Rule] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,12 +39,18 @@ class CreditTransactionsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+//        self.tableView.estimatedRowHeight = 200.0;
+//        self.tableView.rowHeight = 200;
+
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        
         self.loadTransactions()
+        self.loadRules()
+       
     }
     
     func loadTransactions() {
@@ -56,6 +66,11 @@ class CreditTransactionsTableViewController: UITableViewController {
             }
             self.tableView.reloadData()
         }
+    }
+    
+    func loadRules() {
+        self.rules = CreditTransactionsTableViewController.credit.rules
+        self.tableView.reloadData()
     }
     
     func newTransactionPressed() {
@@ -75,30 +90,120 @@ class CreditTransactionsTableViewController: UITableViewController {
 //        return 0
 //    }
     
+    
+    @IBAction func CreditSegmentedControlPressed(sender: UISegmentedControl) {
+        if  CreditSegmentedControl.selectedSegmentIndex == 0 {
+            self.tableView.rowHeight = 100;
+            self.tableView.reloadData()
+            
+        } else {
+            self.tableView.rowHeight = 220;
+            self.tableView.reloadData()
+            
+        }
+        
+    }
+    
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Transactions"
+        if CreditSegmentedControl.selectedSegmentIndex == 0 {
+            return "Transactions"
+        } else {
+            return "Rules"
+        }
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return transactions.count
+        if CreditSegmentedControl.selectedSegmentIndex == 0 {
+            return transactions.count
+        } else {
+            return rules.count
+        }
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("TransactionRow", forIndexPath: indexPath)
-        let transaction = transactions[indexPath.item]
+        if CreditSegmentedControl.selectedSegmentIndex == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("TransactionRow", forIndexPath: indexPath)
+            let transaction = transactions[indexPath.item]
         
-        cell.textLabel?.text = transaction.title
-        cell.textLabel?.textColor = transaction.colorForStatus()
+            cell.textLabel?.text = transaction.title
+            cell.textLabel?.textColor = transaction.colorForStatus()
         
-        let formatter = NSNumberFormatter()
-        formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
-        formatter.locale = NSLocale(localeIdentifier: "en_US")
-        cell.detailTextLabel?.text = formatter.stringFromNumber(transaction.amount)
-        cell.detailTextLabel?.textColor = transaction.colorForStatus()
+            let formatter = NSNumberFormatter()
+            formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+            formatter.locale = NSLocale(localeIdentifier: "en_US")
+            cell.detailTextLabel?.text = formatter.stringFromNumber(transaction.amount)
+            cell.detailTextLabel?.textColor = transaction.colorForStatus()
 
-        return cell
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier("RuleRow", forIndexPath: indexPath) as! RuleTableViewCell
+            let rule = rules[indexPath.item]
+            let formatter = NSNumberFormatter()
+            let thresholdFormatter = NSNumberFormatter()
+            formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+            formatter.locale = NSLocale(localeIdentifier: "en_US")
+            if rule.max == 0 {
+                cell.maxVal?.text = "No Max"
+            } else {
+                cell.maxVal?.text = formatter.stringFromNumber(rule.max)
+            }
+            cell.minVal?.text = formatter.stringFromNumber(rule.min)
+            cell.ruleTypeVal?.text = getRuleType(rule)
+            cell.thresholdVal?.text = thresholdFormatter.stringFromNumber(rule.threshold)
+            cell.approvalVal?.text = getApprovalType(rule)
+            cell.windowVal?.text = rule.window
+            return cell
+        }
     }
 
+    
+    func getRuleType(rule : Rule) -> String {
+        var response : String = ""
+        if rule.type == Rule.RuleType.WINDOW_LIMIT {
+            response = "Rate Limit"
+            if rule.window == Rule.Window.DAY {
+                response = "Daily " + response
+            } else if rule.window == Rule.Window.WEEK {
+                response = "Weekly " + response
+            } else {
+                response = "Monthly " + response
+            }
+        } else {
+            response = "Single Transaction"
+        }
+        return response
+    }
+    
+    func getApprovalType(rule : Rule) -> String {
+        let formatter = NSNumberFormatter()
+        var response : String = ""
+        if rule.approval == Rule.ApprovalType.NUMBER_MEMBER {
+            response = formatter.stringFromNumber(rule.threshold)!
+            response += " Member"
+            if rule.threshold > 1 {
+                response += "s"
+            }
+            return response
+        } else if rule.approval == Rule.ApprovalType.PERCENTAGE_MEMBER {
+            response = formatter.stringFromNumber(rule.threshold)!
+            response += "% of Members"
+            return response
+        } else if rule.approval == Rule.ApprovalType.NUMBER_ADMIN {
+            response = formatter.stringFromNumber(rule.threshold)!
+            response += " Admin"
+            if rule.threshold > 1 {
+                response += "s"
+            }
+            return response
+        } else if rule.approval == Rule.ApprovalType.PERCENTAGE_ADMIN {
+            response = formatter.stringFromNumber(rule.threshold)!
+            response += "% of Admins"
+            return response
+        } else {
+            response = "Auto Decline"
+            return response
+        }
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

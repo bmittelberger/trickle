@@ -19,6 +19,7 @@ class Credit {
     var groupId = 0
     var parentCreditId = 0
     var color = UIColor()
+    var rules : [Rule] = []
     
     func balancePercentage() -> Double {
         return balance / amount
@@ -32,6 +33,11 @@ class Credit {
         c.description = json["description"].stringValue
         c.groupId = json["GroupId"].intValue
         c.parentCreditId = json["ParentCreditId"].intValue
+        if json["rules"].isExists() {
+            c.rules = json["rules"].map({ (i, rule) in
+                return Rule.fromJSON(rule)
+            })
+        }
         return c
     }
 }

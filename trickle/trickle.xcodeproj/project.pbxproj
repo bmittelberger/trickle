@@ -41,6 +41,8 @@
 		C147F3ED1C4C546800D670A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C147F3EB1C4C546800D670A8 /* LaunchScreen.storyboard */; };
 		C147F3F81C4C546900D670A8 /* trickleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C147F3F71C4C546900D670A8 /* trickleTests.swift */; };
 		C147F4031C4C546900D670A8 /* trickleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C147F4021C4C546900D670A8 /* trickleUITests.swift */; };
+		C160B9751C896453009841F2 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C160B9741C896453009841F2 /* Rule.swift */; };
+		C160B9771C89751C009841F2 /* RuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C160B9761C89751C009841F2 /* RuleTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +115,8 @@
 		C147F3FE1C4C546900D670A8 /* trickleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = trickleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C147F4021C4C546900D670A8 /* trickleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = trickleUITests.swift; sourceTree = "<group>"; };
 		C147F4041C4C546900D670A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C160B9741C896453009841F2 /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
+		C160B9761C89751C009841F2 /* RuleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +194,7 @@
 				0AE1B4441C5EE9E200CCCC81 /* Error.swift */,
 				0AE1B4461C5FEF4500CCCC81 /* LoginViewController.swift */,
 				0AE1B4481C5FF36800CCCC81 /* User.swift */,
+				C160B9761C89751C009841F2 /* RuleTableViewCell.swift */,
 				0A5199E81C66DA1F00A39B69 /* MyGroupsViewController.swift */,
 				0AE1B4521C64004600CCCC81 /* GroupViewController.swift */,
 				0AE1B4561C64115F00CCCC81 /* ReimbursementViewController.swift */,
@@ -204,6 +209,7 @@
 				0A829E7A1C83ECE600AAAF06 /* Organization.swift */,
 				0A829E7C1C83F32300AAAF06 /* SelectOrganizationViewController.swift */,
 				0A829E7E1C84499500AAAF06 /* ApprovalTableViewCell.swift */,
+				C160B9741C896453009841F2 /* Rule.swift */,
 			);
 			path = trickle;
 			sourceTree = "<group>";
@@ -371,6 +377,7 @@
 				0AE1B4471C5FEF4500CCCC81 /* LoginViewController.swift in Sources */,
 				0A5199EB1C66DC5A00A39B69 /* Group.swift in Sources */,
 				0A829E791C7AB8A300AAAF06 /* Approval.swift in Sources */,
+				C160B9771C89751C009841F2 /* RuleTableViewCell.swift in Sources */,
 				0AE1B4551C6406B900CCCC81 /* GroupsNavigationController.swift in Sources */,
 				C147F3E51C4C546800D670A8 /* SecondViewController.swift in Sources */,
 				C147F3E11C4C546800D670A8 /* AppDelegate.swift in Sources */,
@@ -382,6 +389,7 @@
 				0A829E7D1C83F32300AAAF06 /* SelectOrganizationViewController.swift in Sources */,
 				0A829E771C7AB1D200AAAF06 /* ReimbursementsViewController.swift in Sources */,
 				C147F3E31C4C546800D670A8 /* FirstViewController.swift in Sources */,
+				C160B9751C896453009841F2 /* Rule.swift in Sources */,
 				0AE1B4491C5FF36800CCCC81 /* User.swift in Sources */,
 				C12366A41C83B63600D8DFF8 /* UserCreateViewController.swift in Sources */,
 			);
