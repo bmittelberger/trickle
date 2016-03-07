@@ -14,6 +14,7 @@ class MyGroupsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBOutlet weak var NewGroupButton: UIBarButtonItem!
     var groups: [Group] = []
+    var groupMappings: [Int: Int] = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,8 +39,11 @@ class MyGroupsViewController: UIViewController, UITableViewDataSource, UITableVi
             }
             
             // We have groups to display, update the table
+            var index = 0
             self.groups = json["groups"].map { (i, group) in
-                return Group.fromJSON(group)
+                let g = Group.fromJSON(group)
+                self.groupMappings[g.id] = index++
+                return g
             }
             if self.groups.count == 0 {
                 let refreshAlert = UIAlertController(title: "Important", message: "You are not in any groups yet. Please contact your organization administrator to be added to groups.", preferredStyle: UIAlertControllerStyle.Alert)
@@ -50,6 +54,12 @@ class MyGroupsViewController: UIViewController, UITableViewDataSource, UITableVi
                 
                 self.presentViewController(refreshAlert, animated: true, completion: nil)
                 //Error.show("You are not in any groups yet. Please contact your organization administrator to be added to groups.", location: self)
+            } else {
+                self.groups.forEach({ (group) in
+                    if group.parentGroupId != 0 {
+                        group.name = "\(self.groups[self.groupMappings[group.parentGroupId]!].name) / \(group.name)"
+                    }
+                })
             }
             self.MyGroupsTableView.reloadData()
         }
@@ -61,43 +71,10 @@ class MyGroupsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     @IBAction func NewGroupPressed(sender: AnyObject) {
-        let alert = UIAlertController(title: "Create a Group", message: "", preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
-            textField.placeholder = "Group Name"
-            textField.secureTextEntry = false
-        })
-        alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
-            textField.placeholder = "Description"
-            textField.secureTextEntry = false
-        })
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: "Create", style: .Default, handler: { (alertAction:UIAlertAction!) in
-            let nameTextField = alert.textFields![0] as UITextField
-            let descriptionTextField = alert.textFields![1] as UITextField
-            let name = nameTextField.text!
-            let description = descriptionTextField.text!
-            
-            if name != "" && description != "" {
-                API.request(.POST, path: "groups", parameters: [
-                    "name": name,
-                    "description": description,
-                    "OrganizationId": User.me.currentOrganization().id
-                ], handler: { (error, json) in
-                    if error {
-                        Error.showFromRequest(json, location: self)
-                        return
-                    }
-                    
-                    self.groups.append(Group.fromJSON(json["group"]))
-                    self.MyGroupsTableView.reloadData()
-                })
-            } else {
-                alert.message = "Please provide a group name and description."
-                self.presentViewController(alert, animated: true, completion: nil)
-            }
-            
-        }))
-        self.presentViewController(alert, animated: true, completion: nil)
+        Group.create(location: self) { (group) in
+            self.groups.append(group)
+            self.MyGroupsTableView.reloadData()
+        }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

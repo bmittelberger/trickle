@@ -40,6 +40,8 @@ class GroupTableViewController: UITableViewController {
         
         self.title = GroupTableViewController.group.name
         
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: "moreGroupOptions")
+        
         self.loadCredits()
         
         // Uncomment the following line to preserve selection between presentations
@@ -53,6 +55,37 @@ class GroupTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         self.loadCredits()
+    }
+    
+    func moreGroupOptions() {
+        let optionMenu = UIAlertController(title: GroupTableViewController.group.name, message: "Manage your group.", preferredStyle: .ActionSheet)
+        
+        let addMemberOption = UIAlertAction(title: "Add a Member", style: .Default, handler: addMember)
+        let addSubgroupOption = UIAlertAction(title: "Add a Subgroup", style: .Default, handler: addSubgroup)
+        let addLineOfCreditOption = UIAlertAction(title: "Add a Line of Credit", style: .Default, handler: addLineOfCredit)
+        
+        let cancelActionOption = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        
+        optionMenu.addAction(addMemberOption)
+        optionMenu.addAction(addSubgroupOption)
+        optionMenu.addAction(addLineOfCreditOption)
+        optionMenu.addAction(cancelActionOption)
+        
+        self.presentViewController(optionMenu, animated: true, completion: nil)
+    }
+    
+    func addMember(alert: UIAlertAction!) {
+        
+    }
+    
+    func addSubgroup(alert: UIAlertAction!) {
+        GroupTableViewController.group.createSubgroup(self) { (group) in
+            self.navigationController?.popViewControllerAnimated(true)
+        }
+    }
+    
+    func addLineOfCredit(alert: UIAlertAction!) {
+        
     }
     
     func loadCredits() {
