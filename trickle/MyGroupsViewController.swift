@@ -53,11 +53,12 @@ class MyGroupsViewController: UIViewController, UITableViewDataSource, UITableVi
                 
                 
                 self.presentViewController(refreshAlert, animated: true, completion: nil)
-                //Error.show("You are not in any groups yet. Please contact your organization administrator to be added to groups.", location: self)
             } else {
                 self.groups.forEach({ (group) in
                     if group.parentGroupId != 0 {
-                        group.name = "\(self.groups[self.groupMappings[group.parentGroupId]!].name) / \(group.name)"
+                        if let parentRowIndex = self.groupMappings[group.parentGroupId] {
+                            group.name = "\(self.groups[parentRowIndex].name) / \(group.name)"
+                        }
                     }
                 })
             }

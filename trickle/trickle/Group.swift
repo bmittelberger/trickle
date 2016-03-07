@@ -10,7 +10,7 @@ import Foundation
 import SwiftyJSON
 import UIKit
 
-class Group {
+class Group : Model {
     
     var id = 0
     var name = ""
@@ -21,6 +21,10 @@ class Group {
     
     func createSubgroup(location: UIViewController, handler: (Group) -> Void) {
         Group.create(self, location: location, handler: handler)
+    }
+    
+    var displayName: String {
+        return name
     }
     
     class func create(parent: Group? = nil, location: UIViewController, handler: (Group) -> Void) {

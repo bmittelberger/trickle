@@ -21,6 +21,9 @@
 		0A829E7D1C83F32300AAAF06 /* SelectOrganizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A829E7C1C83F32300AAAF06 /* SelectOrganizationViewController.swift */; };
 		0A829E7F1C84499500AAAF06 /* ApprovalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A829E7E1C84499500AAAF06 /* ApprovalTableViewCell.swift */; };
 		0A90199E1C729A1600FBE2D2 /* CreditLineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A90199D1C729A1600FBE2D2 /* CreditLineTableViewCell.swift */; };
+		0ACF4C781C8D34E800FD5334 /* SelectUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACF4C771C8D34E800FD5334 /* SelectUserViewController.swift */; };
+		0ACF4C7A1C8D356800FD5334 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACF4C791C8D356800FD5334 /* SearchViewController.swift */; };
+		0ACF4C7C1C8D52D200FD5334 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ACF4C7B1C8D52D200FD5334 /* Model.swift */; };
 		0AE1B43E1C5EC86400CCCC81 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AE1B43C1C5EC86400CCCC81 /* Alamofire.framework */; };
 		0AE1B43F1C5EC86400CCCC81 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AE1B43D1C5EC86400CCCC81 /* SwiftyJSON.framework */; };
 		0AE1B4401C5EC87000CCCC81 /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0AE1B43C1C5EC86400CCCC81 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -94,6 +97,9 @@
 		0A829E7C1C83F32300AAAF06 /* SelectOrganizationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectOrganizationViewController.swift; sourceTree = "<group>"; };
 		0A829E7E1C84499500AAAF06 /* ApprovalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApprovalTableViewCell.swift; sourceTree = "<group>"; };
 		0A90199D1C729A1600FBE2D2 /* CreditLineTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditLineTableViewCell.swift; sourceTree = "<group>"; };
+		0ACF4C771C8D34E800FD5334 /* SelectUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectUserViewController.swift; sourceTree = "<group>"; };
+		0ACF4C791C8D356800FD5334 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		0ACF4C7B1C8D52D200FD5334 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		0AE1B43C1C5EC86400CCCC81 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		0AE1B43D1C5EC86400CCCC81 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		0AE1B4421C5EC8A700CCCC81 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -191,6 +197,7 @@
 				C147F3E21C4C546800D670A8 /* FirstViewController.swift */,
 				C147F3E41C4C546800D670A8 /* SecondViewController.swift */,
 				C147F3E61C4C546800D670A8 /* Main.storyboard */,
+				0ACF4C771C8D34E800FD5334 /* SelectUserViewController.swift */,
 				C12366A31C83B63600D8DFF8 /* UserCreateViewController.swift */,
 				0AE1B4541C6406B900CCCC81 /* GroupsNavigationController.swift */,
 				C147F3E91C4C546800D670A8 /* Assets.xcassets */,
@@ -219,6 +226,8 @@
 				C12F1B111C8D44B400D38DEE /* RuleCreateViewController.swift */,
 				C12F1B171C8D4E8900D38DEE /* SSRadioButtonsController.swift */,
 				C12F1B191C8D4EAE00D38DEE /* SSRadioButton.swift */,
+				0ACF4C791C8D356800FD5334 /* SearchViewController.swift */,
+				0ACF4C7B1C8D52D200FD5334 /* Model.swift */,
 			);
 			path = trickle;
 			sourceTree = "<group>";
@@ -379,8 +388,11 @@
 				0A5199F51C69EDF400A39B69 /* CreditTransactionsTableViewController.swift in Sources */,
 				0AE1B4531C64004600CCCC81 /* GroupViewController.swift in Sources */,
 				0A829E7F1C84499500AAAF06 /* ApprovalTableViewCell.swift in Sources */,
+				0ACF4C7A1C8D356800FD5334 /* SearchViewController.swift in Sources */,
+				0ACF4C781C8D34E800FD5334 /* SelectUserViewController.swift in Sources */,
 				0A90199E1C729A1600FBE2D2 /* CreditLineTableViewCell.swift in Sources */,
 				0A5199F71C69EFF100A39B69 /* Transaction.swift in Sources */,
+				0ACF4C7C1C8D52D200FD5334 /* Model.swift in Sources */,
 				0A829E7B1C83ECE600AAAF06 /* Organization.swift in Sources */,
 				0A5199E91C66DA1F00A39B69 /* MyGroupsViewController.swift in Sources */,
 				0AE1B4471C5FEF4500CCCC81 /* LoginViewController.swift in Sources */,

@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-class User {
+class User : Model {
     
     static var me: User = User()
     
@@ -18,6 +18,10 @@ class User {
     var last = ""
     var email = ""
     var organizations: [Organization] = []
+    
+    var displayName: String {
+        return "\(first) \(last)"
+    }
     
     func currentOrganization() -> Organization {
         return self.organizations[0]
