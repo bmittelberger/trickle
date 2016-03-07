@@ -17,14 +17,15 @@ class CreditTransactionsTableViewController: UITableViewController {
     @IBOutlet weak var CreditSegmentedControl: UISegmentedControl!
     var transactions: [Transaction] = []
     var rules : [Rule] = []
-
+    var addButton : UIBarButtonItem?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = CreditTransactionsTableViewController.credit.description
         
-        let addButton = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: Selector("newTransactionPressed"))
-        self.navigationItem.rightBarButtonItem = addButton
+        self.addButton = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: Selector("addButtonPressed"))
+        self.navigationItem.rightBarButtonItem = self.addButton!
         
 //        UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
 //            target:self
@@ -68,14 +69,30 @@ class CreditTransactionsTableViewController: UITableViewController {
         }
     }
     
+    func refreshCredit() {
+        API.request(path: "credits/\(CreditTransactionsTableViewController.credit.id)") { (err, json) in
+            if err {
+                Error.showFromRequest(json, location: self)
+                return
+            }
+            CreditTransactionsTableViewController.credit = Credit.fromJSON(json)
+        }
+
+    }
+    
     func loadRules() {
         self.rules = CreditTransactionsTableViewController.credit.rules
         self.tableView.reloadData()
     }
     
-    func newTransactionPressed() {
-        let reimbursementViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ReimbursementViewController") as! ReimbursementViewController
-        self.navigationController?.pushViewController(reimbursementViewController, animated: true)
+    func addButtonPressed() {
+        if CreditSegmentedControl.selectedSegmentIndex == 0 {
+            let reimbursementViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ReimbursementViewController") as! ReimbursementViewController
+            self.navigationController?.pushViewController(reimbursementViewController, animated: true)
+        } else {
+            let ruleCreateViewController = self.storyboard?.instantiateViewControllerWithIdentifier("RuleCreateViewController") as! RuleCreateViewController
+            self.navigationController?.pushViewController(ruleCreateViewController, animated: true)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -95,8 +112,13 @@ class CreditTransactionsTableViewController: UITableViewController {
         if  CreditSegmentedControl.selectedSegmentIndex == 0 {
             self.tableView.rowHeight = 100;
             self.tableView.reloadData()
-            
+            self.addButton!.enabled = true
         } else {
+            if !GroupTableViewController.group.isAdmin {
+                self.addButton!.enabled = false
+            } else {
+                self.addButton!.enabled = true
+            }
             self.tableView.rowHeight = 220;
             self.tableView.reloadData()
             

@@ -20,6 +20,8 @@ class LoginViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.navigationController?.navigationBarHidden = true
+        
+        self.EmailField.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {

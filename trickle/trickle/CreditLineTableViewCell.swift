@@ -13,21 +13,12 @@ class CreditLineTableViewCell: UITableViewCell {
     var balancePercentage: CGFloat = 0.0
     var color: UIColor = UIColor.orangeColor()
 
+    @IBOutlet weak var CreditNameTextLabel: UILabel!
+    @IBOutlet weak var CreditAmountTextLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
-        self.contentView.layoutMargins = UIEdgeInsetsMake(40, 0, 0, 0)
-    }
-    
-    override func layoutMarginsDidChange() {
-        contentView.layoutMargins = UIEdgeInsetsMake(40, 0, 0, 0)
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     override func drawRect(rect: CGRect) {
@@ -35,12 +26,16 @@ class CreditLineTableViewCell: UITableViewCell {
         
         // No background color, white text
         self.backgroundColor = UIColor.clearColor()
-        self.textLabel?.textColor = UIColor.whiteColor()
-        self.detailTextLabel?.textColor = UIColor.whiteColor()
+        self.CreditNameTextLabel?.textColor = UIColor.whiteColor()
+        self.CreditAmountTextLabel?.textColor = UIColor.whiteColor()
         
         // Set fonts
-        self.textLabel?.font = UIFont(name: "Avenir", size: 20)
-        self.detailTextLabel?.font = UIFont(name: "Avenir", size: 20)
+        self.CreditNameTextLabel?.font = UIFont(name: "Avenir", size: 20)
+        self.CreditAmountTextLabel?.font = UIFont(name: "Avenir", size: 20)
+//        
+//        // Resize labels
+//        self.detailTextLabel?.sizeToFit()
+//        self.textLabel?.sizeToFit()
         
         // Draw background and progress bars
         drawBackgroundBar(color: color.colorWithAlphaComponent(0.8))
