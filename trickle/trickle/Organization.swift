@@ -9,12 +9,16 @@
 import Foundation
 import SwiftyJSON
 
-class Organization {
+class Organization : Model {
     
     var id = 0
     var name = ""
     var description = ""
     var isAdmin = false
+    
+    var displayName: String {
+        return name
+    }
     
     class func fromJSON(json: JSON) -> Organization {
         let o = Organization()

@@ -23,7 +23,7 @@ class SelectOrganizationViewController: UIViewController, UITableViewDataSource,
     }
     
     override func viewWillAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+        super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
