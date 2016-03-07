@@ -33,6 +33,9 @@
 		0AE1B4551C6406B900CCCC81 /* GroupsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE1B4541C6406B900CCCC81 /* GroupsNavigationController.swift */; };
 		0AE1B4571C64115F00CCCC81 /* ReimbursementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AE1B4561C64115F00CCCC81 /* ReimbursementViewController.swift */; };
 		C12366A41C83B63600D8DFF8 /* UserCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12366A31C83B63600D8DFF8 /* UserCreateViewController.swift */; };
+		C12F1B121C8D44B400D38DEE /* RuleCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12F1B111C8D44B400D38DEE /* RuleCreateViewController.swift */; };
+		C12F1B181C8D4E8900D38DEE /* SSRadioButtonsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12F1B171C8D4E8900D38DEE /* SSRadioButtonsController.swift */; };
+		C12F1B1A1C8D4EAE00D38DEE /* SSRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12F1B191C8D4EAE00D38DEE /* SSRadioButton.swift */; };
 		C147F3E11C4C546800D670A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C147F3E01C4C546800D670A8 /* AppDelegate.swift */; };
 		C147F3E31C4C546800D670A8 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C147F3E21C4C546800D670A8 /* FirstViewController.swift */; };
 		C147F3E51C4C546800D670A8 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C147F3E41C4C546800D670A8 /* SecondViewController.swift */; };
@@ -101,6 +104,9 @@
 		0AE1B4541C6406B900CCCC81 /* GroupsNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsNavigationController.swift; sourceTree = "<group>"; };
 		0AE1B4561C64115F00CCCC81 /* ReimbursementViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReimbursementViewController.swift; sourceTree = "<group>"; };
 		C12366A31C83B63600D8DFF8 /* UserCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCreateViewController.swift; sourceTree = "<group>"; };
+		C12F1B111C8D44B400D38DEE /* RuleCreateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleCreateViewController.swift; sourceTree = "<group>"; };
+		C12F1B171C8D4E8900D38DEE /* SSRadioButtonsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSRadioButtonsController.swift; sourceTree = "<group>"; };
+		C12F1B191C8D4EAE00D38DEE /* SSRadioButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSRadioButton.swift; sourceTree = "<group>"; };
 		C147F3DD1C4C546800D670A8 /* trickle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = trickle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C147F3E01C4C546800D670A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C147F3E21C4C546800D670A8 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -210,6 +216,9 @@
 				0A829E7C1C83F32300AAAF06 /* SelectOrganizationViewController.swift */,
 				0A829E7E1C84499500AAAF06 /* ApprovalTableViewCell.swift */,
 				C160B9741C896453009841F2 /* Rule.swift */,
+				C12F1B111C8D44B400D38DEE /* RuleCreateViewController.swift */,
+				C12F1B171C8D4E8900D38DEE /* SSRadioButtonsController.swift */,
+				C12F1B191C8D4EAE00D38DEE /* SSRadioButton.swift */,
 			);
 			path = trickle;
 			sourceTree = "<group>";
@@ -379,7 +388,9 @@
 				0A829E791C7AB8A300AAAF06 /* Approval.swift in Sources */,
 				C160B9771C89751C009841F2 /* RuleTableViewCell.swift in Sources */,
 				0AE1B4551C6406B900CCCC81 /* GroupsNavigationController.swift in Sources */,
+				C12F1B121C8D44B400D38DEE /* RuleCreateViewController.swift in Sources */,
 				C147F3E51C4C546800D670A8 /* SecondViewController.swift in Sources */,
+				C12F1B181C8D4E8900D38DEE /* SSRadioButtonsController.swift in Sources */,
 				C147F3E11C4C546800D670A8 /* AppDelegate.swift in Sources */,
 				0A5199F31C67224500A39B69 /* GroupTableViewController.swift in Sources */,
 				0AE1B4571C64115F00CCCC81 /* ReimbursementViewController.swift in Sources */,
@@ -388,6 +399,7 @@
 				0A5199ED1C671FB200A39B69 /* Credit.swift in Sources */,
 				0A829E7D1C83F32300AAAF06 /* SelectOrganizationViewController.swift in Sources */,
 				0A829E771C7AB1D200AAAF06 /* ReimbursementsViewController.swift in Sources */,
+				C12F1B1A1C8D4EAE00D38DEE /* SSRadioButton.swift in Sources */,
 				C147F3E31C4C546800D670A8 /* FirstViewController.swift in Sources */,
 				C160B9751C896453009841F2 /* Rule.swift in Sources */,
 				0AE1B4491C5FF36800CCCC81 /* User.swift in Sources */,

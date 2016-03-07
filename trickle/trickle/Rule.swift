@@ -55,6 +55,28 @@ public class Rule {
         r.window = json["window"].stringValue
         r.approval = json["approval"].stringValue
         r.threshold = json["threshold"].intValue
+        r.side = json["threshold"].stringValue
         return r
+    }
+    
+    class func toJSON(rule : Rule) -> JSON {
+        let nf = NSNumberFormatter()
+        nf.numberStyle = .DecimalStyle
+        var data:[String:String] = [
+            "approval" : rule.approval,
+            "min" : String(rule.min),
+            "max" : String(rule.max),
+            "type" : rule.type,
+            "threshold" : nf.stringFromNumber(rule.threshold)!,
+            "side" : rule.side,
+            "window" : rule.window
+        ]
+        if Float(data["max"] as String!) == -1.0 {
+            data.removeValueForKey("max")
+        }
+        if data["window"] == "" {
+            data.removeValueForKey("window")
+        }
+        return JSON(data)
     }
 }
