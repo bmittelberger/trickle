@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftyJSON
+import UIKit
 
 
 
@@ -67,16 +68,70 @@ public class Rule {
             "min" : String(rule.min),
             "max" : String(rule.max),
             "type" : rule.type,
-            "threshold" : nf.stringFromNumber(rule.threshold)!,
+            "threshold" :String (rule.threshold),
             "side" : rule.side,
             "window" : rule.window
         ]
         if Float(data["max"] as String!) == -1.0 {
             data.removeValueForKey("max")
         }
+        if Int(data["threshold"] as String!) == -1 {
+            data.removeValueForKey("threshold")
+        }
         if data["window"] == "" {
             data.removeValueForKey("window")
         }
         return JSON(data)
+    }
+    
+    
+    class func ruleStory(rule : Rule) -> NSAttributedString? {
+        let formatter = NSNumberFormatter()
+        let regFormatter = NSNumberFormatter()
+        formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        formatter.locale = NSLocale(localeIdentifier: "en_US")
+        let bolded = [ NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 18.0)! ]
+        let nonBolded = [ NSFontAttributeName: UIFont(name: "Avenir", size: 18.0)! ]
+        let story = NSMutableAttributedString(string: (""), attributes: nonBolded)
+        if rule.type == Rule.RuleType.WINDOW_LIMIT {
+            story.appendAttributedString(NSMutableAttributedString(string: ("Cumulative sum of "), attributes: nonBolded))
+        }
+        story.appendAttributedString(NSMutableAttributedString(string: ("Reimbursements "), attributes: nonBolded))
+        if rule.max > -1 {
+            story.appendAttributedString( NSMutableAttributedString(string: ("between "), attributes: nonBolded))
+            story.appendAttributedString(NSMutableAttributedString(string: formatter.stringFromNumber(rule.min)!, attributes: bolded))
+            story.appendAttributedString( NSMutableAttributedString(string: (" and "), attributes: nonBolded))
+            story.appendAttributedString(NSMutableAttributedString(string: formatter.stringFromNumber(rule.max)!, attributes: bolded))
+        } else {
+            story.appendAttributedString( NSMutableAttributedString(string: ("over "), attributes: nonBolded))
+            story.appendAttributedString(NSMutableAttributedString(string: formatter.stringFromNumber(rule.min)!, attributes: bolded))
+        }
+        if rule.approval == Rule.ApprovalType.DECLINE {
+            story.appendAttributedString( NSMutableAttributedString(string: (" are automatically declined."), attributes: bolded))
+        } else {
+            story.appendAttributedString( NSMutableAttributedString(string: (" require "), attributes: nonBolded))
+            if rule.approval == Rule.ApprovalType.NUMBER_ADMIN {
+                story.appendAttributedString( NSMutableAttributedString(string: ("approval from "), attributes: nonBolded))
+                story.appendAttributedString(NSMutableAttributedString(string: regFormatter.stringFromNumber(rule.threshold)!, attributes: bolded))
+                story.appendAttributedString( NSMutableAttributedString(string: (" admins."), attributes: bolded))
+            }
+            if rule.approval == Rule.ApprovalType.NUMBER_MEMBER {
+                story.appendAttributedString( NSMutableAttributedString(string: ("approval from "), attributes: nonBolded))
+                story.appendAttributedString(NSMutableAttributedString(string: regFormatter.stringFromNumber(rule.threshold)!, attributes: bolded))
+                story.appendAttributedString( NSMutableAttributedString(string: (" member."), attributes: bolded))
+            }
+            if rule.approval == Rule.ApprovalType.PERCENTAGE_ADMIN {
+                story.appendAttributedString( NSMutableAttributedString(string: ("approval from "), attributes: nonBolded))
+                story.appendAttributedString(NSMutableAttributedString(string: regFormatter.stringFromNumber(rule.threshold)!, attributes: bolded))
+                story.appendAttributedString( NSMutableAttributedString(string: ("% of admins."), attributes: bolded))
+            }
+            if rule.approval == Rule.ApprovalType.PERCENTAGE_MEMBER {
+                story.appendAttributedString( NSMutableAttributedString(string: ("approval from "), attributes: nonBolded))
+                story.appendAttributedString(NSMutableAttributedString(string: regFormatter.stringFromNumber(rule.threshold)!, attributes: bolded))
+                story.appendAttributedString( NSMutableAttributedString(string: ("% of members."), attributes: bolded))
+            }
+        }
+        
+        return story
     }
 }

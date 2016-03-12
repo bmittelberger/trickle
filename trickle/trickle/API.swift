@@ -13,7 +13,6 @@ import SwiftyJSON
 class API {
     
     static let rootUrl = "http://52.35.136.102/api/v0/"
-    
     static var accessToken = ""
     
     class func request(method: Alamofire.Method = .GET,

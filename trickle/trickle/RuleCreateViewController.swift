@@ -95,13 +95,19 @@ class RuleCreateViewController: UIViewController, SSRadioButtonControllerDelegat
         if pressed == numberButton {
             thresholdTextInputLabel.text = "Number of Users"
             thresholdUnit.text = ""
+            adminApprovalButton.enabled = true
+            memberApprovalButton.enabled = true
             thresholdTextField.enabled = true
         } else if pressed == percentageButton {
             thresholdTextInputLabel.text = "Percent of Users"
             thresholdUnit.text = "%"
+            adminApprovalButton.enabled = true
+            memberApprovalButton.enabled = true
             thresholdTextField.enabled = true
         } else if pressed == declineButton {
             thresholdTextInputLabel.text = "Auto-Decline"
+            adminApprovalButton.enabled = false
+            memberApprovalButton.enabled = false
             thresholdTextField.enabled = false
         }
     }
@@ -128,11 +134,9 @@ class RuleCreateViewController: UIViewController, SSRadioButtonControllerDelegat
         } else {
             newRule.max = Float(maxTextField.text!)!
         }
-        newRule.threshold = Int(thresholdTextField.text!)!
-        let admin = approvalController!.selectedButton() == adminApprovalButton
         let percent = thresholdController!.selectedButton() == percentageButton
         
-        if admin {
+        if approvalController!.selectedButton() == adminApprovalButton {
             if percent {
                 newRule.approval = Rule.ApprovalType.PERCENTAGE_ADMIN
             } else {
@@ -144,11 +148,18 @@ class RuleCreateViewController: UIViewController, SSRadioButtonControllerDelegat
             } else {
                 newRule.approval = Rule.ApprovalType.NUMBER_MEMBER
             }
-        } else {
+        }
+        if thresholdController!.selectedButton() == declineButton {
             newRule.approval = Rule.ApprovalType.DECLINE
         }
         newRule.side = Rule.CreditSide.RECEIVER
+        if newRule.approval != Rule.ApprovalType.DECLINE {
+            newRule.threshold = Int(thresholdTextField.text!)!
+        } else {
+            newRule.threshold = -1
+        }
         
+
         
         return newRule
     }
@@ -192,19 +203,16 @@ class RuleCreateViewController: UIViewController, SSRadioButtonControllerDelegat
         let credit = CreditTransactionsTableViewController.credit
         var rules = credit.rules
         rules.append(newRule)
-        let ruleJSON = Rule.toJSON(newRule)
-        print(ruleJSON["approval"])
         let jsonList = rules.map({rule in
             return Rule.toJSON(rule)
         })
         let rulesJSON = JSON(jsonList)
-        print(rulesJSON.rawString())
         API.request(.PUT, path: "/credits/\(credit.id)/", parameters: ["rules" : rulesJSON.rawString()!]) { (err, json) in
             if err {
                 Error.showFromRequest(json, location: self)
                 return
             }
-            CreditTransactionsTableViewController.credit.rules.append(newRule)
+            CreditTransactionsTableViewController.credit.rules.append(Rule.fromJSON(Rule.toJSON(newRule)))
             self.navigationController?.popViewControllerAnimated(true)
         }
        

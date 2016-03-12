@@ -48,7 +48,9 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
                         "amount": amount,
                         "title": title,
                         "GroupId": GroupTableViewController.group.id,
-                        "CreditId": CreditTransactionsTableViewController.credit.id
+                        "CreditId": CreditTransactionsTableViewController.credit.id,
+                        "location" : (StoreTextField.text)!,
+                        "category" : (CategoryTextField.text)!
                     ]) { (err, json) in
                         if err {
                             Error.showFromRequest(json, location: self)

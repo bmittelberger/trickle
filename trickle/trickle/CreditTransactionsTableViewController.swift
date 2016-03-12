@@ -179,6 +179,25 @@ class CreditTransactionsTableViewController: UITableViewController {
     }
 
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        if CreditSegmentedControl.selectedSegmentIndex == 0 {
+            let transaction = self.transactions[indexPath.item]
+            let transactionDetailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("TransactionDetailViewController") as!TransactionDetailViewController
+            API.request(path: "transactions/\(transaction.id)/") { (err, json) in
+                if err {
+                    Error.showFromRequest(json, location: self)
+                    return
+                }
+                transactionDetailViewController.transaction = Transaction.fromJSON(json["transaction"])
+                transactionDetailViewController.title = "Transaction Details"
+                self.navigationController?.pushViewController(transactionDetailViewController, animated: true)
+            }
+        }
+    }
+    
+    
     func getRuleType(rule : Rule) -> String {
         var response : String = ""
         if rule.type == Rule.RuleType.WINDOW_LIMIT {
