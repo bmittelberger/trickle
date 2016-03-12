@@ -61,6 +61,7 @@ class Credit {
                 return Rule.fromJSON(rule)
             })
         }
+        c.rules.sortInPlace({ $0.min < $1.min })
         return c
     }
 }

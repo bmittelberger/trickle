@@ -15,14 +15,17 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
     @IBOutlet weak var CategoryTextField: UITextField!
     @IBOutlet weak var StoreTextField: UITextField!
 
-    @IBOutlet weak var CameraButton: UIButton!
-    @IBOutlet weak var DisplayImage: UIImageView!
+//    @IBOutlet weak var CameraButton: UIButton!
+//    @IBOutlet weak var DisplayImage: UIImageView!
  
+    @IBOutlet weak var DisplayImage: UIImageView!
+    @IBOutlet weak var CameraButton: UIButton!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        DisplayImage.image=UIImage(named: "receipt.jpg")
     }
 
     override func didReceiveMemoryWarning() {
@@ -87,8 +90,10 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
         }
     }
     
+//    @IBAction func BringUpCamera(sender: UIButton) {
     @IBAction func BringUpCamera(sender: UIButton) {
-        
+    
+    
         let picker = UIImagePickerController()
         
         picker.delegate = self

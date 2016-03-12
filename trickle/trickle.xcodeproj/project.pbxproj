@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04B972D81C8D8DFB00689845 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04B972D21C8D878C00689845 /* AWSCore.framework */; };
+		04B972DA1C8D8DFB00689845 /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04B972D01C8D876900689845 /* AWSS3.framework */; };
 		0A5199E91C66DA1F00A39B69 /* MyGroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5199E81C66DA1F00A39B69 /* MyGroupsViewController.swift */; };
 		0A5199EB1C66DC5A00A39B69 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5199EA1C66DC5A00A39B69 /* Group.swift */; };
 		0A5199ED1C671FB200A39B69 /* Credit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5199EC1C671FB200A39B69 /* Credit.swift */; };
@@ -84,6 +86,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		04B972D01C8D876900689845 /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSS3.framework; path = /Users/aschexnayder/Developer/trickle/trickle/AWSS3.framework; sourceTree = "<absolute>"; };
+		04B972D21C8D878C00689845 /* AWSCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCore.framework; path = /Users/aschexnayder/Developer/trickle/trickle/AWSCore.framework; sourceTree = "<absolute>"; };
 		0A5199E81C66DA1F00A39B69 /* MyGroupsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MyGroupsViewController.swift; path = ../MyGroupsViewController.swift; sourceTree = "<group>"; };
 		0A5199EA1C66DC5A00A39B69 /* Group.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		0A5199EC1C671FB200A39B69 /* Credit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Credit.swift; sourceTree = "<group>"; };
@@ -139,6 +143,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				0AE1B43F1C5EC86400CCCC81 /* SwiftyJSON.framework in Frameworks */,
+				04B972D81C8D8DFB00689845 /* AWSCore.framework in Frameworks */,
+				04B972DA1C8D8DFB00689845 /* AWSS3.framework in Frameworks */,
 				0AE1B43E1C5EC86400CCCC81 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -565,6 +571,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = trickle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -584,6 +591,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = trickle/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

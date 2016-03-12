@@ -22,6 +22,7 @@ class RuleTableViewCell: UITableViewCell {
     @IBOutlet weak var approvalVal: UILabel!
     @IBOutlet weak var windowVal: UILabel!
     
+    @IBOutlet weak var ruleStory: UILabel!
     
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

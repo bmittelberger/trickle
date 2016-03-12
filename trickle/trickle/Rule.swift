@@ -94,7 +94,15 @@ public class Rule {
         let nonBolded = [ NSFontAttributeName: UIFont(name: "Avenir", size: 18.0)! ]
         let story = NSMutableAttributedString(string: (""), attributes: nonBolded)
         if rule.type == Rule.RuleType.WINDOW_LIMIT {
-            story.appendAttributedString(NSMutableAttributedString(string: ("Cumulative sum of "), attributes: nonBolded))
+            story.appendAttributedString(NSMutableAttributedString(string: ("A "), attributes: nonBolded))
+            if rule.window == Rule.Window.DAY {
+                story.appendAttributedString(NSMutableAttributedString(string: ("daily "), attributes: bolded))
+            } else if rule.window == Rule.Window.WEEK {
+                story.appendAttributedString(NSMutableAttributedString(string: ("weekly "), attributes: bolded))
+            } else if rule.window == Rule.Window.MONTH {
+                story.appendAttributedString(NSMutableAttributedString(string: ("monthly "), attributes: bolded))
+            }
+            story.appendAttributedString(NSMutableAttributedString(string: ("cumulative sum of "), attributes: nonBolded))
         }
         story.appendAttributedString(NSMutableAttributedString(string: ("Reimbursements "), attributes: nonBolded))
         if rule.max > -1 {
@@ -118,7 +126,7 @@ public class Rule {
             if rule.approval == Rule.ApprovalType.NUMBER_MEMBER {
                 story.appendAttributedString( NSMutableAttributedString(string: ("approval from "), attributes: nonBolded))
                 story.appendAttributedString(NSMutableAttributedString(string: regFormatter.stringFromNumber(rule.threshold)!, attributes: bolded))
-                story.appendAttributedString( NSMutableAttributedString(string: (" member."), attributes: bolded))
+                story.appendAttributedString( NSMutableAttributedString(string: (" members."), attributes: bolded))
             }
             if rule.approval == Rule.ApprovalType.PERCENTAGE_ADMIN {
                 story.appendAttributedString( NSMutableAttributedString(string: ("approval from "), attributes: nonBolded))

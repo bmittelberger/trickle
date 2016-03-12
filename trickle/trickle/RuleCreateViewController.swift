@@ -213,6 +213,7 @@ class RuleCreateViewController: UIViewController, SSRadioButtonControllerDelegat
                 return
             }
             CreditTransactionsTableViewController.credit.rules.append(Rule.fromJSON(Rule.toJSON(newRule)))
+            CreditTransactionsTableViewController.credit.rules.sortInPlace({$0.min < $1.min})
             self.navigationController?.popViewControllerAnimated(true)
         }
        

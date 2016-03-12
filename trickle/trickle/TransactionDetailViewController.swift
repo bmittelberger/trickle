@@ -34,6 +34,7 @@ class TransactionDetailViewController: UIViewController {
     @IBOutlet weak var transactionStory: UILabel!
     @IBOutlet weak var groupCreditStory: UILabel!
     @IBOutlet weak var ruleStory: UILabel!
+    @IBOutlet weak var currentRuleLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -42,9 +43,14 @@ class TransactionDetailViewController: UIViewController {
         
         transactionStory.attributedText = Transaction.transactionStory(transaction!)
         groupCreditStory.attributedText = Transaction.creditStory(transaction!)
-        let currentRule = Rule.fromJSON((transaction?.stateInfo["currentState"]["currentRule"])!)
-        print((transaction?.stateInfo["currentRule"])?.rawString())
-        ruleStory.attributedText = Rule.ruleStory(currentRule)
+        let ruleJSON = transaction?.stateInfo["currentState"]["currentRule"]
+        if ruleJSON?.rawString() != "null" {
+            let currentRule = Rule.fromJSON(ruleJSON!)
+            ruleStory.attributedText = Rule.ruleStory(currentRule)
+        } else {
+            currentRuleLabel.text = "No Pending Rules."
+            ruleStory.text = ""
+        }
         
         let pendingColor: UIColor = UIColor( red: 241/255, green:  196/255, blue: 15/255, alpha: 0.9)
         let declinedColor: UIColor = UIColor( red: 231/255, green:  76/255, blue: 60/255, alpha: 0.9)

@@ -51,7 +51,7 @@ class CreditTransactionsTableViewController: UITableViewController {
         
         self.loadTransactions()
         self.loadRules()
-       
+        self.tableView.rowHeight = 75;
     }
     
     func loadTransactions() {
@@ -110,7 +110,7 @@ class CreditTransactionsTableViewController: UITableViewController {
     
     @IBAction func CreditSegmentedControlPressed(sender: UISegmentedControl) {
         if  CreditSegmentedControl.selectedSegmentIndex == 0 {
-            self.tableView.rowHeight = 100;
+            self.tableView.rowHeight = 75;
             self.tableView.reloadData()
             self.addButton!.enabled = true
         } else {
@@ -119,7 +119,7 @@ class CreditTransactionsTableViewController: UITableViewController {
             } else {
                 self.addButton!.enabled = true
             }
-            self.tableView.rowHeight = 220;
+            self.tableView.rowHeight = 160;
             self.tableView.reloadData()
             
         }
@@ -160,20 +160,7 @@ class CreditTransactionsTableViewController: UITableViewController {
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("RuleRow", forIndexPath: indexPath) as! RuleTableViewCell
             let rule = rules[indexPath.item]
-            let formatter = NSNumberFormatter()
-            let thresholdFormatter = NSNumberFormatter()
-            formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
-            formatter.locale = NSLocale(localeIdentifier: "en_US")
-            if rule.max == 0 {
-                cell.maxVal?.text = "No Max"
-            } else {
-                cell.maxVal?.text = formatter.stringFromNumber(rule.max)
-            }
-            cell.minVal?.text = formatter.stringFromNumber(rule.min)
-            cell.ruleTypeVal?.text = getRuleType(rule)
-            cell.thresholdVal?.text = thresholdFormatter.stringFromNumber(rule.threshold)
-            cell.approvalVal?.text = getApprovalType(rule)
-            cell.windowVal?.text = rule.window
+            cell.ruleStory?.attributedText = Rule.ruleStory(rule)
             return cell
         }
     }

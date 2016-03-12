@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "trickle/TransactionDetailViewController.swift"
-            timestampString = "479446741.283274"
+            timestampString = "479518476.774456"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "TransactionDetailViewController"
             landmarkType = "3">
          </BreakpointContent>
