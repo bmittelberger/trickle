@@ -123,6 +123,28 @@ class ReimbursementsViewController: UIViewController, UITableViewDataSource, UIT
         }
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        var transactionId = 0
+        if ReimbursementsSegmentedControl.selectedSegmentIndex == 0 {
+            transactionId = self.transactions[indexPath.item].id
+        } else {
+            transactionId = self.approvals[indexPath.item].transaction.id
+        }
+ 
+        let transactionDetailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("TransactionDetailViewController") as!TransactionDetailViewController
+        API.request(path: "transactions/\(transactionId)/") { (err, json) in
+            if err {
+                Error.showFromRequest(json, location: self)
+                return
+            }
+            transactionDetailViewController.transaction = Transaction.fromJSON(json["transaction"])
+            transactionDetailViewController.title = "Transaction Details"
+            self.navigationController?.pushViewController(transactionDetailViewController, animated: true)
+        }
+    }
+
+    
     func approveApproval(sender: AnyObject!) {
         let buttonPosition = sender.convertPoint(CGPointZero, toView: self.ReimbursementsTableView)
         let indexPath = self.ReimbursementsTableView.indexPathForRowAtPoint(buttonPosition)!
@@ -161,9 +183,7 @@ class ReimbursementsViewController: UIViewController, UITableViewDataSource, UIT
         }
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    }
+    
     
 
     /*
