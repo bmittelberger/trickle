@@ -51,38 +51,30 @@ class DonateCreditViewController: UIViewController, UITableViewDataSource, UITab
         self.descriptionTextField.backgroundColor = regColor
         self.amountTextField.backgroundColor = regColor
 
-        
-        
         let errorColor : UIColor = UIColor( red: 231/255.0, green: 76/255.0, blue:60/255.0, alpha: 0.3 )
         var selectedGroup : Group?
         var amount = ""
         var description = ""
-        
         if let index = selectedIndex {
             selectedGroup = subGroups[index.item]
         } else {
-            Error.show("Please Select a Subgroup First.", location: self)
+            Error.show("Please Select a Subgroup.", location: self)
             return
         }
         
         if self.amountTextField.text == "" {
             self.amountTextField.backgroundColor = errorColor
-            Error.show("Please Enter a Valid Amount", location:  self)
+            Error.show("Please Enter a Valid Amount.", location:  self)
             return
         }
         amount = self.amountTextField.text!
         
         if self.descriptionTextField.text == "" {
             self.descriptionTextField.backgroundColor = errorColor
-            Error.show("Please Enter a Description", location:  self)
+            Error.show("Please Enter a Description.", location:  self)
             return
         }
         description = self.descriptionTextField.text!
-        
-        
-        
-        print("Group!!!")
-        print(selectedGroup!.name)
         API.request(.POST, path: "/credits/\(CreditTransactionsTableViewController.credit.id)/credits", parameters: ["description" : description, "amount" : amount, "GroupId" : selectedGroup!.id]) { (err,json) in
             if err {
                 Error.showFromRequest(json, location: self)
@@ -93,7 +85,6 @@ class DonateCreditViewController: UIViewController, UITableViewDataSource, UITab
             successAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
                  self.navigationController?.popViewControllerAnimated(true)
             }))
-            
             self.presentViewController(successAlert, animated: true, completion:  nil)
             
         }
