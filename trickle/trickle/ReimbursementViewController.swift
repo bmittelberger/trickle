@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AWSS3
 
 class ReimbursementViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -14,6 +15,7 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
     @IBOutlet weak var AmountTextField: UITextField!
     @IBOutlet weak var CategoryTextField: UITextField!
     @IBOutlet weak var StoreTextField: UITextField!
+    @IBOutlet weak var UploadPhotoButton: UIButton!
 
 //    @IBOutlet weak var CameraButton: UIButton!
 //    @IBOutlet weak var DisplayImage: UIImageView!
@@ -25,7 +27,7 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DisplayImage.image=UIImage(named: "receipt.jpg")
+        //DisplayImage.image=UIImage(named: "receipt.jpg")
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,7 +35,87 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func UploadPhoto(sender: AnyObject) {
+        let image = UIImage(named: "receipt.jpg")
+        let fileName = NSProcessInfo.processInfo().globallyUniqueString.stringByAppendingString(".png")
+        print("fileName: \(fileName)\n")
+        
+        let fileURL = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent(fileName)
+        print("fileURL path: \(fileURL.path)\n")
+        
+        let filePath = fileURL.path!
+        let imageData = UIImagePNGRepresentation(image!)
+        imageData!.writeToFile(filePath, atomically: true)
+
+        let uploadRequest = AWSS3TransferManagerUploadRequest()
+        uploadRequest.body = fileURL
+        uploadRequest.key = "bingo"
+        uploadRequest.bucket = S3BucketName
+        
+        self.upload(uploadRequest)
+
+    }
+    
+    func uploadReceipt(){
+        let image = UIImage(named: "receipt.jpg")
+        let fileName = NSProcessInfo.processInfo().globallyUniqueString.stringByAppendingString(".png")
+        print("fileName: \(fileName)\n")
+        
+        let fileURL = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent(fileName)
+        print("fileURL path: \(fileURL.path)\n")
+        
+        let filePath = fileURL.path!
+        let imageData = UIImagePNGRepresentation(image!)
+        imageData!.writeToFile(filePath, atomically: true)
+        
+        let uploadRequest = AWSS3TransferManagerUploadRequest()
+        uploadRequest.body = fileURL
+        uploadRequest.key = PurchaseTitleTextField.text
+        uploadRequest.bucket = S3BucketName
+        
+        self.upload(uploadRequest)
+        
+    }
+    
+    func upload(uploadRequest: AWSS3TransferManagerUploadRequest) {
+        let transferManager = AWSS3TransferManager.defaultS3TransferManager()
+        
+        transferManager.upload(uploadRequest).continueWithBlock { (task) -> AnyObject! in
+            if let error = task.error {
+                if error.domain == AWSS3TransferManagerErrorDomain as String {
+                    if let errorCode = AWSS3TransferManagerErrorType(rawValue: error.code) {
+                        switch (errorCode) {
+                        case .Cancelled, .Paused:
+                            break;
+                            
+                        default:
+                            print("upload() failed: [\(error)]")
+                            break;
+                        }
+                    } else {
+                        print("upload() failed: [\(error)]")
+                    }
+                } else {
+                    print("upload() failed: [\(error)]")
+                }
+            }
+            
+            if let exception = task.exception {
+                print("upload() failed: [\(exception)]")
+            }
+            return nil
+        }
+    }
+
+    
+    
     @IBAction func fileReimbursementRequest(sender: AnyObject) {
+        if DisplayImage.image == nil {
+            print("Shit is nil brah")
+        } else {
+            print("we good")
+        }
+        
         if let title = PurchaseTitleTextField.text {
             if title.isEmpty {
                 Error.show("Please provide a title for your purchase.", location: self)
@@ -56,15 +138,12 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
                         "category" : (CategoryTextField.text)!
                     ]) { (err, json) in
                         if err {
+                            print("here 1")
                             Error.showFromRequest(json, location: self)
                             return
                         }
                         
-//                        let viewControllers = self.navigationController!.viewControllers
-//                        if let creditTransactions = viewControllers[viewControllers.count - 2] as? CreditTransactionsTableViewController {
-//                            creditTransactions.loadTransactions()
-//                        }
-                        
+                        //self.uploadReceipt()
                         self.navigationController?.popViewControllerAnimated(true)
                     }
                     return
