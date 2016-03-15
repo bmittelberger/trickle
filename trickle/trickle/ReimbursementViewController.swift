@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ReimbursementViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ReimbursementViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var PurchaseTitleTextField: UITextField!
     @IBOutlet weak var AmountTextField: UITextField!
@@ -20,13 +20,59 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
  
     @IBOutlet weak var DisplayImage: UIImageView!
     @IBOutlet weak var CameraButton: UIButton!
+    
+    @IBOutlet weak var ScrollView: UIScrollView!
+    
+    var activeTextField: UITextField? = nil
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         DisplayImage.image=UIImage(named: "receipt.jpg")
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardDidShow:", name: UIKeyboardDidShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
     }
+    
+    func keyboardDidShow(aNotification: NSNotification) {
+        let userInfo = aNotification.userInfo
+        
+        if let info = userInfo {
+            let size = (info[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue().size
+            let contentInsets = UIEdgeInsetsMake(0, 0, size.height, 0)
+            
+            ScrollView.contentInset = contentInsets
+            ScrollView.scrollIndicatorInsets = contentInsets
+            
+            let fieldBoundingBox = CGRectMake(activeTextField!.frame.origin.x, activeTextField!.frame.origin.y, activeTextField!.frame.width, activeTextField!.frame.height + 16)
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                self.ScrollView.scrollRectToVisible(fieldBoundingBox, animated: true)
+            })
+        }
+    }
+    
+    func keyboardWillHide(aNotification: NSNotification) {
+        let defaultInsets = UIEdgeInsetsMake(0, 0, 0, 0)
+        
+        ScrollView.contentInset = defaultInsets
+        ScrollView.scrollIndicatorInsets = defaultInsets
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        activeTextField = textField
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        activeTextField = nil
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -58,16 +58,17 @@ class CreditTransactionsTableViewController: UITableViewController {
         
         let addReimbursementOption = UIAlertAction(title: "Submit Reimbursement Request", style: .Default, handler: addReimbursement)
         let addRuleOption = UIAlertAction(title: "Add a Rule", style: .Default, handler: addRule)
-        let donateCreditOption = UIAlertAction(title: "Donate a Line of Credit", style: .Default, handler: donateLineOfCredit)
+        let donateCreditOption = UIAlertAction(title: "Extend a Line of Credit", style: .Default, handler: donateLineOfCredit)
         
         let cancelActionOption = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         
         
-        optionMenu.addAction(addReimbursementOption)
+        
         if GroupTableViewController.group.isAdmin {
             optionMenu.addAction(addRuleOption)
             optionMenu.addAction(donateCreditOption)
         }
+        optionMenu.addAction(addReimbursementOption)
         optionMenu.addAction(cancelActionOption)
         
         self.presentViewController(optionMenu, animated: true, completion: nil)
@@ -92,6 +93,10 @@ class CreditTransactionsTableViewController: UITableViewController {
             }
             donateCreditViewController.subGroups = json["groups"].map { (i, group) in
                 return Group.fromJSON(group)
+            }
+            if donateCreditViewController.subGroups.count == 0 {
+                Error.show("No Subgroups to Donate to", location: self)
+                return
             }
             self.navigationController?.pushViewController(donateCreditViewController, animated: true)
         }
