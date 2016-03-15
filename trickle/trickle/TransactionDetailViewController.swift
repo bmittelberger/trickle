@@ -41,12 +41,12 @@ class TransactionDetailViewController: UIViewController {
         
 
         
-        transactionStory.attributedText = Transaction.transactionStory(transaction!)
-        groupCreditStory.attributedText = Transaction.creditStory(transaction!)
+        transactionStory.attributedText = transaction!.transactionStory()
+        groupCreditStory.attributedText = transaction!.creditStory()
         let ruleJSON = transaction?.stateInfo["currentState"]["currentRule"]
         if ruleJSON?.rawString() != "null" {
             let currentRule = Rule.fromJSON(ruleJSON!)
-            ruleStory.attributedText = Rule.ruleStory(currentRule)
+            ruleStory.attributedText = currentRule.ruleStory()
         } else {
             currentRuleLabel.text = "No Pending Rules."
             ruleStory.text = ""
