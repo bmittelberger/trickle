@@ -40,6 +40,7 @@ class RuleCreateViewController: UIViewController, SSRadioButtonControllerDelegat
     @IBOutlet weak var addRuleButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = "Create A New Rule"
         transactionTypeController = SSRadioButtonsController(buttons: rateLimit, rangeLimit)
         rateLimit.selected = true
         transactionTypeController!.delegate = self

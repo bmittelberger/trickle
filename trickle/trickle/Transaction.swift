@@ -76,29 +76,29 @@ class Transaction {
         return t
     }
     
-    class func transactionStory(transaction : Transaction) -> NSAttributedString {
+    func transactionStory() -> NSAttributedString {
         let formatter = NSNumberFormatter()
         formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
         formatter.locale = NSLocale(localeIdentifier: "en_US")
         let bolded = [ NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 18.0)! ]
         let nonBolded = [ NSFontAttributeName: UIFont(name: "Avenir", size: 18.0)! ]
-        let story = NSMutableAttributedString(string: (transaction.userName), attributes: bolded)
+        let story = NSMutableAttributedString(string: (self.userName), attributes: bolded)
         story.appendAttributedString(NSMutableAttributedString(string: " requested ", attributes: nonBolded))
-        story.appendAttributedString(NSMutableAttributedString(string: formatter.stringFromNumber((transaction.amount))!, attributes: bolded))
+        story.appendAttributedString(NSMutableAttributedString(string: formatter.stringFromNumber((self.amount))!, attributes: bolded))
         story.appendAttributedString(NSMutableAttributedString(string: " on ", attributes: nonBolded))
-        story.appendAttributedString(NSMutableAttributedString(string: (transaction.date), attributes: bolded))
+        story.appendAttributedString(NSMutableAttributedString(string: (self.date), attributes: bolded))
         story.appendAttributedString(NSMutableAttributedString(string: " for ", attributes: nonBolded))
-        story.appendAttributedString(NSMutableAttributedString(string: (transaction.title), attributes: bolded))
+        story.appendAttributedString(NSMutableAttributedString(string: (self.title), attributes: bolded))
         return story
     }
     
-    class func creditStory(transaction : Transaction) -> NSAttributedString {
+    func creditStory() -> NSAttributedString {
         let bolded = [ NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 18.0)! ]
         let nonBolded = [ NSFontAttributeName: UIFont(name: "Avenir", size: 18.0)! ]
         let creditStory = NSMutableAttributedString(string: "Requested from the ", attributes: nonBolded)
-        creditStory.appendAttributedString(NSMutableAttributedString(string: (transaction.creditName), attributes: bolded))
+        creditStory.appendAttributedString(NSMutableAttributedString(string: (self.creditName), attributes: bolded))
         creditStory.appendAttributedString(NSMutableAttributedString(string: " credit in the ", attributes: nonBolded))
-        creditStory.appendAttributedString(NSMutableAttributedString(string: (transaction.groupName), attributes: bolded))
+        creditStory.appendAttributedString(NSMutableAttributedString(string: (self.groupName), attributes: bolded))
         creditStory.appendAttributedString(NSMutableAttributedString(string: " group.", attributes: nonBolded))
         return creditStory
     }
