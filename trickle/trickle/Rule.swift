@@ -85,7 +85,7 @@ public class Rule {
     }
     
     
-    class func ruleStory(rule : Rule) -> NSAttributedString? {
+    func ruleStory() -> NSAttributedString? {
         let formatter = NSNumberFormatter()
         let regFormatter = NSNumberFormatter()
         formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
@@ -93,49 +93,49 @@ public class Rule {
         let bolded = [ NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 18.0)! ]
         let nonBolded = [ NSFontAttributeName: UIFont(name: "Avenir", size: 18.0)! ]
         let story = NSMutableAttributedString(string: (""), attributes: nonBolded)
-        if rule.type == Rule.RuleType.WINDOW_LIMIT {
+        if self.type == Rule.RuleType.WINDOW_LIMIT {
             story.appendAttributedString(NSMutableAttributedString(string: ("A "), attributes: nonBolded))
-            if rule.window == Rule.Window.DAY {
+            if self.window == Rule.Window.DAY {
                 story.appendAttributedString(NSMutableAttributedString(string: ("daily "), attributes: bolded))
-            } else if rule.window == Rule.Window.WEEK {
+            } else if self.window == Rule.Window.WEEK {
                 story.appendAttributedString(NSMutableAttributedString(string: ("weekly "), attributes: bolded))
-            } else if rule.window == Rule.Window.MONTH {
+            } else if self.window == Rule.Window.MONTH {
                 story.appendAttributedString(NSMutableAttributedString(string: ("monthly "), attributes: bolded))
             }
             story.appendAttributedString(NSMutableAttributedString(string: ("cumulative sum of "), attributes: nonBolded))
         }
         story.appendAttributedString(NSMutableAttributedString(string: ("Reimbursements "), attributes: nonBolded))
-        if rule.max > -1 {
+        if self.max > -1 {
             story.appendAttributedString( NSMutableAttributedString(string: ("between "), attributes: nonBolded))
-            story.appendAttributedString(NSMutableAttributedString(string: formatter.stringFromNumber(rule.min)!, attributes: bolded))
+            story.appendAttributedString(NSMutableAttributedString(string: formatter.stringFromNumber(self.min)!, attributes: bolded))
             story.appendAttributedString( NSMutableAttributedString(string: (" and "), attributes: nonBolded))
-            story.appendAttributedString(NSMutableAttributedString(string: formatter.stringFromNumber(rule.max)!, attributes: bolded))
+            story.appendAttributedString(NSMutableAttributedString(string: formatter.stringFromNumber(self.max)!, attributes: bolded))
         } else {
             story.appendAttributedString( NSMutableAttributedString(string: ("over "), attributes: nonBolded))
-            story.appendAttributedString(NSMutableAttributedString(string: formatter.stringFromNumber(rule.min)!, attributes: bolded))
+            story.appendAttributedString(NSMutableAttributedString(string: formatter.stringFromNumber(self.min)!, attributes: bolded))
         }
-        if rule.approval == Rule.ApprovalType.DECLINE {
+        if self.approval == Rule.ApprovalType.DECLINE {
             story.appendAttributedString( NSMutableAttributedString(string: (" are automatically declined."), attributes: bolded))
         } else {
             story.appendAttributedString( NSMutableAttributedString(string: (" require "), attributes: nonBolded))
-            if rule.approval == Rule.ApprovalType.NUMBER_ADMIN {
+            if self.approval == Rule.ApprovalType.NUMBER_ADMIN {
                 story.appendAttributedString( NSMutableAttributedString(string: ("approval from "), attributes: nonBolded))
-                story.appendAttributedString(NSMutableAttributedString(string: regFormatter.stringFromNumber(rule.threshold)!, attributes: bolded))
+                story.appendAttributedString(NSMutableAttributedString(string: regFormatter.stringFromNumber(self.threshold)!, attributes: bolded))
                 story.appendAttributedString( NSMutableAttributedString(string: (" admins."), attributes: bolded))
             }
-            if rule.approval == Rule.ApprovalType.NUMBER_MEMBER {
+            if self.approval == Rule.ApprovalType.NUMBER_MEMBER {
                 story.appendAttributedString( NSMutableAttributedString(string: ("approval from "), attributes: nonBolded))
-                story.appendAttributedString(NSMutableAttributedString(string: regFormatter.stringFromNumber(rule.threshold)!, attributes: bolded))
+                story.appendAttributedString(NSMutableAttributedString(string: regFormatter.stringFromNumber(self.threshold)!, attributes: bolded))
                 story.appendAttributedString( NSMutableAttributedString(string: (" members."), attributes: bolded))
             }
-            if rule.approval == Rule.ApprovalType.PERCENTAGE_ADMIN {
+            if self.approval == Rule.ApprovalType.PERCENTAGE_ADMIN {
                 story.appendAttributedString( NSMutableAttributedString(string: ("approval from "), attributes: nonBolded))
-                story.appendAttributedString(NSMutableAttributedString(string: regFormatter.stringFromNumber(rule.threshold)!, attributes: bolded))
+                story.appendAttributedString(NSMutableAttributedString(string: regFormatter.stringFromNumber(self.threshold)!, attributes: bolded))
                 story.appendAttributedString( NSMutableAttributedString(string: ("% of admins."), attributes: bolded))
             }
-            if rule.approval == Rule.ApprovalType.PERCENTAGE_MEMBER {
+            if self.approval == Rule.ApprovalType.PERCENTAGE_MEMBER {
                 story.appendAttributedString( NSMutableAttributedString(string: ("approval from "), attributes: nonBolded))
-                story.appendAttributedString(NSMutableAttributedString(string: regFormatter.stringFromNumber(rule.threshold)!, attributes: bolded))
+                story.appendAttributedString(NSMutableAttributedString(string: regFormatter.stringFromNumber(self.threshold)!, attributes: bolded))
                 story.appendAttributedString( NSMutableAttributedString(string: ("% of members."), attributes: bolded))
             }
         }

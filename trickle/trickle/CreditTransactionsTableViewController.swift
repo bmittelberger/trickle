@@ -160,7 +160,7 @@ class CreditTransactionsTableViewController: UITableViewController {
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("RuleRow", forIndexPath: indexPath) as! RuleTableViewCell
             let rule = rules[indexPath.item]
-            cell.ruleStory?.attributedText = Rule.ruleStory(rule)
+            cell.ruleStory?.attributedText = rule.ruleStory()
             return cell
         }
     }
