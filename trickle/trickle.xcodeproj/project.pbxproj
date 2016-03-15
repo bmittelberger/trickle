@@ -49,6 +49,7 @@
 		C147F3ED1C4C546800D670A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C147F3EB1C4C546800D670A8 /* LaunchScreen.storyboard */; };
 		C147F3F81C4C546900D670A8 /* trickleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C147F3F71C4C546900D670A8 /* trickleTests.swift */; };
 		C147F4031C4C546900D670A8 /* trickleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C147F4021C4C546900D670A8 /* trickleUITests.swift */; };
+		C15BFC311C97F37D00980862 /* DonateCreditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C15BFC301C97F37D00980862 /* DonateCreditViewController.swift */; };
 		C160B9751C896453009841F2 /* Rule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C160B9741C896453009841F2 /* Rule.swift */; };
 		C160B9771C89751C009841F2 /* RuleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C160B9761C89751C009841F2 /* RuleTableViewCell.swift */; };
 		C17BDAC11C8E44F300E8E548 /* TransactionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17BDAC01C8E44F300E8E548 /* TransactionDetailViewController.swift */; };
@@ -132,6 +133,7 @@
 		C147F3FE1C4C546900D670A8 /* trickleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = trickleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C147F4021C4C546900D670A8 /* trickleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = trickleUITests.swift; sourceTree = "<group>"; };
 		C147F4041C4C546900D670A8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C15BFC301C97F37D00980862 /* DonateCreditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonateCreditViewController.swift; sourceTree = "<group>"; };
 		C160B9741C896453009841F2 /* Rule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rule.swift; sourceTree = "<group>"; };
 		C160B9761C89751C009841F2 /* RuleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleTableViewCell.swift; sourceTree = "<group>"; };
 		C17BDAC01C8E44F300E8E548 /* TransactionDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransactionDetailViewController.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				C147F3E21C4C546800D670A8 /* FirstViewController.swift */,
 				C147F3E41C4C546800D670A8 /* SecondViewController.swift */,
 				C147F3E61C4C546800D670A8 /* Main.storyboard */,
+				C15BFC301C97F37D00980862 /* DonateCreditViewController.swift */,
 				0ACF4C771C8D34E800FD5334 /* SelectUserViewController.swift */,
 				C12366A31C83B63600D8DFF8 /* UserCreateViewController.swift */,
 				0AE1B4541C6406B900CCCC81 /* GroupsNavigationController.swift */,
@@ -416,6 +419,7 @@
 				0A5199F31C67224500A39B69 /* GroupTableViewController.swift in Sources */,
 				0AE1B4571C64115F00CCCC81 /* ReimbursementViewController.swift in Sources */,
 				0AE1B4431C5EC8A700CCCC81 /* API.swift in Sources */,
+				C15BFC311C97F37D00980862 /* DonateCreditViewController.swift in Sources */,
 				0AE1B4451C5EE9E200CCCC81 /* Error.swift in Sources */,
 				0A5199ED1C671FB200A39B69 /* Credit.swift in Sources */,
 				C17BDAC11C8E44F300E8E548 /* TransactionDetailViewController.swift in Sources */,
