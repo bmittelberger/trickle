@@ -33,6 +33,10 @@ class Transaction {
     var creditName = ""
     var stateInfo = JSON("")
     
+    var imageURL: String {
+        return "\(id).png"
+    }
+    
     func colorForStatus() -> UIColor {
         var color: UIColor
         switch status {

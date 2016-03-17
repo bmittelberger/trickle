@@ -35,6 +35,8 @@ class TransactionDetailViewController: UIViewController {
     @IBOutlet weak var groupCreditStory: UILabel!
     @IBOutlet weak var ruleStory: UILabel!
     @IBOutlet weak var currentRuleLabel: UILabel!
+    @IBOutlet weak var viewReceiptButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -86,6 +88,14 @@ class TransactionDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func viewReceiptImageAction(sender: UIButton) {
+        
+        let receiptImageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ReceiptImageViewController") as!ReceiptImageViewController
+       
+        receiptImageViewController.transaction = self.transaction
+        self.navigationController?.pushViewController(receiptImageViewController, animated: true)
+        
+    }
 
     /*
     // MARK: - Navigation

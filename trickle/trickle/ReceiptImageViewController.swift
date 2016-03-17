@@ -12,26 +12,30 @@ import AWSS3
 class ReceiptImageViewController: UIViewController {
 
     @IBOutlet weak var DisplayImage: UIImageView!
-    @IBOutlet weak var DownloadButton: UIButton!
+    
+    var transaction : Transaction!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DisplayImage.image=UIImage(named: "sunset.jpg")
+        print("transaction url: \(transaction.imageURL)")
+        
+        self.downloadReceiptImage()
+        
+        //DisplayImage.image=UIImage(named: "sunset.jpg")
         
     }
 
-    @IBAction func DownloadImage(sender: UIButton) {
-        
-        let downloadingFileURL = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent("bingo")
+    func downloadReceiptImage(){
+        let downloadingFileURL = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent(transaction.title)
         let downloadingFilePath = downloadingFileURL.path!
         
         let downloadRequest = AWSS3TransferManagerDownloadRequest()
         downloadRequest.bucket = S3BucketName
-        downloadRequest.key = "bingo"
+        downloadRequest.key = transaction.imageURL
         downloadRequest.downloadingFileURL = downloadingFileURL
-
-            
+        
+        
         let transferManager = AWSS3TransferManager.defaultS3TransferManager()
         transferManager.download(downloadRequest).continueWithBlock({ (task) -> AnyObject! in
             if let error = task.error {
@@ -44,12 +48,16 @@ class ReceiptImageViewController: UIViewController {
             } else if let exception = task.exception {
                 print("download failed: [\(exception)]")
             } else {
+                print("path: \(downloadingFilePath)")
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.DisplayImage.image = UIImage(contentsOfFile: downloadingFilePath)
                 })
             }
             return nil
         })
+
     }
+    
 }
+
 
