@@ -63,7 +63,8 @@ class UserCreateViewController: UIViewController {
             "email": User.me.email,
             "password": UserCreateViewController.currentPassword,
             "first": User.me.first,
-            "last": User.me.last
+            "last": User.me.last,
+            "venmo": "{\"phone\" : \"\(venmoPhoneTextField.text!)\"}"
             ]) { (err, json) in
                 if err {
                     Error.showFromRequest(json, location: self)
