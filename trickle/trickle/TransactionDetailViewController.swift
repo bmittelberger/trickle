@@ -28,41 +28,49 @@ class TransactionDetailViewController: UIViewController {
 
     var transaction : Transaction?
     
+    @IBOutlet weak var TransactionTitleLabel: UILabel!
+    @IBOutlet weak var TransactionAmountLabel: UILabel!
+    @IBOutlet weak var TransactionReimburseeLabel: UILabel!
+    @IBOutlet weak var TransactionDateLabel: UILabel!
+    @IBOutlet weak var TransactionGroupLabel: UILabel!
+    @IBOutlet weak var TransactionLineOfCreditLabel: UILabel!
     @IBOutlet weak var transactionCategory: UILabel!
     @IBOutlet weak var transactionLocation: UILabel!
     @IBOutlet weak var transactionStatus: UILabel!
-    @IBOutlet weak var transactionStory: UILabel!
-    @IBOutlet weak var groupCreditStory: UILabel!
     @IBOutlet weak var ruleStory: UILabel!
-    @IBOutlet weak var currentRuleLabel: UILabel!
+    @IBOutlet weak var RuleStoryView: UIView!
+
+    @IBOutlet weak var TopBarView: UIView!
+    @IBOutlet weak var BottomBarView: UIView!
+    
+    @IBOutlet weak var ScrollView: UIScrollView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         
-
-        
-        transactionStory.attributedText = transaction!.transactionStory()
-        groupCreditStory.attributedText = transaction!.creditStory()
         let ruleJSON = transaction?.stateInfo["currentState"]["currentRule"]
-        if ruleJSON?.rawString() != "null" {
+        
+        if transaction?.status == .Pending && ruleJSON?.rawString() != "null" {
             let currentRule = Rule.fromJSON(ruleJSON!)
             ruleStory.attributedText = currentRule.ruleStory()
         } else {
-            currentRuleLabel.text = "No Pending Rules."
-            ruleStory.text = ""
+            RuleStoryView.hidden = true
         }
+        
         
         let pendingColor: UIColor = UIColor( red: 241/255, green:  196/255, blue: 15/255, alpha: 0.9)
         let declinedColor: UIColor = UIColor( red: 231/255, green:  76/255, blue: 60/255, alpha: 0.9)
         let approvedColor: UIColor = UIColor( red: 39/255, green:  174/255, blue: 96/255, alpha: 0.9)
         if (transaction?.status == Transaction.Status.Pending) {
-            transactionStatus.text = "PENDING"
+            transactionStatus.text = "Pending"
             transactionStatus.textColor = pendingColor
         } else if (transaction?.status == Transaction.Status.Declined) {
-            transactionStatus.text = "DECLINED"
+            transactionStatus.text = "Declined"
             transactionStatus.textColor = declinedColor
         } else {
-            transactionStatus.text = "APPROVED"
+            transactionStatus.text = "Approved"
             transactionStatus.textColor = approvedColor
         }
         if let categoryText = self.transaction?.category {
@@ -76,8 +84,17 @@ class TransactionDetailViewController: UIViewController {
             transactionLocation.text = "None Given"
         }
         
-        transactionCategory.sizeToFit()
-        transactionLocation.sizeToFit()
+        TransactionTitleLabel.text = transaction?.title
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+        formatter.locale = NSLocale(localeIdentifier: "en_US")
+        TransactionAmountLabel.text = formatter.stringFromNumber(transaction!.amount)
+        
+        TransactionReimburseeLabel.text = transaction?.user.displayName
+        TransactionDateLabel.text = "March 12, 2016"
+        TransactionGroupLabel.text = transaction?.group.displayName
+        TransactionLineOfCreditLabel.text = transaction?.credit.displayName
+
         // Do any additional setup after loading the view.
     }
 

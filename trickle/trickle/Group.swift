@@ -18,6 +18,7 @@ class Group : Model {
     var organizationId = 0
     var parentGroupId = 0
     var isAdmin = false
+    var credits: [Credit] = []
     
     func createSubgroup(location: UIViewController, handler: (Group) -> Void) {
         Group.create(self, location: location, handler: handler)
@@ -84,6 +85,11 @@ class Group : Model {
         g.organizationId = json["OrganizationId"].intValue
         g.parentGroupId = json["ParentGroupId"].isExists() ? json["ParentGroupId"].intValue : 0
         g.isAdmin = json["UserGroup"]["isAdmin"].boolValue
+        if json["Credits"].isExists() {
+            g.credits = json["Credits"].map({ (i, credit) in
+                return Credit.fromJSON(credit)
+            })
+        }
         return g
     }
 }

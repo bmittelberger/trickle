@@ -28,6 +28,8 @@ class Transaction {
     var date = ""
     var groupId = 0
     var creditId = 0
+    var group = Group()
+    var credit = Credit()
     var groupName = ""
     var userName = ""
     var creditName = ""
@@ -72,6 +74,16 @@ class Transaction {
         t.creditId = json["CreditId"].intValue
         t.groupName = json["Group"]["name"].stringValue
         t.creditName = json["Credit"]["description"].stringValue
+        if json["Group"].isExists() {
+            t.group = Group.fromJSON(json["Group"])
+        } else {
+            t.group.id = json["GroupId"].intValue
+        }
+        if json["Credit"].isExists() {
+            t.credit = Credit.fromJSON(json["Credit"])
+        } else {
+            t.credit.id = json["CreditId"].intValue
+        }
         t.stateInfo = json["stateInfo"]
         return t
     }

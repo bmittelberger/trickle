@@ -184,6 +184,13 @@ class CreditTransactionsTableViewController: UITableViewController {
         }
     }
     
+    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int)
+    {
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.font = UIFont(name: "Lato-Semibold", size: 17)!
+        header.textLabel?.textColor = AppDelegate.tintColor
+    }
+    
     
     func getRuleType(rule : Rule) -> String {
         var response : String = ""

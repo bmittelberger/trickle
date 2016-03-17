@@ -220,18 +220,17 @@ class GroupTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return credits.isEmpty ? 0 : 2 * credits.count - 1
+        return credits.count//credits.isEmpty ? 0 : 2 * credits.count - 1
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.item % 2 == 0 {
+        //if indexPath.item % 2 == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("CreditRow", forIndexPath: indexPath) as! CreditLineTableViewCell
             
-            let credit = credits[indexPath.item / 2]
+            let credit = credits[indexPath.item/* / 2*/]
             
             cell.CreditNameTextLabel.text = credit.description
-            cell.balancePercentage = CGFloat.init(credit.balancePercentage())
-            cell.color = credit.color
+            cell.credit = credit
             
             let formatter = NSNumberFormatter()
             formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
@@ -240,25 +239,32 @@ class GroupTableViewController: UITableViewController {
             cell.CreditAmountTextLabel.text = formatter.stringFromNumber(credit.balance)
             
             return cell
-        } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("CreditRowMargin", forIndexPath: indexPath)
-            return cell
-        }
+//        } else {
+//            let cell = tableView.dequeueReusableCellWithIdentifier("CreditRowMargin", forIndexPath: indexPath)
+//            return cell
+//        }
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        if indexPath.item % 2 == 0 {
-            CreditTransactionsTableViewController.credit = credits[indexPath.item / 2]
+        //if indexPath.item % 2 == 0 {
+            CreditTransactionsTableViewController.credit = credits[indexPath.item]
             
             let creditTransactionsTableViewController = self.storyboard?.instantiateViewControllerWithIdentifier("CreditTransactionsTableViewController") as! CreditTransactionsTableViewController
             self.navigationController?.pushViewController(creditTransactionsTableViewController, animated: true)
-        }
+        //}
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return indexPath.item % 2 == 0 ? 108 : 1
+        return 88
+    }
+    
+    override func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int)
+    {
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.font = UIFont(name: "Lato-Semibold", size: 17)!
+        header.textLabel?.textColor = AppDelegate.tintColor
     }
 
     /*
