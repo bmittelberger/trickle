@@ -8,6 +8,7 @@
 
 import UIKit
 import AWSS3
+import SwiftSpinner
 
 class ReceiptImageViewController: UIViewController {
 
@@ -35,7 +36,13 @@ class ReceiptImageViewController: UIViewController {
         downloadRequest.key = transaction.imageURL
         downloadRequest.downloadingFileURL = downloadingFileURL
         
+        SwiftSpinner.show("Downloading Image")
+        download(downloadRequest, downloadingFilePath: downloadingFilePath, count: 0)
         
+        
+    }
+    
+    func download(downloadRequest : AWSS3TransferManagerDownloadRequest, downloadingFilePath : String, count : Int){
         let transferManager = AWSS3TransferManager.defaultS3TransferManager()
         transferManager.download(downloadRequest).continueWithBlock({ (task) -> AnyObject! in
             if let error = task.error {
@@ -43,14 +50,22 @@ class ReceiptImageViewController: UIViewController {
                     && AWSS3TransferManagerErrorType(rawValue: error.code) == AWSS3TransferManagerErrorType.Paused {
                         print("Download paused.")
                 } else {
-                    print("download failed: [\(error)]")
+                    if (count < 7){
+                        print("here")
+                        NSThread.sleepForTimeInterval(7)
+                        let newCount = count + 1
+                        self.download(downloadRequest, downloadingFilePath: downloadingFilePath, count: newCount)
+                    } else {
+                        print("download failed 1: [\(error)]")
+                    }
                 }
             } else if let exception = task.exception {
                 print("download failed: [\(exception)]")
             } else {
-                print("path: \(downloadingFilePath)")
+                //print("path: \(downloadingFilePath)")
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.DisplayImage.image = UIImage(contentsOfFile: downloadingFilePath)
+                    SwiftSpinner.hide()
                 })
             }
             return nil

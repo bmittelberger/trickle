@@ -8,6 +8,7 @@
 
 import UIKit
 import AWSS3
+import SwiftSpinner
 
 class ReimbursementViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
@@ -152,6 +153,11 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
     
     
     @IBAction func fileReimbursementRequest(sender: AnyObject) {
+        PurchaseTitleTextField.resignFirstResponder()
+        AmountTextField.resignFirstResponder()
+        CategoryTextField.resignFirstResponder()
+        StoreTextField.resignFirstResponder()
+        
         if DisplayImage.image == nil {
             Error.show("Please take a picture of your receipt.", location: self)
             return
@@ -168,7 +174,7 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
                     Error.show("Please enter an amount for your purchase.", location: self)
                     return
                 }
-                
+                SwiftSpinner.show("Submitting Request")
                 if let amount = Double.init(amountString) {
                     API.request(.POST, path: "transactions", parameters: [
                         "amount": amount,
@@ -184,6 +190,7 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
                         } else {
                             let t : Transaction = Transaction.fromJSON(json["transaction"])
                             self.uploadReceipt(t)
+                            SwiftSpinner.hide()
                             self.navigationController?.popViewControllerAnimated(true)
                         }
                     }
@@ -212,6 +219,10 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
     
 //    @IBAction func BringUpCamera(sender: UIButton) {
     @IBAction func BringUpCamera(sender: UIButton) {
+        PurchaseTitleTextField.resignFirstResponder()
+        AmountTextField.resignFirstResponder()
+        CategoryTextField.resignFirstResponder()
+        StoreTextField.resignFirstResponder()
     
     
         let picker = UIImagePickerController()
@@ -226,10 +237,16 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
-        print("here")
+        print("here image picker")
         
-        DisplayImage.image = info[UIImagePickerControllerOriginalImage] as? UIImage; dismissViewControllerAnimated(true, completion: nil)
-        
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            print("here image picke1r")
+            DisplayImage.image = image
+            print("here image picker2")
+            dismissViewControllerAnimated(true, completion: nil)
+            print("here image picker3")
+        }
+        print("here image picker4")
         
     }
     

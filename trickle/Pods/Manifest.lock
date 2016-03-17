@@ -33,6 +33,7 @@ PODS:
     - AWSCore (= 2.3.5)
   - AWSSQS (2.3.5):
     - AWSCore (= 2.3.5)
+  - SwiftSpinner (0.8.0)
   - SwiftyJSON (2.3.2)
 
 DEPENDENCIES:
@@ -54,6 +55,7 @@ DEPENDENCIES:
   - AWSSimpleDB
   - AWSSNS
   - AWSSQS
+  - SwiftSpinner
   - SwiftyJSON (~> 2.3)
 
 SPEC CHECKSUMS:
@@ -75,6 +77,7 @@ SPEC CHECKSUMS:
   AWSSimpleDB: a523844c8b027c850688ffa6f79f33b06abbef9d
   AWSSNS: d95b17f039776ec0dd9cd9237313779d174b0215
   AWSSQS: f7a6f8cf225d469313150f8070e07bd7137218dd
+  SwiftSpinner: 11c2c5ec7443d92f3026d3067ca8a91d4adef13f
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a
 
 COCOAPODS: 0.39.0
