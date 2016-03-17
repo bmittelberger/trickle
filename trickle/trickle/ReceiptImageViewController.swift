@@ -28,7 +28,7 @@ class ReceiptImageViewController: UIViewController {
     }
 
     func downloadReceiptImage(){
-        let downloadingFileURL = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent(transaction.title)
+        let downloadingFileURL = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent(transaction.imageURL)
         let downloadingFilePath = downloadingFileURL.path!
         
         let downloadRequest = AWSS3TransferManagerDownloadRequest()
@@ -65,6 +65,7 @@ class ReceiptImageViewController: UIViewController {
                 //print("path: \(downloadingFilePath)")
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.DisplayImage.image = UIImage(contentsOfFile: downloadingFilePath)
+                    self.DisplayImage.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_2));
                     SwiftSpinner.hide()
                 })
             }

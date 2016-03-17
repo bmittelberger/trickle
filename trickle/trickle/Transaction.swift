@@ -34,7 +34,7 @@ class Transaction {
     var stateInfo = JSON("")
     
     var imageURL: String {
-        return "\(id).png"
+        return "\(id).jpg"
     }
     
     func colorForStatus() -> UIColor {

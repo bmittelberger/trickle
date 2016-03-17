@@ -101,7 +101,7 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
     
     func uploadReceipt(t : Transaction){
         
-        let fileName = NSProcessInfo.processInfo().globallyUniqueString.stringByAppendingString(".png")
+        let fileName = NSProcessInfo.processInfo().globallyUniqueString.stringByAppendingString(".jpg")
         //print("fileName: \(fileName)\n")
         
         let fileURL = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent(fileName)
@@ -237,17 +237,12 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
-        print("here image picker")
-        
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            print("here image picke1r")
+            
             DisplayImage.image = image
-            print("here image picker2")
-            dismissViewControllerAnimated(true, completion: nil)
-            print("here image picker3")
         }
-        print("here image picker4")
-        
+        dismissViewControllerAnimated(true, completion: nil)
+
     }
     
     
