@@ -99,6 +99,11 @@
 			<key>orderHint</key>
 			<integer>19</integer>
 		</dict>
+		<key>SwiftSpinner.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>21</integer>
+		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -127,7 +132,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>37630A2AA8AEA92B47A3495AEEB5F397</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>3B41A9B1D49827D58E203AF61D34F608</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4BFF490E2DAC31A275047338922A98BA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>60D52B7A8DD5C5E4AC6F02F0D250AAEE</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -83,9 +83,12 @@ class MyGroupsViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("GroupRow", forIndexPath: indexPath)
-        cell.textLabel?.text = groups[indexPath.item].name
-        cell.detailTextLabel?.text = groups[indexPath.item].description
+        let cell = tableView.dequeueReusableCellWithIdentifier("GroupRow", forIndexPath: indexPath) as! GroupTableViewCell
+        let group = groups[indexPath.item]
+        cell.textLabel?.text = group.name
+        cell.detailTextLabel?.text = group.description
+        cell.group = group
+        cell.setNeedsDisplay()
         return cell
     }
     

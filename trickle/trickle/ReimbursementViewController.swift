@@ -8,6 +8,7 @@
 
 import UIKit
 import AWSS3
+import SwiftSpinner
 
 class ReimbursementViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
@@ -15,10 +16,6 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
     @IBOutlet weak var AmountTextField: UITextField!
     @IBOutlet weak var CategoryTextField: UITextField!
     @IBOutlet weak var StoreTextField: UITextField!
-    @IBOutlet weak var UploadPhotoButton: UIButton!
-
-//    @IBOutlet weak var CameraButton: UIButton!
-//    @IBOutlet weak var DisplayImage: UIImageView!
  
     @IBOutlet weak var DisplayImage: UIImageView!
     @IBOutlet weak var CameraButton: UIButton!
@@ -31,7 +28,7 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DisplayImage.image=UIImage(named: "receipt.jpg")
+        //DisplayImage.image=UIImage(named: "receipt.jpg")
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardDidShow:", name: UIKeyboardDidShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
@@ -81,46 +78,46 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func UploadPhoto(sender: AnyObject) {
-        let image = UIImage(named: "receipt.jpg")
-        let fileName = NSProcessInfo.processInfo().globallyUniqueString.stringByAppendingString(".png")
-        print("fileName: \(fileName)\n")
-        
-        let fileURL = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent(fileName)
-        print("fileURL path: \(fileURL.path)\n")
-        
-        let filePath = fileURL.path!
-        let imageData = UIImagePNGRepresentation(image!)
-        imageData!.writeToFile(filePath, atomically: true)
-
-        let uploadRequest = AWSS3TransferManagerUploadRequest()
-        uploadRequest.body = fileURL
-        uploadRequest.key = "bingo"
-        uploadRequest.bucket = S3BucketName
-        
-        self.upload(uploadRequest)
-
-    }
+//    @IBAction func UploadPhoto(sender: AnyObject) {
+//        let image = UIImage(named: "receipt.jpg")
+//        let fileName = NSProcessInfo.processInfo().globallyUniqueString.stringByAppendingString(".png")
+//        print("fileName: \(fileName)\n")
+//        
+//        let fileURL = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent(fileName)
+//        print("fileURL path: \(fileURL.path)\n")
+//        
+//        let filePath = fileURL.path!
+//        let imageData = UIImagePNGRepresentation(image!)
+//        imageData!.writeToFile(filePath, atomically: true)
+//
+//        let uploadRequest = AWSS3TransferManagerUploadRequest()
+//        uploadRequest.body = fileURL
+//        uploadRequest.key = "bingo"
+//        uploadRequest.bucket = S3BucketName
+//        
+//        self.upload(uploadRequest)
+//
+//    }
     
-    func uploadReceipt(){
-        let image = UIImage(named: "receipt.jpg")
-        let fileName = NSProcessInfo.processInfo().globallyUniqueString.stringByAppendingString(".png")
-        print("fileName: \(fileName)\n")
+    func uploadReceipt(t : Transaction){
+        
+        let fileName = NSProcessInfo.processInfo().globallyUniqueString.stringByAppendingString(".jpg")
+        //print("fileName: \(fileName)\n")
         
         let fileURL = NSURL(fileURLWithPath: NSTemporaryDirectory()).URLByAppendingPathComponent(fileName)
-        print("fileURL path: \(fileURL.path)\n")
+        //print("fileURL path: \(fileURL.path)\n")
         
         let filePath = fileURL.path!
-        let imageData = UIImagePNGRepresentation(image!)
+        let imageData = UIImagePNGRepresentation(DisplayImage.image!)
         imageData!.writeToFile(filePath, atomically: true)
         
+        print("file key: \(t.imageURL)\n")
         let uploadRequest = AWSS3TransferManagerUploadRequest()
         uploadRequest.body = fileURL
-        uploadRequest.key = PurchaseTitleTextField.text
+        uploadRequest.key = t.imageURL
         uploadRequest.bucket = S3BucketName
         
         self.upload(uploadRequest)
-        
     }
     
     func upload(uploadRequest: AWSS3TransferManagerUploadRequest) {
@@ -156,10 +153,14 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
     
     
     @IBAction func fileReimbursementRequest(sender: AnyObject) {
+        PurchaseTitleTextField.resignFirstResponder()
+        AmountTextField.resignFirstResponder()
+        CategoryTextField.resignFirstResponder()
+        StoreTextField.resignFirstResponder()
+        
         if DisplayImage.image == nil {
-            print("Shit is nil brah")
-        } else {
-            print("we good")
+            Error.show("Please take a picture of your receipt.", location: self)
+            return
         }
         
         if let title = PurchaseTitleTextField.text {
@@ -173,7 +174,7 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
                     Error.show("Please enter an amount for your purchase.", location: self)
                     return
                 }
-                
+                SwiftSpinner.show("Submitting Request")
                 if let amount = Double.init(amountString) {
                     API.request(.POST, path: "transactions", parameters: [
                         "amount": amount,
@@ -184,13 +185,14 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
                         "category" : (CategoryTextField.text)!
                     ]) { (err, json) in
                         if err {
-                            print("here 1")
                             Error.showFromRequest(json, location: self)
                             return
+                        } else {
+                            let t : Transaction = Transaction.fromJSON(json["transaction"])
+                            self.uploadReceipt(t)
+                            SwiftSpinner.hide()
+                            self.navigationController?.popViewControllerAnimated(true)
                         }
-                        
-                        //self.uploadReceipt()
-                        self.navigationController?.popViewControllerAnimated(true)
                     }
                     return
                 } else {
@@ -217,6 +219,10 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
     
 //    @IBAction func BringUpCamera(sender: UIButton) {
     @IBAction func BringUpCamera(sender: UIButton) {
+        PurchaseTitleTextField.resignFirstResponder()
+        AmountTextField.resignFirstResponder()
+        CategoryTextField.resignFirstResponder()
+        StoreTextField.resignFirstResponder()
     
     
         let picker = UIImagePickerController()
@@ -231,9 +237,12 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
-        DisplayImage.image = info[UIImagePickerControllerOriginalImage] as? UIImage; dismissViewControllerAnimated(true, completion: nil)
-        
-        
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            
+            DisplayImage.image = image
+        }
+        dismissViewControllerAnimated(true, completion: nil)
+
     }
     
     

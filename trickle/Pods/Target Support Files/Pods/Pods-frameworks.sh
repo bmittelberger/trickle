@@ -102,6 +102,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/AWSSQS.framework"
   install_framework "Pods/AWSSimpleDB.framework"
   install_framework "Pods/Alamofire.framework"
+  install_framework "Pods/SwiftSpinner.framework"
   install_framework "Pods/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -123,5 +124,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/AWSSQS.framework"
   install_framework "Pods/AWSSimpleDB.framework"
   install_framework "Pods/Alamofire.framework"
+  install_framework "Pods/SwiftSpinner.framework"
   install_framework "Pods/SwiftyJSON.framework"
 fi

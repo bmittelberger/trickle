@@ -8,17 +8,54 @@
 
 import UIKit
 
+extension UILabel {
+    override public func awakeFromNib() {
+        super.awakeFromNib()
+        self.font = UIFont(name: "Lato-Regular", size: (self.font?.pointSize)!)
+    }
+}
+
+extension UIButton {
+    override public func awakeFromNib() {
+        super.awakeFromNib()
+        self.titleLabel?.font = UIFont(name: "Lato-Heavy", size: (self.titleLabel?.font?.pointSize)!)
+    }
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    
+    static let tintColor = UIColor.init(red: 0 / 255.0, green: 80 / 255.0, blue: 100 / 255.0, alpha: 1)
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         let credentialsProvider = AWSCognitoCredentialsProvider(regionType: CognitoRegionType, identityPoolId: CognitoIdentityPoolId)
         let configuration = AWSServiceConfiguration(region: DefaultServiceRegionType, credentialsProvider: credentialsProvider)
         AWSServiceManager.defaultServiceManager().defaultServiceConfiguration = configuration
         
+        
+        
+        UINavigationBar.appearance().barTintColor = AppDelegate.tintColor
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        
+        UINavigationBar.appearance().titleTextAttributes = [
+            NSForegroundColorAttributeName: UIColor.whiteColor(),
+            NSFontAttributeName: UIFont(name: "Lato-Bold", size: 18)!
+        ]
+        
+        
+        UITabBar.appearance().barTintColor = UIColor.whiteColor()
+        UITabBar.appearance().tintColor = AppDelegate.tintColor
+        
+        UITabBarItem.appearance().setTitleTextAttributes([
+            NSFontAttributeName: UIFont(name: "Lato-Regular", size: 12)!
+        ], forState: UIControlState.Normal)
+        
+        UISegmentedControl.appearance().setTitleTextAttributes([
+            NSFontAttributeName: UIFont(name: "Lato-Regular", size: 14)!
+            ], forState: UIControlState.Normal)
+                
         return true
     }
     

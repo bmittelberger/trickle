@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 import SwiftyJSON
 
-class Credit {
+class Credit : Model {
     
     static let colors = [
         // Green Sea
@@ -44,8 +44,28 @@ class Credit {
     }
     var rules : [Rule] = []
     
+    var displayName: String {
+        return description
+    }
+    
     func balancePercentage() -> Double {
         return balance / amount
+    }
+    
+    func drawBalanceCicle(x: CGFloat, y: CGFloat) {
+        let bg = UIBezierPath()
+        bg.moveToPoint(CGPoint(x: x, y: y))
+        bg.addArcWithCenter(CGPoint(x: x, y: y), radius: 12.0, startAngle: 0, endAngle: CGFloat(2 * M_PI), clockwise: true)
+        UIColor(red: 242 / 255.0, green: 242 / 255.0, blue: 242 / 255.0, alpha: 1.0).setFill()
+        bg.fill()
+        for var opacity = 1.0; opacity > 0.0; opacity -= 0.8 {
+            let percentage = opacity == 1 ? self.balancePercentage() : 1
+            let path = UIBezierPath()
+            path.moveToPoint(CGPoint(x: x, y: y))
+            path.addArcWithCenter(CGPoint(x: x, y: y), radius: 10.0, startAngle: -CGFloat(M_PI_2), endAngle: -CGFloat(M_PI_2) - CGFloat(2 * M_PI * percentage), clockwise: false)
+            self.color.colorWithAlphaComponent(CGFloat(opacity)).setFill()
+            path.fill()
+        }
     }
     
     class func fromJSON(json: JSON) -> Credit {

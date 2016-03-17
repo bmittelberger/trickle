@@ -90,8 +90,8 @@ public class Rule {
         let regFormatter = NSNumberFormatter()
         formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
         formatter.locale = NSLocale(localeIdentifier: "en_US")
-        let bolded = [ NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 18.0)! ]
-        let nonBolded = [ NSFontAttributeName: UIFont(name: "Avenir", size: 18.0)! ]
+        let bolded = [ NSFontAttributeName: UIFont(name: "Avenir-Heavy", size: 17.0)! ]
+        let nonBolded = [ NSFontAttributeName: UIFont(name: "Avenir", size: 17.0)! ]
         let story = NSMutableAttributedString(string: (""), attributes: nonBolded)
         if self.type == Rule.RuleType.WINDOW_LIMIT {
             story.appendAttributedString(NSMutableAttributedString(string: ("A "), attributes: nonBolded))
