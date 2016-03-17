@@ -19,19 +19,81 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
  
     @IBOutlet weak var DisplayImage: UIImageView!
     @IBOutlet weak var CameraButton: UIButton!
-    
+    @IBOutlet weak var CameraImageButton: UIImageView!
     @IBOutlet weak var ScrollView: UIScrollView!
     
+    
     var activeTextField: UITextField? = nil
+    
+    var receipt: UIImage? = nil
 
+    @IBOutlet weak var SubmitButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //DisplayImage.image=UIImage(named: "receipt.jpg")
         
+//        let attributes = [
+//            NSForegroundColorAttributeName: UIColor.lightGrayColor(),
+//            NSFontAttributeName : UIFont(name: "Lato-Light", size: 72)! // Note the !
+//        ]
+//        
+////        AmountTextField.attributedPlaceholder = NSAttributedString(string: "$0.00", attributes:attributes)
+////        
+////        AmountTextField.font = UIFont(name: "Lato-Light", size: 72)!
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardDidShow:", name: UIKeyboardDidShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        if textField == AmountTextField {
+            let originalText = textField.text!
+            let newString = (originalText as NSString).stringByReplacingCharactersInRange(range, withString: string) as NSString
+            
+            if newString == "$" || newString == "$0" {
+                textField.text = ""
+                return false
+            }
+            
+            if range.length > 0 && string.isEmpty {
+                return true
+            }
+            
+            // First character, prepend a "$" and possibly a "$0"
+            if textField.text!.isEmpty && !string.isEmpty {
+                if string == "." {
+                    textField.text = "$0."
+                } else {
+                    textField.text = "$\(string)"
+                }
+                return false
+            }
+            
+            // Can't have two periods
+            if textField.text!.containsString(".") {
+                if string == "." {
+                    return false
+                }
+                
+                // Max of two characters beyond the period
+                if let idx = textField.text!.characters.indexOf(".") {
+                    let pos = textField.text!.startIndex.distanceTo(idx)
+                    if range.location >= pos && pos <= textField.text!.characters.count - 3 {
+                        return false
+                    }
+                }
+            } else {
+                // Can't add a period before 2 from the end
+                if range.location <= textField.text!.characters.count - 3 {
+                    return false
+                }
+            }
+        }
+        
+        return true
     }
     
     func keyboardDidShow(aNotification: NSNotification) {
@@ -39,12 +101,16 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
         
         if let info = userInfo {
             let size = (info[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue().size
-            let contentInsets = UIEdgeInsetsMake(0, 0, size.height, 0)
+            var height = size.height
+            if let tabBarHeight = self.tabBarController?.tabBar.frame.height {
+                height -= tabBarHeight
+            }
+            let contentInsets = UIEdgeInsetsMake(0, 0, height, 0)
             
             ScrollView.contentInset = contentInsets
             ScrollView.scrollIndicatorInsets = contentInsets
             
-            let fieldBoundingBox = CGRectMake(activeTextField!.frame.origin.x, activeTextField!.frame.origin.y, activeTextField!.frame.width, activeTextField!.frame.height + 16)
+            let fieldBoundingBox = CGRectMake(activeTextField!.frame.origin.x, activeTextField!.frame.origin.y, activeTextField!.frame.width, activeTextField!.frame.height + 64 + SubmitButton.frame.height)
             
             dispatch_async(dispatch_get_main_queue(), {
                 self.ScrollView.scrollRectToVisible(fieldBoundingBox, animated: true)
@@ -108,7 +174,7 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
         //print("fileURL path: \(fileURL.path)\n")
         
         let filePath = fileURL.path!
-        let imageData = UIImagePNGRepresentation(DisplayImage.image!)
+        let imageData = UIImagePNGRepresentation(self.receipt!)
         imageData!.writeToFile(filePath, atomically: true)
         
         print("file key: \(t.imageURL)\n")
@@ -158,7 +224,7 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
         CategoryTextField.resignFirstResponder()
         StoreTextField.resignFirstResponder()
         
-        if DisplayImage.image == nil {
+        if self.receipt == nil {
             Error.show("Please take a picture of your receipt.", location: self)
             return
         }
@@ -169,12 +235,17 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
                 return
             }
             
-            if let amountString = AmountTextField.text {
+            if var amountString = AmountTextField.text {
                 if amountString.isEmpty {
                     Error.show("Please enter an amount for your purchase.", location: self)
                     return
                 }
                 SwiftSpinner.show("Submitting Request")
+                
+                if amountString.characters.first == "$" {
+                    amountString.removeAtIndex(amountString.startIndex)
+                }
+                
                 if let amount = Double.init(amountString) {
                     API.request(.POST, path: "transactions", parameters: [
                         "amount": amount,
@@ -197,6 +268,7 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
                     return
                 } else {
                     Error.show("Invalid transaction amount.", location: self)
+                    SwiftSpinner.hide()
                     return
                 }
             }
@@ -235,11 +307,18 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
         
     }
     
+    
+    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            self.receipt = image
+
+            self.CameraButton.setTitle("Receipt Successfully Attached", forState: .Normal)
+            self.CameraButton.setTitleColor(UIColor.init(red: 22 / 255.0, green: 160 / 255.0, blue: 133 / 255.0, alpha: 1), forState: .Normal)
             
-            DisplayImage.image = image
+            self.CameraImageButton.image = UIImage(named: "check.png")
+            self.AmountTextField.becomeFirstResponder()
         }
         dismissViewControllerAnimated(true, completion: nil)
 

@@ -8,19 +8,19 @@
 
 import UIKit
 
-extension UILabel {
-    override public func awakeFromNib() {
-        super.awakeFromNib()
-        self.font = UIFont(name: "Lato-Regular", size: (self.font?.pointSize)!)
-    }
-}
-
-extension UIButton {
-    override public func awakeFromNib() {
-        super.awakeFromNib()
-        self.titleLabel?.font = UIFont(name: "Lato-Heavy", size: (self.titleLabel?.font?.pointSize)!)
-    }
-}
+//extension UILabel {
+//    override public func awakeFromNib() {
+//        super.awakeFromNib()
+//        self.font = UIFont(name: "Lato-Regular", size: (self.font?.pointSize)!)
+//    }
+//}
+//
+//extension UIButton {
+//    override public func awakeFromNib() {
+//        super.awakeFromNib()
+//        self.titleLabel?.font = UIFont(name: "Lato-Heavy", size: (self.titleLabel?.font?.pointSize)!)
+//    }
+//}
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
