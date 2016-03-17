@@ -51,7 +51,11 @@ public class Rule {
     class func fromJSON(json: JSON) -> Rule {
         let r = Rule()
         r.min = json["min"].floatValue
-        r.max = json["max"].floatValue
+        if json["max"] != JSON.null {
+            r.max = json["max"].floatValue
+        } else {
+            r.max = -1
+        }
         r.type = json["type"].stringValue
         r.window = json["window"].stringValue
         r.approval = json["approval"].stringValue

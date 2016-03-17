@@ -75,6 +75,7 @@ class RuleCreateViewController: UIViewController, SSRadioButtonControllerDelegat
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardDidShow:", name: UIKeyboardDidShowNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
         // Do any additional setup after loading the view.
+        print("loading...")
     }
 
     override func didReceiveMemoryWarning() {
@@ -231,7 +232,11 @@ class RuleCreateViewController: UIViewController, SSRadioButtonControllerDelegat
         
         if let info = userInfo {
             let size = (info[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue().size
-            let contentInsets = UIEdgeInsetsMake(0, 0, size.height, 0)
+            var height = size.height
+            if let tabBarHeight = self.tabBarController?.tabBar.frame.height {
+                height -= tabBarHeight
+            }
+            let contentInsets = UIEdgeInsetsMake(0, 0, height, 0)
             
             ScrollView.contentInset = contentInsets
             ScrollView.scrollIndicatorInsets = contentInsets
