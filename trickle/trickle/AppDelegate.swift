@@ -30,7 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static let tintColor = UIColor.init(red: 0 / 255.0, green: 80 / 255.0, blue: 100 / 255.0, alpha: 1)
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        let credentialsProvider = AWSCognitoCredentialsProvider(regionType: CognitoRegionType, identityPoolId: CognitoIdentityPoolId)
+        let configuration = AWSServiceConfiguration(region: DefaultServiceRegionType, credentialsProvider: credentialsProvider)
+        AWSServiceManager.defaultServiceManager().defaultServiceConfiguration = configuration
         
         
         

@@ -45,7 +45,6 @@ class TransactionDetailViewController: UIViewController {
     
     @IBOutlet weak var ScrollView: UIScrollView!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -103,6 +102,14 @@ class TransactionDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func viewReceiptImageAction(sender: UIButton) {
+        
+        let receiptImageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ReceiptImageViewController") as!ReceiptImageViewController
+       
+        receiptImageViewController.transaction = self.transaction
+        self.navigationController?.pushViewController(receiptImageViewController, animated: true)
+        
+    }
 
     /*
     // MARK: - Navigation

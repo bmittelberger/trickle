@@ -24,8 +24,7 @@ class CreditTransactionsTableViewController: UITableViewController {
         
         self.title = CreditTransactionsTableViewController.credit.description
         
-        self.addButton = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: Selector("addButtonPressed"))
-        self.navigationItem.rightBarButtonItem = self.addButton!
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: UIBarButtonSystemItem.Action, target: self, action: Selector("actionButtonPressed"))
         
 //        UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
 //            target:self
@@ -52,6 +51,56 @@ class CreditTransactionsTableViewController: UITableViewController {
         self.loadTransactions()
         self.loadRules()
         self.tableView.rowHeight = 75;
+    }
+    
+    func actionButtonPressed () {
+        let optionMenu = UIAlertController(title: GroupTableViewController.group.name, message: GroupTableViewController.group.isAdmin ? "Manage Credit Line" : "Add Reimbursement Request", preferredStyle: .ActionSheet)
+        
+        let addReimbursementOption = UIAlertAction(title: "Submit Reimbursement Request", style: .Default, handler: addReimbursement)
+        let addRuleOption = UIAlertAction(title: "Add a Rule", style: .Default, handler: addRule)
+        let donateCreditOption = UIAlertAction(title: "Extend a Line of Credit", style: .Default, handler: donateLineOfCredit)
+        
+        let cancelActionOption = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        
+        
+        
+        if GroupTableViewController.group.isAdmin {
+            optionMenu.addAction(addRuleOption)
+            optionMenu.addAction(donateCreditOption)
+        }
+        optionMenu.addAction(addReimbursementOption)
+        optionMenu.addAction(cancelActionOption)
+        
+        self.presentViewController(optionMenu, animated: true, completion: nil)
+    }
+    
+    func addReimbursement(alert: UIAlertAction!) {
+        let reimbursementViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ReimbursementViewController") as! ReimbursementViewController
+        self.navigationController?.pushViewController(reimbursementViewController, animated: true)
+    }
+    
+    func addRule(alert: UIAlertAction) {
+        let ruleCreateViewController = self.storyboard?.instantiateViewControllerWithIdentifier("RuleCreateViewController") as! RuleCreateViewController
+        self.navigationController?.pushViewController(ruleCreateViewController, animated: true)
+    }
+    
+    func donateLineOfCredit(alert: UIAlertAction) {
+        let donateCreditViewController = self.storyboard?.instantiateViewControllerWithIdentifier("DonateCreditViewController") as! DonateCreditViewController
+        API.request(path: "/groups/\(GroupTableViewController.group.id)/groups") { (err, json) in
+            if err {
+                Error.showFromRequest(json, location: self)
+                return
+            }
+            donateCreditViewController.subGroups = json["groups"].map { (i, group) in
+                return Group.fromJSON(group)
+            }
+            if donateCreditViewController.subGroups.count == 0 {
+                Error.show("No Subgroups to Donate to", location: self)
+                return
+            }
+            self.navigationController?.pushViewController(donateCreditViewController, animated: true)
+        }
+        
     }
     
     func loadTransactions() {
@@ -85,15 +134,7 @@ class CreditTransactionsTableViewController: UITableViewController {
         self.tableView.reloadData()
     }
     
-    func addButtonPressed() {
-        if CreditSegmentedControl.selectedSegmentIndex == 0 {
-            let reimbursementViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ReimbursementViewController") as! ReimbursementViewController
-            self.navigationController?.pushViewController(reimbursementViewController, animated: true)
-        } else {
-            let ruleCreateViewController = self.storyboard?.instantiateViewControllerWithIdentifier("RuleCreateViewController") as! RuleCreateViewController
-            self.navigationController?.pushViewController(ruleCreateViewController, animated: true)
-        }
-    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -112,13 +153,8 @@ class CreditTransactionsTableViewController: UITableViewController {
         if  CreditSegmentedControl.selectedSegmentIndex == 0 {
             self.tableView.rowHeight = 75;
             self.tableView.reloadData()
-            self.addButton!.enabled = true
         } else {
-            if !GroupTableViewController.group.isAdmin {
-                self.addButton!.enabled = false
-            } else {
-                self.addButton!.enabled = true
-            }
+
             self.tableView.rowHeight = 160;
             self.tableView.reloadData()
             

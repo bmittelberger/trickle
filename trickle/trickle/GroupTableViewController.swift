@@ -74,7 +74,7 @@ class GroupTableViewController: UITableViewController {
         
         optionMenu.addAction(cancelActionOption)
         
-        self.presentViewController(optionMenu, animated: true, completion: nil)
+        self.presentViewController(optionMenu, animated: false, completion: nil)
     }
     
     func addMember(alert: UIAlertAction!) {
