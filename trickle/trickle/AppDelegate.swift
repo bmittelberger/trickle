@@ -54,11 +54,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UISegmentedControl.appearance().setTitleTextAttributes([
             NSFontAttributeName: UIFont(name: "Lato-Regular", size: 14)!
             ], forState: UIControlState.Normal)
-        
-        // Register for push notifications
-        let settings = UIUserNotificationSettings(forTypes: [.Badge, .Alert, .Sound], categories: nil)
-        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
-        UIApplication.sharedApplication().registerForRemoteNotifications()
                 
         return true
     }

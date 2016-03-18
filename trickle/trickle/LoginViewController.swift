@@ -39,9 +39,24 @@ class LoginViewController: UIViewController {
             if let password = PasswordField.text {
                 API.authenticate(email, password: password, handler: {(error, json) -> Void in
                     if !error {
+                        // Register for push notifications
+                        let settings = UIUserNotificationSettings(forTypes: [.Badge, .Alert, .Sound], categories: nil)
+                        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+                        UIApplication.sharedApplication().registerForRemoteNotifications()
+                        
                         let next = self.storyboard?.instantiateViewControllerWithIdentifier("MainTabBarController") as! UITabBarController
                         
-                        UIApplication.sharedApplication().delegate!.window!!.rootViewController = next
+//                        [UIView transitionWithView:self.window
+//                            duration:0.5
+//                            options:UIViewAnimationOptionTransitionFlipFromLeft
+//                            animations:^{ self.window.rootViewController = newViewController; }
+//                            completion:nil];
+                        
+                        let window = UIApplication.sharedApplication().delegate!.window!!
+                        
+                        self.presentViewController(next, animated: true, completion: {
+                            window.rootViewController = next
+                        })
                     } else {
                         Error.showFromRequest(json, location: self)
                     }
