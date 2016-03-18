@@ -28,7 +28,11 @@ class ReceiptImageViewController: UIViewController, UIScrollViewDelegate {
         
         self.ScrollView.delegate=self;
 
-        self.downloadReceiptImage()
+        if let receiptImage = ImageCache.cache[transaction.id] {
+            self.DisplayImage.image = receiptImage
+        } else {
+            self.downloadReceiptImage()
+        }
         
         //DisplayImage.image=UIImage(named: "sunset.jpg")
         
@@ -63,9 +67,8 @@ class ReceiptImageViewController: UIViewController, UIScrollViewDelegate {
                     && AWSS3TransferManagerErrorType(rawValue: error.code) == AWSS3TransferManagerErrorType.Paused {
                         print("Download paused.")
                 } else {
-                    if (count < 7){
-                        print("here")
-                        NSThread.sleepForTimeInterval(7)
+                    if (count < 5){
+                        NSThread.sleepForTimeInterval(1)
                         let newCount = count + 1
                         self.download(downloadRequest, downloadingFilePath: downloadingFilePath, count: newCount)
                     } else {

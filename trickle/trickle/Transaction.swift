@@ -34,6 +34,7 @@ class Transaction {
     var userName = ""
     var creditName = ""
     var stateInfo = JSON("")
+    var cachedImagePath = ""
     
     var imageURL: String {
         return "\(id).jpg"
