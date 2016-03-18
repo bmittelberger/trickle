@@ -1184,21 +1184,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WMx-P7-5eV">
-                                <rect key="frame" x="20" y="20" width="560" height="580"/>
-                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="5" translatesAutoresizingMaskIntoConstraints="NO" id="jyz-Ur-lXW">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="620"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WMx-P7-5eV">
+                                        <rect key="frame" x="20" y="20" width="560" height="580"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="WMx-P7-5eV" firstAttribute="centerY" secondItem="jyz-Ur-lXW" secondAttribute="centerY" id="5jz-zt-hEK"/>
+                                    <constraint firstAttribute="trailing" secondItem="WMx-P7-5eV" secondAttribute="trailing" constant="20" id="a41-4L-FS2"/>
+                                    <constraint firstItem="WMx-P7-5eV" firstAttribute="top" secondItem="jyz-Ur-lXW" secondAttribute="top" constant="20" id="bb3-VT-FS1"/>
+                                    <constraint firstAttribute="bottom" secondItem="WMx-P7-5eV" secondAttribute="bottom" constant="20" id="dKl-Us-nDl"/>
+                                    <constraint firstItem="WMx-P7-5eV" firstAttribute="centerX" secondItem="jyz-Ur-lXW" secondAttribute="centerX" id="nBC-X3-A0p"/>
+                                    <constraint firstItem="WMx-P7-5eV" firstAttribute="leading" secondItem="jyz-Ur-lXW" secondAttribute="leading" constant="20" id="tri-Gg-Rxh"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="STY-De-tSU" id="fdx-6B-A9S"/>
+                                </connections>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="WMx-P7-5eV" secondAttribute="trailing" id="JfD-R6-wc9"/>
-                            <constraint firstItem="fR3-uk-dOe" firstAttribute="top" secondItem="WMx-P7-5eV" secondAttribute="bottom" id="N0F-uu-F28"/>
-                            <constraint firstItem="WMx-P7-5eV" firstAttribute="leading" secondItem="FbF-aW-vnd" secondAttribute="leadingMargin" id="gKF-FE-tgS"/>
-                            <constraint firstItem="WMx-P7-5eV" firstAttribute="centerX" secondItem="FbF-aW-vnd" secondAttribute="centerX" id="nj5-ff-MrE"/>
-                            <constraint firstItem="WMx-P7-5eV" firstAttribute="top" secondItem="I2T-iN-Vyj" secondAttribute="bottom" id="wco-x7-Rwx"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="jyz-Ur-lXW" secondAttribute="bottom" constant="-20" id="5XT-dZ-j5j"/>
+                            <constraint firstAttribute="trailing" secondItem="jyz-Ur-lXW" secondAttribute="trailing" id="PNr-YI-ZZY"/>
+                            <constraint firstItem="jyz-Ur-lXW" firstAttribute="top" secondItem="FbF-aW-vnd" secondAttribute="top" id="SU4-Wk-OBt"/>
+                            <constraint firstItem="jyz-Ur-lXW" firstAttribute="leading" secondItem="FbF-aW-vnd" secondAttribute="leading" id="cot-0C-gg6"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="DisplayImage" destination="WMx-P7-5eV" id="IeF-F4-XGr"/>
+                        <outlet property="ScrollView" destination="jyz-Ur-lXW" id="bkU-9m-gX1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vhm-73-H4B" userLabel="First Responder" sceneMemberID="firstResponder"/>

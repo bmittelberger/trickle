@@ -10,17 +10,24 @@ import UIKit
 import AWSS3
 import SwiftSpinner
 
-class ReceiptImageViewController: UIViewController {
+class ReceiptImageViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var DisplayImage: UIImageView!
     
     var transaction : Transaction!
     
+    @IBOutlet weak var ScrollView: UIScrollView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print("transaction url: \(transaction.imageURL)")
         
+        self.ScrollView.minimumZoomScale=1;
+        
+        self.ScrollView.maximumZoomScale=6.0;
+        
+        self.ScrollView.delegate=self;
+
         self.downloadReceiptImage()
         
         //DisplayImage.image=UIImage(named: "sunset.jpg")
@@ -41,6 +48,12 @@ class ReceiptImageViewController: UIViewController {
         
         
     }
+    
+    
+    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+        return self.DisplayImage
+    }
+    
     
     func download(downloadRequest : AWSS3TransferManagerDownloadRequest, downloadingFilePath : String, count : Int){
         let transferManager = AWSS3TransferManager.defaultS3TransferManager()
@@ -72,7 +85,7 @@ class ReceiptImageViewController: UIViewController {
                 //print("path: \(downloadingFilePath)")
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     self.DisplayImage.image = UIImage(contentsOfFile: downloadingFilePath)
-                    self.DisplayImage.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_2));
+//                    self.DisplayImage.transform = CGAffineTransformMakeRotation(CGFloat(M_PI_2));
                     SwiftSpinner.hide()
                 })
             }

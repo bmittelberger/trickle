@@ -174,7 +174,7 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
         //print("fileURL path: \(fileURL.path)\n")
         
         let filePath = fileURL.path!
-        let imageData = UIImagePNGRepresentation(self.receipt!)
+        let imageData = UIImageJPEGRepresentation(self.receipt!,0.1)
         imageData!.writeToFile(filePath, atomically: true)
         
         print("file key: \(t.imageURL)\n")
