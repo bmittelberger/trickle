@@ -106,6 +106,7 @@ class TransactionDetailViewController: UIViewController {
         
         let receiptImageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ReceiptImageViewController") as!ReceiptImageViewController
        
+        receiptImageViewController.title = "Transaction's Receipt"
         receiptImageViewController.transaction = self.transaction
         self.navigationController?.pushViewController(receiptImageViewController, animated: true)
         
