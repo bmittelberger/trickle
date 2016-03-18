@@ -1102,6 +1102,9 @@
                                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cGh-u6-yav">
                                                         <rect key="frame" x="0.0" y="654" width="592" height="30"/>
                                                         <state key="normal" title="View Receipt"/>
+                                                        <connections>
+                                                            <action selector="viewReceiptImageAction:" destination="yVF-qr-IP6" eventType="touchUpInside" id="Meb-ip-1xu"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -1155,6 +1158,7 @@
                         <outlet property="transactionCategory" destination="E0K-oz-1Du" id="X7v-YP-6bO"/>
                         <outlet property="transactionLocation" destination="5iF-Ew-WkD" id="U2X-up-j2K"/>
                         <outlet property="transactionStatus" destination="L2m-7f-1SU" id="Qwo-fG-m4b"/>
+                        <outlet property="viewReceiptButton" destination="cGh-u6-yav" id="8FB-HF-1QT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b5w-8t-B1A" userLabel="First Responder" sceneMemberID="firstResponder"/>
