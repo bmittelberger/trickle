@@ -160,15 +160,15 @@ class RuleCreateViewController: UIViewController, SSRadioButtonControllerDelegat
         if thresholdController!.selectedButton() == declineButton {
             newRule.approval = Rule.ApprovalType.DECLINE
         }
-        newRule.side = Rule.CreditSide.RECEIVER
+        
         if newRule.approval != Rule.ApprovalType.DECLINE {
             newRule.threshold = Int(thresholdTextField.text!)!
-        } else {
+        } else {0
             newRule.threshold = -1
         }
         
 
-        
+        newRule.side = Rule.CreditSide.RECEIVER
         return newRule
     }
     

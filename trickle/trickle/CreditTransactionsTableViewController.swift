@@ -19,6 +19,7 @@ class CreditTransactionsTableViewController: UITableViewController {
     var rules : [Rule] = []
     var addButton : UIBarButtonItem?
     
+    @IBOutlet var creditTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,10 +48,15 @@ class CreditTransactionsTableViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        
+        if self.CreditSegmentedControl.selectedSegmentIndex == 0 {
+            self.tableView.rowHeight = 75
+        } else {
+            self.tableView.rowHeight = 145
+        }
         self.loadTransactions()
         self.loadRules()
-        self.tableView.rowHeight = 75;
+
+
     }
     
     func actionButtonPressed () {
@@ -151,11 +157,11 @@ class CreditTransactionsTableViewController: UITableViewController {
     
     @IBAction func CreditSegmentedControlPressed(sender: UISegmentedControl) {
         if  CreditSegmentedControl.selectedSegmentIndex == 0 {
-            self.tableView.rowHeight = 75;
+            self.tableView.rowHeight = 75
             self.tableView.reloadData()
         } else {
 
-            self.tableView.rowHeight = 160;
+            self.tableView.rowHeight = 145
             self.tableView.reloadData()
             
         }

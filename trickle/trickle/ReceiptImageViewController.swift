@@ -56,7 +56,14 @@ class ReceiptImageViewController: UIViewController {
                         let newCount = count + 1
                         self.download(downloadRequest, downloadingFilePath: downloadingFilePath, count: newCount)
                     } else {
-                        print("download failed 1: [\(error)]")
+                        print("download failed: [\(error)]")
+                        SwiftSpinner.hide()
+                        let errorAlert = UIAlertController(title: "Error", message: "Unable to load receipt.", preferredStyle: UIAlertControllerStyle.Alert)
+                        
+                        errorAlert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { (action: UIAlertAction!) in
+                            self.navigationController?.popViewControllerAnimated(true)
+                        }))
+                        self.presentViewController(errorAlert, animated: true, completion:  nil)
                     }
                 }
             } else if let exception = task.exception {
