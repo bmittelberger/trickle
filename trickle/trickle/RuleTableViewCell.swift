@@ -14,13 +14,6 @@ class RuleTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
-    @IBOutlet weak var ruleTypeVal: UILabel!
-    @IBOutlet weak var maxVal: UILabel!
-    @IBOutlet weak var minVal: UILabel!
-    @IBOutlet weak var thresholdVal: UILabel!
-    @IBOutlet weak var approvalVal: UILabel!
-    @IBOutlet weak var windowVal: UILabel!
     
     @IBOutlet weak var ruleStory: UILabel!
     
