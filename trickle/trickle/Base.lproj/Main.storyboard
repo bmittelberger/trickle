@@ -30,7 +30,6 @@
             <string>Lato-Bold</string>
             <string>Lato-Bold</string>
             <string>Lato-Bold</string>
-            <string>Lato-Bold</string>
         </mutableArray>
         <mutableArray key="Lato-Heavy.ttf">
             <string>Lato-Heavy</string>
@@ -94,8 +93,10 @@
             <string>Lato-Regular</string>
             <string>Lato-Regular</string>
             <string>Lato-Regular</string>
+            <string>Lato-Regular</string>
         </mutableArray>
         <mutableArray key="Lato-Semibold.ttf">
+            <string>Lato-Semibold</string>
             <string>Lato-Semibold</string>
             <string>Lato-Semibold</string>
             <string>Lato-Semibold</string>
@@ -458,7 +459,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2W0-Gq-djc">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2W0-Gq-djc">
                                 <rect key="frame" x="194" y="200" width="213" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="213" id="SOm-EH-kZM"/>
@@ -487,8 +488,8 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rff-jl-jr9">
-                                <rect key="frame" x="279.5" y="356" width="41" height="33"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rff-jl-jr9">
+                                <rect key="frame" x="280" y="356" width="41" height="33"/>
                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="17"/>
                                 <state key="normal" title="Login"/>
                                 <connections>
@@ -503,7 +504,7 @@
                                     <segue destination="YGX-uX-aYe" kind="show" id="Xlj-uM-JX0"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FMr-qq-Fcq">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Don't have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FMr-qq-Fcq">
                                 <rect key="frame" x="211" y="447" width="179" height="21"/>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -917,7 +918,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ras-CU-fVP">
                                 <rect key="frame" x="4" y="20" width="592" height="780"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WCM-u5-XpO">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WCM-u5-XpO">
                                         <rect key="frame" x="0.0" y="0.0" width="592" height="687"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="23r-Oe-r8S">
@@ -1255,21 +1256,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WMx-P7-5eV">
-                                <rect key="frame" x="20" y="20" width="560" height="580"/>
-                            </imageView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="5" translatesAutoresizingMaskIntoConstraints="NO" id="jyz-Ur-lXW">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="620"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WMx-P7-5eV">
+                                        <rect key="frame" x="20" y="20" width="560" height="580"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="WMx-P7-5eV" firstAttribute="centerY" secondItem="jyz-Ur-lXW" secondAttribute="centerY" id="5jz-zt-hEK"/>
+                                    <constraint firstAttribute="trailing" secondItem="WMx-P7-5eV" secondAttribute="trailing" constant="20" id="a41-4L-FS2"/>
+                                    <constraint firstItem="WMx-P7-5eV" firstAttribute="top" secondItem="jyz-Ur-lXW" secondAttribute="top" constant="20" id="bb3-VT-FS1"/>
+                                    <constraint firstAttribute="bottom" secondItem="WMx-P7-5eV" secondAttribute="bottom" constant="20" id="dKl-Us-nDl"/>
+                                    <constraint firstItem="WMx-P7-5eV" firstAttribute="centerX" secondItem="jyz-Ur-lXW" secondAttribute="centerX" id="nBC-X3-A0p"/>
+                                    <constraint firstItem="WMx-P7-5eV" firstAttribute="leading" secondItem="jyz-Ur-lXW" secondAttribute="leading" constant="20" id="tri-Gg-Rxh"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="STY-De-tSU" id="fdx-6B-A9S"/>
+                                </connections>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="WMx-P7-5eV" secondAttribute="trailing" id="JfD-R6-wc9"/>
-                            <constraint firstItem="fR3-uk-dOe" firstAttribute="top" secondItem="WMx-P7-5eV" secondAttribute="bottom" id="N0F-uu-F28"/>
-                            <constraint firstItem="WMx-P7-5eV" firstAttribute="leading" secondItem="FbF-aW-vnd" secondAttribute="leadingMargin" id="gKF-FE-tgS"/>
-                            <constraint firstItem="WMx-P7-5eV" firstAttribute="centerX" secondItem="FbF-aW-vnd" secondAttribute="centerX" id="nj5-ff-MrE"/>
-                            <constraint firstItem="WMx-P7-5eV" firstAttribute="top" secondItem="I2T-iN-Vyj" secondAttribute="bottom" id="wco-x7-Rwx"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="jyz-Ur-lXW" secondAttribute="bottom" constant="-20" id="5XT-dZ-j5j"/>
+                            <constraint firstAttribute="trailing" secondItem="jyz-Ur-lXW" secondAttribute="trailing" id="PNr-YI-ZZY"/>
+                            <constraint firstItem="jyz-Ur-lXW" firstAttribute="top" secondItem="FbF-aW-vnd" secondAttribute="top" id="SU4-Wk-OBt"/>
+                            <constraint firstItem="jyz-Ur-lXW" firstAttribute="leading" secondItem="FbF-aW-vnd" secondAttribute="leading" id="cot-0C-gg6"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="DisplayImage" destination="WMx-P7-5eV" id="IeF-F4-XGr"/>
+                        <outlet property="ScrollView" destination="jyz-Ur-lXW" id="bkU-9m-gX1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vhm-73-H4B" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1320,7 +1337,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="avW-u6-57l">
-                                            <rect key="frame" x="543" y="12" width="42" height="20"/>
+                                            <rect key="frame" x="545" y="13" width="40" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                                             <color key="textColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
@@ -1472,7 +1489,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Available Balance: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRg-iz-BYt">
-                                                <rect key="frame" x="40" y="310.5" width="379" height="20.5"/>
+                                                <rect key="frame" x="40" y="311" width="379" height="21"/>
                                                 <fontDescription key="fontDescription" name="Lato-Semibold" family="Lato" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -1541,10 +1558,10 @@
                                                 <exclude reference="Dc6-Qp-wtY"/>
                                                 <exclude reference="hoR-vK-0fP"/>
                                                 <exclude reference="ncr-nq-jxc"/>
-                                                <exclude reference="M5l-fq-7g2"/>
-                                                <exclude reference="zD5-Qt-yHL"/>
                                                 <exclude reference="ekU-ss-r18"/>
                                                 <exclude reference="orx-sD-B2O"/>
+                                                <exclude reference="M5l-fq-7g2"/>
+                                                <exclude reference="zD5-Qt-yHL"/>
                                             </mask>
                                         </variation>
                                     </view>
