@@ -224,10 +224,10 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
         CategoryTextField.resignFirstResponder()
         StoreTextField.resignFirstResponder()
         
-        if self.receipt == nil {
-            Error.show("Please take a picture of your receipt.", location: self)
-            return
-        }
+//        if self.receipt == nil {
+//            Error.show("Please take a picture of your receipt.", location: self)
+//            return
+//        }
         
         if let title = PurchaseTitleTextField.text {
             if title.isEmpty {
@@ -259,8 +259,8 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
                             Error.showFromRequest(json, location: self)
                             return
                         } else {
-                            let t : Transaction = Transaction.fromJSON(json["transaction"])
-                            self.uploadReceipt(t)
+                            //let t : Transaction = Transaction.fromJSON(json["transaction"])
+                            //self.uploadReceipt(t)
                             SwiftSpinner.hide()
                             self.navigationController?.popViewControllerAnimated(true)
                         }

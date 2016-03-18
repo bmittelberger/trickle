@@ -40,7 +40,8 @@ class LoginViewController: UIViewController {
                 API.authenticate(email, password: password, handler: {(error, json) -> Void in
                     if !error {
                         let next = self.storyboard?.instantiateViewControllerWithIdentifier("MainTabBarController") as! UITabBarController
-                        self.presentViewController(next, animated: true, completion: nil)
+                        
+                        UIApplication.sharedApplication().delegate!.window!!.rootViewController = next
                     } else {
                         Error.showFromRequest(json, location: self)
                     }

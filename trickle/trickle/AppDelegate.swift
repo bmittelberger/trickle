@@ -26,6 +26,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    static var device: String = ""
     
     static let tintColor = UIColor.init(red: 0 / 255.0, green: 80 / 255.0, blue: 100 / 255.0, alpha: 1)
 
@@ -33,8 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let credentialsProvider = AWSCognitoCredentialsProvider(regionType: CognitoRegionType, identityPoolId: CognitoIdentityPoolId)
         let configuration = AWSServiceConfiguration(region: DefaultServiceRegionType, credentialsProvider: credentialsProvider)
         AWSServiceManager.defaultServiceManager().defaultServiceConfiguration = configuration
-        
-        
         
         UINavigationBar.appearance().barTintColor = AppDelegate.tintColor
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
@@ -55,8 +54,58 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UISegmentedControl.appearance().setTitleTextAttributes([
             NSFontAttributeName: UIFont(name: "Lato-Regular", size: 14)!
             ], forState: UIControlState.Normal)
+        
+        // Register for push notifications
+        let settings = UIUserNotificationSettings(forTypes: [.Badge, .Alert, .Sound], categories: nil)
+        UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+        UIApplication.sharedApplication().registerForRemoteNotifications()
                 
         return true
+    }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        let characterSet: NSCharacterSet = NSCharacterSet(charactersInString: "<>")
+        
+        let deviceTokenString: String = (deviceToken.description as NSString)
+            .stringByTrimmingCharactersInSet(characterSet)
+            .stringByReplacingOccurrencesOfString( " ", withString: "") as String
+        
+        AppDelegate.device = deviceTokenString
+        if User.me.id > 0 {
+            User.me.syncDevice(AppDelegate.device)
+        }
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        // Fail silently
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        print("A -- RECEIVED NOTIFICATION!")
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        
+        if let tabBarController = self.window?.rootViewController as? UITabBarController {
+            if let badgeNumber = userInfo["aps"]?["badge"] as? NSNumber {
+                tabBarController.tabBar.items![1].badgeValue = badgeNumber != 0 ? "\(badgeNumber)" : nil
+            }
+            if application.applicationState == .Inactive || application.applicationState == .Background {
+                tabBarController.selectedIndex = 1
+                let reimbursementsNavigationController = tabBarController.selectedViewController! as! UINavigationController
+                let reimbursementsViewController = reimbursementsNavigationController.visibleViewController as! ReimbursementsViewController
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    reimbursementsViewController.ReimbursementsSegmentedControl?.selectedSegmentIndex = 1
+                })
+            }
+        }
+        
+        completionHandler(UIBackgroundFetchResult.NoData)
+    }
+    
+    func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forRemoteNotification userInfo: [NSObject : AnyObject], withResponseInfo responseInfo: [NSObject : AnyObject], completionHandler: () -> Void) {
+        print("C -- RECEIVED NOTIFICATION!")
     }
     
     func applicationWillResignActive(application: UIApplication) {
