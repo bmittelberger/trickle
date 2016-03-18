@@ -9,11 +9,12 @@
 import UIKit
 import SwiftyJSON
 
-class RuleCreateViewController: UIViewController, SSRadioButtonControllerDelegate {
+class RuleCreateViewController: UIViewController, SSRadioButtonControllerDelegate, UITextFieldDelegate {
     @IBOutlet weak var rateLimit: UIButton!
     @IBOutlet weak var rangeLimit: UIButton!
     var transactionTypeController: SSRadioButtonsController?
     
+    var activeTextField: UITextField? = nil
     
     @IBOutlet weak var windowDailyButton: UIButton!
     @IBOutlet weak var windowWeeklyButton: UIButton!
@@ -28,6 +29,7 @@ class RuleCreateViewController: UIViewController, SSRadioButtonControllerDelegat
     @IBOutlet weak var minTextField: UITextField!
     @IBOutlet weak var maxTextField: UITextField!
     
+    @IBOutlet weak var ScrollView: UIScrollView!
     @IBOutlet weak var percentageButton: UIButton!
     @IBOutlet weak var numberButton: UIButton!
     @IBOutlet weak var declineButton: UIButton!
@@ -68,7 +70,12 @@ class RuleCreateViewController: UIViewController, SSRadioButtonControllerDelegat
         thresholdController?.selectFirstElement()
         thresholdUnit.text = ""
         thresholdTextInputLabel.text = "Number of Users"
+        
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardDidShow:", name: UIKeyboardDidShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
         // Do any additional setup after loading the view.
+        print("loading...")
     }
 
     override func didReceiveMemoryWarning() {
@@ -153,15 +160,15 @@ class RuleCreateViewController: UIViewController, SSRadioButtonControllerDelegat
         if thresholdController!.selectedButton() == declineButton {
             newRule.approval = Rule.ApprovalType.DECLINE
         }
-        newRule.side = Rule.CreditSide.RECEIVER
+        
         if newRule.approval != Rule.ApprovalType.DECLINE {
             newRule.threshold = Int(thresholdTextField.text!)!
-        } else {
+        } else {0
             newRule.threshold = -1
         }
         
 
-        
+        newRule.side = Rule.CreditSide.RECEIVER
         return newRule
     }
     
@@ -218,6 +225,48 @@ class RuleCreateViewController: UIViewController, SSRadioButtonControllerDelegat
             self.navigationController?.popViewControllerAnimated(true)
         }
        
+    }
+    
+    func keyboardDidShow(aNotification: NSNotification) {
+        let userInfo = aNotification.userInfo
+        
+        if let info = userInfo {
+            let size = (info[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue().size
+            var height = size.height
+            if let tabBarHeight = self.tabBarController?.tabBar.frame.height {
+                height -= tabBarHeight
+            }
+            let contentInsets = UIEdgeInsetsMake(0, 0, height, 0)
+            
+            ScrollView.contentInset = contentInsets
+            ScrollView.scrollIndicatorInsets = contentInsets
+            
+            let fieldBoundingBox = CGRectMake(activeTextField!.frame.origin.x, activeTextField!.frame.origin.y, activeTextField!.frame.width, activeTextField!.frame.height + 16)
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                self.ScrollView.scrollRectToVisible(fieldBoundingBox, animated: true)
+            })
+        }
+    }
+    
+    func keyboardWillHide(aNotification: NSNotification) {
+        let defaultInsets = UIEdgeInsetsMake(0, 0, 0, 0)
+        
+        ScrollView.contentInset = defaultInsets
+        ScrollView.scrollIndicatorInsets = defaultInsets
+    }
+    
+    func textFieldDidBeginEditing(textField: UITextField) {
+        activeTextField = textField
+    }
+    
+    func textFieldDidEndEditing(textField: UITextField) {
+        activeTextField = nil
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

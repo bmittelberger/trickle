@@ -45,6 +45,8 @@ class TransactionDetailViewController: UIViewController {
     
     @IBOutlet weak var ScrollView: UIScrollView!
     
+    @IBOutlet weak var viewReceiptButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -83,6 +85,8 @@ class TransactionDetailViewController: UIViewController {
             transactionLocation.text = "None Given"
         }
         
+        
+
         TransactionTitleLabel.text = transaction?.title
         let formatter = NSNumberFormatter()
         formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
@@ -90,7 +94,7 @@ class TransactionDetailViewController: UIViewController {
         TransactionAmountLabel.text = formatter.stringFromNumber(transaction!.amount)
         
         TransactionReimburseeLabel.text = transaction?.user.displayName
-        TransactionDateLabel.text = "March 12, 2016"
+        TransactionDateLabel.text = transaction?.date
         TransactionGroupLabel.text = transaction?.group.displayName
         TransactionLineOfCreditLabel.text = transaction?.credit.displayName
 
@@ -105,13 +109,12 @@ class TransactionDetailViewController: UIViewController {
     @IBAction func viewReceiptImageAction(sender: UIButton) {
         
         let receiptImageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ReceiptImageViewController") as!ReceiptImageViewController
-       
+        
+        receiptImageViewController.title = "Transaction's Receipt"
         receiptImageViewController.transaction = self.transaction
         self.navigationController?.pushViewController(receiptImageViewController, animated: true)
-        
     }
-
-    /*
+       /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

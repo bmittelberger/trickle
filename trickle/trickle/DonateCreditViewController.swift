@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DonateCreditViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class DonateCreditViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate  {
 
     var subGroups : [Group] = []
     
