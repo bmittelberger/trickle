@@ -25,8 +25,14 @@
             <string>Lato-Regular</string>
             <string>Lato-Regular</string>
             <string>Lato-Regular</string>
+            <string>Lato-Regular</string>
+            <string>Lato-Regular</string>
+            <string>Lato-Regular</string>
+            <string>Lato-Regular</string>
+            <string>Lato-Regular</string>
         </mutableArray>
         <mutableArray key="Lato-Semibold.ttf">
+            <string>Lato-Semibold</string>
             <string>Lato-Semibold</string>
         </mutableArray>
         <mutableArray key="Lato-Thin.ttf">
@@ -1330,7 +1336,7 @@
                                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Fqq-vK-XFA">
                                                                     <rect key="frame" x="15" y="5" width="32" height="20"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
@@ -1355,14 +1361,14 @@
                                                     <outlet property="delegate" destination="7QP-wz-Cq4" id="GHJ-YY-rtX"/>
                                                 </connections>
                                             </tableView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select SubGroup For Credit Extension" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rqU-fV-lLY">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Select SubGroup For Credit Extension" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rqU-fV-lLY">
                                                 <rect key="frame" x="14" y="21" width="309" height="21"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yob-wb-zFp">
-                                                <rect key="frame" x="440" y="351" width="80" height="30"/>
+                                                <rect key="frame" x="440" y="351" width="80" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="80" id="lzo-4J-MHO"/>
                                                 </constraints>
@@ -1372,16 +1378,8 @@
                                                     <outlet property="delegate" destination="7QP-wz-Cq4" id="Hfy-Pv-3od"/>
                                                 </connections>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wGR-d9-NtR">
-                                                <rect key="frame" x="255" y="478" width="51" height="30"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="Extend"/>
-                                                <connections>
-                                                    <action selector="donatePressed:" destination="7QP-wz-Cq4" eventType="touchUpInside" id="Yat-Wz-B9V"/>
-                                                </connections>
-                                            </button>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QPO-DV-jzt">
-                                                <rect key="frame" x="40" y="404" width="480" height="30"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QPO-DV-jzt">
+                                                <rect key="frame" x="40" y="404" width="480" height="128"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="288" id="eoS-r8-UGZ"/>
                                                 </constraints>
@@ -1398,13 +1396,13 @@
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Balance to Extend:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lym-a3-use">
                                                 <rect key="frame" x="40" y="354" width="384" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Available Balance: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRg-iz-BYt">
                                                 <rect key="frame" x="40" y="311" width="379" height="21"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -1413,7 +1411,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="600" id="ASl-4I-9cE"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                                 <variation key="default">
@@ -1422,37 +1420,60 @@
                                                     </mask>
                                                 </variation>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wGR-d9-NtR">
+                                                <rect key="frame" x="250" y="523" width="61" height="30"/>
+                                                <fontDescription key="fontDescription" name="Lato-Semibold" family="Lato" pointSize="17"/>
+                                                <state key="normal" title="Extend"/>
+                                                <connections>
+                                                    <action selector="donatePressed:" destination="7QP-wz-Cq4" eventType="touchUpInside" id="Yat-Wz-B9V"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="QPO-DV-jzt" firstAttribute="top" secondItem="yob-wb-zFp" secondAttribute="bottom" constant="23" id="28o-sQ-MMk"/>
                                             <constraint firstAttribute="trailing" secondItem="PeU-jX-jRS" secondAttribute="trailing" id="2Sg-w6-WVs"/>
-                                            <constraint firstItem="lym-a3-use" firstAttribute="leading" secondItem="9Y9-6K-EA9" secondAttribute="leading" constant="40" id="53b-Y3-KOq"/>
+                                            <constraint firstItem="yob-wb-zFp" firstAttribute="centerY" secondItem="lym-a3-use" secondAttribute="centerY" id="4IX-1f-1d1"/>
+                                            <constraint firstItem="lym-a3-use" firstAttribute="leading" secondItem="9Y9-6K-EA9" secondAttribute="leading" constant="25" id="53b-Y3-KOq"/>
+                                            <constraint firstItem="tgZ-cc-aNK" firstAttribute="centerY" secondItem="tRg-iz-BYt" secondAttribute="centerY" id="CLz-ca-Civ"/>
                                             <constraint firstItem="tgZ-cc-aNK" firstAttribute="leading" secondItem="tRg-iz-BYt" secondAttribute="trailing" constant="16" id="DW0-9A-V00"/>
                                             <constraint firstItem="QPO-DV-jzt" firstAttribute="leading" secondItem="lym-a3-use" secondAttribute="leading" id="Dc6-Qp-wtY"/>
+                                            <constraint firstAttribute="trailing" secondItem="QPO-DV-jzt" secondAttribute="trailing" constant="25" id="Jl5-nv-ByG"/>
                                             <constraint firstItem="yob-wb-zFp" firstAttribute="baseline" secondItem="lym-a3-use" secondAttribute="baseline" id="M2R-dZ-Z7u"/>
                                             <constraint firstItem="wGR-d9-NtR" firstAttribute="leading" secondItem="9Y9-6K-EA9" secondAttribute="leading" constant="261" id="M5l-fq-7g2"/>
-                                            <constraint firstAttribute="trailing" secondItem="yob-wb-zFp" secondAttribute="trailing" constant="40" id="N5P-Yn-af7"/>
+                                            <constraint firstAttribute="trailing" secondItem="yob-wb-zFp" secondAttribute="trailing" constant="25" id="N5P-Yn-af7"/>
                                             <constraint firstItem="PeU-jX-jRS" firstAttribute="leading" secondItem="9Y9-6K-EA9" secondAttribute="leading" id="PkX-aS-mv2"/>
-                                            <constraint firstItem="tRg-iz-BYt" firstAttribute="top" secondItem="PeU-jX-jRS" secondAttribute="bottom" constant="68" id="Rsv-K3-bw5"/>
+                                            <constraint firstItem="tRg-iz-BYt" firstAttribute="top" secondItem="PeU-jX-jRS" secondAttribute="bottom" constant="32" id="Rsv-K3-bw5"/>
+                                            <constraint firstAttribute="bottom" secondItem="wGR-d9-NtR" secondAttribute="bottom" constant="20" id="SY9-RH-glc"/>
                                             <constraint firstItem="wGR-d9-NtR" firstAttribute="centerX" secondItem="9Y9-6K-EA9" secondAttribute="centerX" id="WA4-po-U0A"/>
                                             <constraint firstItem="yob-wb-zFp" firstAttribute="leading" secondItem="lym-a3-use" secondAttribute="trailing" constant="16" id="Xi2-DU-AMs"/>
                                             <constraint firstItem="yob-wb-zFp" firstAttribute="top" secondItem="tgZ-cc-aNK" secondAttribute="bottom" constant="20" id="ekU-ss-r18"/>
                                             <constraint firstItem="PeU-jX-jRS" firstAttribute="top" secondItem="rqU-fV-lLY" secondAttribute="bottom" constant="21" id="f42-FV-ACt"/>
+                                            <constraint firstItem="wGR-d9-NtR" firstAttribute="top" secondItem="QPO-DV-jzt" secondAttribute="bottom" constant="32" id="gFk-qZ-ATM"/>
+                                            <constraint firstItem="lym-a3-use" firstAttribute="top" secondItem="tRg-iz-BYt" secondAttribute="bottom" constant="25" id="hOK-Lj-164"/>
                                             <constraint firstItem="tgZ-cc-aNK" firstAttribute="baseline" secondItem="tRg-iz-BYt" secondAttribute="baseline" id="hoR-vK-0fP"/>
+                                            <constraint firstItem="QPO-DV-jzt" firstAttribute="leading" secondItem="9Y9-6K-EA9" secondAttribute="leading" constant="25" id="kI6-IG-W8L"/>
                                             <constraint firstItem="tRg-iz-BYt" firstAttribute="leading" secondItem="lym-a3-use" secondAttribute="leading" id="lEF-fm-Vi1"/>
                                             <constraint firstItem="tgZ-cc-aNK" firstAttribute="leading" secondItem="9Y9-6K-EA9" secondAttribute="leading" constant="172" id="ncr-nq-jxc"/>
                                             <constraint firstItem="yob-wb-zFp" firstAttribute="trailing" secondItem="QPO-DV-jzt" secondAttribute="trailing" id="orx-sD-B2O"/>
                                             <constraint firstItem="rqU-fV-lLY" firstAttribute="leading" secondItem="9Y9-6K-EA9" secondAttribute="leading" constant="14" id="qC1-7q-fN1"/>
                                             <constraint firstItem="tRg-iz-BYt" firstAttribute="leading" secondItem="9Y9-6K-EA9" secondAttribute="leading" constant="40" id="s4g-8j-rTq"/>
-                                            <constraint firstAttribute="trailing" secondItem="tgZ-cc-aNK" secondAttribute="trailing" constant="40" id="ufg-NI-QUR"/>
+                                            <constraint firstItem="QPO-DV-jzt" firstAttribute="top" secondItem="lym-a3-use" secondAttribute="bottom" constant="25" id="thm-Vf-yKj"/>
+                                            <constraint firstAttribute="trailing" secondItem="tgZ-cc-aNK" secondAttribute="trailing" constant="25" id="ufg-NI-QUR"/>
                                             <constraint firstItem="rqU-fV-lLY" firstAttribute="top" secondItem="9Y9-6K-EA9" secondAttribute="top" constant="21" id="urN-C2-518"/>
                                             <constraint firstItem="wGR-d9-NtR" firstAttribute="top" secondItem="QPO-DV-jzt" secondAttribute="bottom" constant="44" id="zD5-Qt-yHL"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
+                                                <exclude reference="s4g-8j-rTq"/>
+                                                <exclude reference="28o-sQ-MMk"/>
+                                                <exclude reference="Dc6-Qp-wtY"/>
+                                                <exclude reference="hoR-vK-0fP"/>
                                                 <exclude reference="ncr-nq-jxc"/>
                                                 <exclude reference="M5l-fq-7g2"/>
+                                                <exclude reference="zD5-Qt-yHL"/>
+                                                <exclude reference="ekU-ss-r18"/>
+                                                <exclude reference="orx-sD-B2O"/>
                                             </mask>
                                         </variation>
                                     </view>
