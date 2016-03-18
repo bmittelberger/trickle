@@ -60,6 +60,9 @@ class ReimbursementsViewController: UIViewController, UITableViewDataSource, UIT
                 return Approval.fromJSON(approval)
             }
             self.ReimbursementsTableView.reloadData()
+            
+            self.navigationController?.tabBarItem.badgeValue = self.approvals.count != 0 ? "\(self.approvals.count)" : nil
+            UIApplication.sharedApplication().applicationIconBadgeNumber = self.approvals.count
         }
     }
 
@@ -161,6 +164,9 @@ class ReimbursementsViewController: UIViewController, UITableViewDataSource, UIT
             self.approvals.removeAtIndex(indexPath.item)
             
             self.ReimbursementsTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Left)
+            
+            self.navigationController?.tabBarItem.badgeValue = self.approvals.count != 0 ? "\(self.approvals.count)" : nil
+            UIApplication.sharedApplication().applicationIconBadgeNumber = self.approvals.count
         }
     }
     
@@ -180,10 +186,11 @@ class ReimbursementsViewController: UIViewController, UITableViewDataSource, UIT
             self.approvals.removeAtIndex(indexPath.item)
             
             self.ReimbursementsTableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Right)
+            
+            self.navigationController?.tabBarItem.badgeValue = self.approvals.count != 0 ? "\(self.approvals.count)" : nil
+            UIApplication.sharedApplication().applicationIconBadgeNumber = self.approvals.count
         }
     }
-    
-    
     
 
     /*

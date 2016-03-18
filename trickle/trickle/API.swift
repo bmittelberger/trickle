@@ -13,6 +13,7 @@ import SwiftyJSON
 class API {
     
     static let rootUrl = "http://52.35.136.102/api/v0/"
+    //static let rootUrl = "http://localhost:3000/api/v0/"
     static var accessToken = ""
     
     class func request(method: Alamofire.Method = .GET,
@@ -48,6 +49,7 @@ class API {
                     if let token = json["token"].string {
                         self.accessToken = token
                         User.me = User.fromJSON(json["user"])
+                        User.me.syncDevice(AppDelegate.device)
                     }
                 }
                 
