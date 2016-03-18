@@ -175,6 +175,7 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
         
         let filePath = fileURL.path!
         let imageData = UIImageJPEGRepresentation(self.receipt!,0.1)
+        ImageCache.cache[t.id] = UIImage(data: imageData!)
         imageData!.writeToFile(filePath, atomically: true)
         
         print("file key: \(t.imageURL)\n")
@@ -183,6 +184,7 @@ class ReimbursementViewController: UIViewController, UIImagePickerControllerDele
         uploadRequest.key = t.imageURL
         uploadRequest.bucket = S3BucketName
         
+        t.cachedImagePath = filePath
         self.upload(uploadRequest)
     }
     

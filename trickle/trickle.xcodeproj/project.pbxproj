@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		044818C41C9CA524005F97B9 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044818C31C9CA524005F97B9 /* ImageCache.swift */; };
 		0484DADE1C9804380057CED8 /* ReceiptImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0484DADD1C9804380057CED8 /* ReceiptImageViewController.swift */; };
 		04925AC01C97923900FC9672 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04925ABF1C97923900FC9672 /* Constants.swift */; };
 		0A5199E91C66DA1F00A39B69 /* MyGroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5199E81C66DA1F00A39B69 /* MyGroupsViewController.swift */; };
@@ -81,6 +82,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		044818C31C9CA524005F97B9 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		0484DADD1C9804380057CED8 /* ReceiptImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptImageViewController.swift; sourceTree = "<group>"; };
 		04925ABF1C97923900FC9672 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		04925AC11C97930C00FC9672 /* ObjectiveC_Bridging_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectiveC_Bridging_Header.h; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				C17BDAC01C8E44F300E8E548 /* TransactionDetailViewController.swift */,
 				0A5BB7521C9A7B3D0064D96A /* GroupTableViewCell.swift */,
 				0A96CDC21C9BB7DD001DBD56 /* MainTabBarController.swift */,
+				044818C31C9CA524005F97B9 /* ImageCache.swift */,
 			);
 			path = trickle;
 			sourceTree = "<group>";
@@ -527,6 +530,7 @@
 				0AE1B4451C5EE9E200CCCC81 /* Error.swift in Sources */,
 				04925AC01C97923900FC9672 /* Constants.swift in Sources */,
 				0A5199ED1C671FB200A39B69 /* Credit.swift in Sources */,
+				044818C41C9CA524005F97B9 /* ImageCache.swift in Sources */,
 				C17BDAC11C8E44F300E8E548 /* TransactionDetailViewController.swift in Sources */,
 				0A829E7D1C83F32300AAAF06 /* SelectOrganizationViewController.swift in Sources */,
 				0A829E771C7AB1D200AAAF06 /* ReimbursementsViewController.swift in Sources */,
